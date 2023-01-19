@@ -5,8 +5,8 @@ The purpose of our application is to help users put together outfits quickly, wi
 
 ### Features
 * Upload images of clothing items
-* Categorize your clothing by type: bottoms, tops, shoes, (jackets/cardigans), dresses?
-* Categories are aligned, able to swipe through them
+* Categorize your clothing by type: bottoms, tops, shoes, jackets/cardigans, dresses
+* Categories are aligned, user is able to swipe through them
 * Tag the location of each item (drawer, on a hanger, etc. – users can list their own locations)
 * Laundry is a default setting (greys out image)
 * For each item, have a section that shows outfits that have been planned using that item (images users have uploaded under those pieces of clothing)

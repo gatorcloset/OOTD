@@ -1,0 +1,11 @@
+.name {
+    padding-left: 50px;
+}
+
+.last {
+    padding-right: 50px;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}

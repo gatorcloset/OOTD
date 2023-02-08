@@ -19,7 +19,7 @@ import { ItemsComponent } from './closet/items/items.component';
 const appRoute: Routes = [
   {path: 'closet', component: ClosetComponent},
   {path: 'closet', children: [
-    {path: 'jeans', component: ItemsComponent}
+    {path: 'jeans', component: ItemsComponent} // TO DO: MAKE PATH CUSTOM TO WHATEVER IS CLICKED
   ]}
 ]
 

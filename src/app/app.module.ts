@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule, Routes } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,13 +14,21 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatGridListModule} from '@angular/material/grid-list';
+import { ItemsComponent } from './closet/items/items.component';
 
+const appRoute: Routes = [
+  {path: 'closet', component: ClosetComponent},
+  {path: 'closet', children: [
+    {path: 'jeans', component: ItemsComponent}
+  ]}
+]
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    ClosetComponent
+    ClosetComponent,
+    ItemsComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +39,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
     MatIconModule,
     MatButtonModule,
     MatDividerModule,
-    MatGridListModule
+    MatGridListModule,
+    RouterModule.forRoot(appRoute)
   ],
   providers: [],
   bootstrap: [AppComponent]

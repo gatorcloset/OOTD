@@ -13,3 +13,7 @@ mat-card-content.top-padding {
 mat-card:hover {
     background-color: #f7f7f7;
 }
+
+button {
+    margin-right: 7px;
+}

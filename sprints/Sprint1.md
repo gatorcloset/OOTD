@@ -39,6 +39,6 @@ Frontend Video: https://youtu.be/CoZogMRYfNA
 -  We were unable to add icons to the nav bar due to time constraints + it is a low priority
 -  We were unable to create a mock database to display the closet items. This was due to time constraints. 
 
-## Video Links
+## Code Demos
 - Backend: https://www.youtube.com/watch?v=N6wDtUrfCQA
 - Frontend: https://youtu.be/CoZogMRYfNA

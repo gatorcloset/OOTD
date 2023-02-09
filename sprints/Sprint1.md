@@ -1,7 +1,8 @@
 # Sprint 1
 
-## Videos
-Frontend Video: https://youtu.be/CoZogMRYfNA
+## Code Demo Videos
+Frontend: https://youtu.be/CoZogMRYfNA
+Backend: https://www.youtube.com/watch?v=N6wDtUrfCQA
 
 ## User Stories
 - As a **fashion-conscious** individual, I want to be able to sign up for the app and upload images of my clothes so that I can keep track of my wardrobe.
@@ -38,7 +39,3 @@ Frontend Video: https://youtu.be/CoZogMRYfNA
 ## Not completed
 -  We were unable to add icons to the nav bar due to time constraints + it is a low priority
 -  We were unable to create a mock database to display the closet items. This was due to time constraints. 
-
-## Code Demos
-- Backend: https://www.youtube.com/watch?v=N6wDtUrfCQA
-- Frontend: https://youtu.be/CoZogMRYfNA

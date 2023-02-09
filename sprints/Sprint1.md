@@ -1,8 +1,8 @@
 # Sprint 1
 
 ## Code Demo Videos
-Frontend: https://youtu.be/CoZogMRYfNA
-Backend: https://www.youtube.com/watch?v=N6wDtUrfCQA
+- Frontend: https://youtu.be/CoZogMRYfNA
+- Backend: https://www.youtube.com/watch?v=N6wDtUrfCQA
 
 ## User Stories
 - As a **fashion-conscious** individual, I want to be able to sign up for the app and upload images of my clothes so that I can keep track of my wardrobe.

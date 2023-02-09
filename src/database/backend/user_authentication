@@ -1,0 +1,24 @@
+import (
+        "encoding/json"
+        "github.com/gorilla/mux"
+        "log"
+        "net/http"
+)
+
+type Person struct {
+        Name string `json:"name"`
+        Username  string `json:"username"`
+        Password string `json:"password"`
+        
+}
+
+err := json.NewDecoder(request.Body).Decode(&Person)
+        if err != nil {
+                log.Fatalln("There was an error decoding the request body into the struct")
+        }
+        
+ 
+err = json.NewEncoder(writer).Encode(&human)
+        if err != nil {
+                log.Fatalln("There was an error encoding the initialized struct")
+}

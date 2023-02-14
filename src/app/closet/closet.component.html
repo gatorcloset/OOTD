@@ -2,7 +2,7 @@
     <h1>Your Closet</h1>
     <mat-grid-list cols="4" rowHeight="400">
         <mat-grid-tile *ngFor="let category of categories">
-            <mat-card class="example-card" [routerLink]="['/closet/jeans']">
+            <mat-card class="example-card" [routerLink]="['/closet', category.name | lowercase]">
                 <img mat-card-image src={{category.image}}>
                 <mat-divider></mat-divider>
                 <mat-card-content class="top-padding">

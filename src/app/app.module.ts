@@ -16,13 +16,6 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { ItemsComponent } from './closet/items/items.component';
 
-const appRoute: Routes = [
-  {path: 'closet', component: ClosetComponent},
-  {path: 'closet', children: [
-    {path: 'jeans', component: ItemsComponent} // TO DO: MAKE PATH CUSTOM TO WHATEVER IS CLICKED
-  ]}
-]
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +33,6 @@ const appRoute: Routes = [
     MatButtonModule,
     MatDividerModule,
     MatGridListModule,
-    RouterModule.forRoot(appRoute)
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,5 +1,9 @@
 # Sprint 1
 
+## Code Demo Videos
+- Frontend: https://youtu.be/CoZogMRYfNA
+- Backend: https://www.youtube.com/watch?v=N6wDtUrfCQA
+
 ## User Stories
 - As a **fashion-conscious** individual, I want to be able to sign up for the app and upload images of my clothes so that I can keep track of my wardrobe.
 - As a **traveler**, I want to be able to add attributes like location and type to my articles of clothing so that I can easily plan outfits for different destinations.

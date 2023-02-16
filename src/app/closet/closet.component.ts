@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { Category } from '../category';
-import { CATEGORIES } from '../mock-categories';
+import { Component, Output, EventEmitter } from '@angular/core';
+import { Category } from '../mock-data/category';
+import { CategoryService } from '../services/category.service';
 
 @Component({
   selector: 'app-closet',
@@ -8,5 +8,22 @@ import { CATEGORIES } from '../mock-categories';
   styleUrls: ['./closet.component.css']
 })
 export class ClosetComponent {
-  categories = CATEGORIES;
+  categories: Category[] = [];
+
+  constructor(private categoryService: CategoryService) {}
+
+  getCategories(): void {
+    this.categories = this.categoryService.getCategories();
+  }
+
+  ngOnInit(): void {
+    this.getCategories();
+  }
+
+  /*
+  @Output() selectedCategory = new EventEmitter<Category>();
+  onSelect(category: Category) {
+    this.selectedCategory.emit(category);
+  }
+  */
 }

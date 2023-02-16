@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ClosetComponent } from './closet/closet.component';
-import { ItemsComponent } from './closet/items/items.component';
+import { ItemsComponent } from './items/items.component';
 
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatCardModule} from '@angular/material/card';

@@ -19,11 +19,4 @@ export class ClosetComponent {
   ngOnInit(): void {
     this.getCategories();
   }
-
-  /*
-  @Output() selectedCategory = new EventEmitter<Category>();
-  onSelect(category: Category) {
-    this.selectedCategory.emit(category);
-  }
-  */
 }

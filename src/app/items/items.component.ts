@@ -15,6 +15,7 @@ export class ItemsComponent {
 
   items: Item[] = [];
   selectedCategory: string = "";
+  selectedItems: Item[] = [];
 
   // Creates an instance of the ItemService and CategoryService
   constructor(private itemService: ItemService, private activatedRoute: ActivatedRoute) {}
@@ -30,6 +31,7 @@ export class ItemsComponent {
   
     // Retrieves the name element of the router
     this.selectedCategory = this.activatedRoute.snapshot.paramMap.get('name')!;
-    
+    // Sets the array of selected items = to the original items array, but filtered
+    this.selectedItems = this.itemService.getItems().filter(x => x.category.name.toLowerCase() === this.selectedCategory);
   }
 }

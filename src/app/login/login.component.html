@@ -1,0 +1,26 @@
+<body>
+    <mat-card class="mat-card-container">
+        <mat-card-header>LOGIN</mat-card-header>
+        <mat-form-field class="inputField" appearance="fill">
+            <mat-label>Username</mat-label>
+            <input matInput>
+        </mat-form-field>
+        <mat-form-field class="inputField" appearance="fill">
+            <mat-label>Password</mat-label>
+            <input matInput>
+        </mat-form-field>
+        <div class="text-center">
+            <button mat-raised-button class="login-button"
+                style= background-color:rgb(158,167,236)
+                [routerLink]="['/login']">LOGIN
+            </button>
+        </div>
+        <small>Don't have an account?</small>
+        <small>
+            <button [routerLink]="['/signup']"> Sign Up</button>
+        </small>
+    </mat-card>
+</body>
+
+
+

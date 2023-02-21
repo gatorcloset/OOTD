@@ -15,6 +15,11 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { ItemsComponent } from './closet/items/items.component';
+import { EntranceComponent } from './entrance/entrance.component';
+import { LoginComponent } from './login/login.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import { SignupComponent } from './signup/signup.component';
 
 const appRoute: Routes = [
   {path: 'closet', component: ClosetComponent},
@@ -28,7 +33,10 @@ const appRoute: Routes = [
     AppComponent,
     NavbarComponent,
     ClosetComponent,
-    ItemsComponent
+    ItemsComponent,
+    EntranceComponent,
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +48,9 @@ const appRoute: Routes = [
     MatButtonModule,
     MatDividerModule,
     MatGridListModule,
-    RouterModule.forRoot(appRoute)
+    RouterModule.forRoot(appRoute),
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

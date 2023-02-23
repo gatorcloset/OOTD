@@ -2,21 +2,13 @@ package main
 
 //import statements
 import (
-	//"bufio"
-	//"fmt"
 	"log"
 	"net/http"
-	//"os"
-	//"strings"
 
 	"github.com/gorilla/mux"
-	//"gorm.io/driver/sqlite"
-	//"gorm.io/gorm"
-
-	//"github.com/dixonwille/wmenu/v5"
 )
 
-func initializeRouter () {
+func initializeRouter() {
 	r := mux.NewRouter()
 	r.HandleFunc("/users", GetUsers).Methods("GET")
 	r.HandleFunc("/users{id}", GetUser).Methods("GET")
@@ -32,7 +24,5 @@ func main() {
 
 	InitialMigration()
 	initializeRouter()
-	
+
 }
-
-

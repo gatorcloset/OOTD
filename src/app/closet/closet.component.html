@@ -1,52 +1,19 @@
 <div class="container">
     <h1>Your Closet</h1>
     <mat-grid-list cols="4" rowHeight="400">
-        <mat-grid-tile>
-            <mat-card class="example-card" [routerLink]="['/closet/jeans']"> <!-- TO DO: EDIT PATH -->
-                <img mat-card-image src="https://static.vecteezy.com/system/resources/previews/004/459/001/original/women-s-jeans-linear-icon-thin-line-illustration-trousers-contour-symbol-isolated-outline-drawing-vector.jpg" alt="Photo of a Shiba Inu">
+        <mat-grid-tile *ngFor="let category of categories">
+            <mat-card class="example-card" [routerLink]="['/closet', category.name | lowercase]">
+                <img mat-card-image src={{category.image}}>
                 <mat-divider></mat-divider>
                 <mat-card-content class="top-padding">
-                  <mat-card-title>Jeans</mat-card-title>
-                  <mat-card-subtitle>14 items</mat-card-subtitle>
+                  <mat-card-title>{{category.name}}</mat-card-title>
+                  <mat-card-subtitle>{{category.number}} items</mat-card-subtitle>
                 </mat-card-content>
             </mat-card>
         </mat-grid-tile>
-
-        <mat-grid-tile>
-            <mat-card class="example-card">
-                <img mat-card-image src="https://static.vecteezy.com/system/resources/previews/007/836/815/non_2x/hand-drawn-icon-of-t-shirt-outline-symbol-illustration-in-doodle-sketch-style-vector.jpg" alt="Photo of a Shiba Inu">
-                <mat-divider></mat-divider>
-                <mat-card-content class="top-padding">
-                <mat-card-title>T-Shirts</mat-card-title>
-                <mat-card-subtitle>10 items</mat-card-subtitle>
-                </mat-card-content>
-            </mat-card>
-        </mat-grid-tile>
-
-        <mat-grid-tile>
-            <mat-card class="example-card">
-                <img mat-card-image src="https://static.vecteezy.com/system/resources/previews/010/370/680/non_2x/icon-blouse-suitable-for-education-symbol-line-style-simple-design-editable-design-template-simple-illustration-vector.jpg" alt="Photo of a Shiba Inu">
-                <mat-divider></mat-divider>
-                <mat-card-content class="top-padding">
-                <mat-card-title>Blouses</mat-card-title>
-                <mat-card-subtitle>11 items</mat-card-subtitle>
-                </mat-card-content>
-            </mat-card>
-        </mat-grid-tile>
-
-        <mat-grid-tile>
-            <mat-card class="example-card">
-                <img mat-card-image src="https://static.vecteezy.com/system/resources/previews/004/459/001/original/women-s-jeans-linear-icon-thin-line-illustration-trousers-contour-symbol-isolated-outline-drawing-vector.jpg" alt="Photo of a Shiba Inu">
-                <mat-divider></mat-divider>
-                <mat-card-content class="top-padding">
-                <mat-card-title>Pants</mat-card-title>
-                <mat-card-subtitle>10 items</mat-card-subtitle>
-                </mat-card-content>
-            </mat-card>
-        </mat-grid-tile>
-
     </mat-grid-list>
 </div>
+
 
 
   

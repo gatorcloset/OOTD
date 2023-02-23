@@ -6,10 +6,13 @@ import (
 	"fmt"
 	"net/http"
 
+	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 
 	_ "github.com/mattn/go-sqlite3"
 )
+
+var db *gorm.DB
 
 type User struct {
 	gorm.Model
@@ -34,15 +37,26 @@ func InitialMigration() {
 	db.AutoMigrate(&User{})
 }
 
+func GetUsers(w http.ResponseWriter, r *http.Request) {
+
+}
+
+func GetUser(w http.ResponseWriter, r *http.Request) {
+}
+
 func CreateUser(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	var user User 
+	var user User
 	json.NewDecoder(r.Body).Decode(&user)
 	db.Create(&user)
 	json.NewEncoder(w).Encode(user)
 }
 
-func 
+func UpdateUser(w http.ResponseWriter, r *http.Request) {
+}
+
+func DeleteUser(w http.ResponseWriter, r *http.Request) {
+}
 
 /*func searchForPerson(db *gorm.DB, searchString string) []user {
 

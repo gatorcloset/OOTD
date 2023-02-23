@@ -1,24 +1,40 @@
 package main
 
+//import statements
 import (
 	"bufio"
-	"database/sql"
 	"fmt"
 	"log"
+	"net/http"
 	"os"
 	"strings"
+
+	"github.com/gorilla/mux"
+	"gorm.io/driver/sqlite"
+	"gorm.io/gorm"
 
 	"github.com/dixonwille/wmenu/v5"
 )
 
+func initializeRouter () {
+	r := mux.NewRouter()
+	r.HandleFunc("/users", GetUsers).Methods("GET")
+	r.HandleFunc("/users{id}", GetUser).Methods("GET")
+	r.HandleFunc("/users", CreateUser).Methods("POST")
+	r.HandleFunc("/users{id}", UpdateUsers).Methods("PUT")
+	r.HandleFunc("/users{id}", DeleteUsers).Methods("DELETE")
+
+	log.Fatal(http.ListenAndServe(":8080", r))
+
+}
+
 func main() {
 
-	// Connect to database
-	db, err := sql.Open("sqlite3", "./OOTD_db.db")
-	checkErr(err)
-	// defer close
-	defer db.Close()
+	InitialMigration()
+	initializeRouter()
 
+
+	//displays menu and asks for user input
 	menu := wmenu.NewMenu("What would you like to do?")
 
 	menu.Action(func(opts []wmenu.Opt) error { handleFunc(db, opts); return nil })
@@ -35,8 +51,9 @@ func main() {
 	}
 }
 
-func handleFunc(db *sql.DB, opts []wmenu.Opt) {
+func handleFunc(db *gorm.DB, opts []wmenu.Opt) {
 
+	//if user enters 0, get first name, last name, and email and add to the database
 	switch opts[0].Value {
 
 	case 0:
@@ -60,24 +77,24 @@ func handleFunc(db *sql.DB, opts []wmenu.Opt) {
 			email = strings.TrimSuffix(email, "\n")
 		}
 
-		fmt.Print("Enter an IP address: ")
-		ipAddress, _ := reader.ReadString('\n')
-		if ipAddress != "\n" {
-			ipAddress = strings.TrimSuffix(ipAddress, "\n")
-		}
 
-		newPerson := person{
+		user := User{
 			first_name: firstName,
-			last_name:  lastName,
-			email:      email,
-			ip_address: ipAddress,
+ 			last_name: lastName,
+ 			email: email,
 		}
 
-		addPerson(db, newPerson)
+		createUser(db, user)
+
+		fmt.Println("Account created", user.first_name, user.last_name)
+
+		db.Save(&user)
 
 		break
+	}
+}
 
-	case 1:
+	/*case 1:
 		fmt.Println("Finding a Person")
 		reader := bufio.NewReader(os.Stdin)
 		fmt.Print("Enter a name to search for : ")
@@ -161,4 +178,7 @@ func checkErr(err error) {
 	if err != nil {
 		log.Fatal(err)
 	}
+	
 }
+*/
+

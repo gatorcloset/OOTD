@@ -1,0 +1,16 @@
+<div class="container">
+    <h1>{{selectedCategory | titlecase}}</h1> <!-- TO DO: CHANGE THIS-->
+    <mat-grid-list cols="4" rowHeight="400">
+        <ng-container *ngFor="let item of selectedItems">
+            <mat-grid-tile>
+                <mat-card class="example-card">
+                    <img mat-card-image src={{item.image}}>
+                    <mat-divider></mat-divider>
+                    <mat-card-content class="top-padding">
+                    <mat-card-title>{{item.name}}</mat-card-title>
+                    </mat-card-content>
+                </mat-card>
+            </mat-grid-tile>
+        </ng-container>
+    </mat-grid-list>
+</div>

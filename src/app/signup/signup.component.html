@@ -1,0 +1,49 @@
+<body>
+    <mat-card class="mat-card-container">
+        <mat-card-header>CREATE AN ACCOUNT</mat-card-header>
+
+        <mat-form-field class="inputField" appearance="fill">
+            <mat-label>First Name</mat-label>
+            <input matInput>
+        </mat-form-field>
+
+        <mat-form-field class="inputField" appearance="fill">
+            <mat-label>Last Name</mat-label>
+            <input matInput>
+        </mat-form-field>
+
+        <mat-form-field class="inputField" appearance="fill">
+            <mat-label>Email</mat-label>
+            <input matInput>
+        </mat-form-field>
+
+        <mat-form-field class="inputField" appearance="fill">
+            <mat-label>Username</mat-label>
+            <input matInput>
+        </mat-form-field>
+
+        <mat-form-field class="inputField" appearance="fill">
+            <mat-label>Password</mat-label>
+            <input matInput>
+        </mat-form-field>
+
+        <mat-form-field class="inputField" appearance="fill">
+            <mat-label>Confirm Password</mat-label>
+            <input matInput>
+        </mat-form-field>
+
+        <div class="text-center">
+            <button mat-raised-button class="login-button"
+                style= background-color:rgb(158,167,236)>
+                SIGN UP
+            </button>
+        </div>
+
+        <small>Already have an accout?</small>
+        <small>
+            <button [routerLink]="['/login']"> Sign In</button>
+        </small>
+        
+    </mat-card>
+</body>
+

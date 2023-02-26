@@ -17,7 +17,7 @@ The Cypress framework was used to unit test the "Closet" page. The tests perform
 - Checks the functionality of each clothing category card; verifies that routing to /closet/jeans is performing properly.
 - Checks that closet items are filtering properly according to the activiated router. Specifically, the test checks that if the user clicks the "Jeans" category, they should be redirected to a page that only displays clothing cards under the "Jean" category.
 
-## Backend Unit Tests
+## Backend
 (write in a separate folder/file and link here)
 
 # API Documentation

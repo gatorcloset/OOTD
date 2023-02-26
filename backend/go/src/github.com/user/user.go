@@ -10,7 +10,6 @@ import (
 	"gorm.io/gorm"
 
 	"github.com/gorilla/mux"
-	_ "github.com/mattn/go-sqlite3"
 )
 
 var db *gorm.DB

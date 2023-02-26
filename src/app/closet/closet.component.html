@@ -13,6 +13,19 @@
         </mat-grid-tile>
     </mat-grid-list>
 </div>
+<div class="container">
+    <h1>Test Users</h1>
+    <mat-grid-list cols="4" rowHeight="400">
+        <mat-grid-tile *ngFor="let user of testUsers">
+            <mat-card class="example-card">
+                <mat-card-content class="top-padding">
+                  <mat-card-title>{{user.firstname}}</mat-card-title>
+                  <mat-card-subtitle>{{user.lastname}}</mat-card-subtitle>
+                </mat-card-content>
+            </mat-card>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>
 
 
 

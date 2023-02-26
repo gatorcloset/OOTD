@@ -6,7 +6,10 @@
 - Closet items are filtered according to the activated route the user is visiting (as further described in the "Frontend Unit Tests" section).
 - The Cypress framework was set up and tests have been configured. These tests are 1:1 with the added features described above.
 
-# Frontend Unit Tests
+## Backend
+
+# Unit Tests
+## Frontend
 The Cypress testing for the frontend can be found [here](https://github.com/gatorcloset/OOTD/blob/closet/cypress/e2e/closet.cy.ts).
 
 The Cypress framework was used to unit test the "Closet" page. The tests perform the following:
@@ -14,7 +17,7 @@ The Cypress framework was used to unit test the "Closet" page. The tests perform
 - Checks the functionality of each clothing category card; verifies that routing to /closet/jeans is performing properly.
 - Checks that closet items are filtering properly according to the activiated router. Specifically, the test checks that if the user clicks the "Jeans" category, they should be redirected to a page that only displays clothing cards under the "Jean" category.
 
-# Backend Unit Tests
+## Backend Unit Tests
 (write in a separate folder/file and link here)
 
 # API Documentation

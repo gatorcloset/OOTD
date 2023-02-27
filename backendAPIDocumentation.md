@@ -22,7 +22,7 @@ No additional parameters, data format is JSON
     "Password": "samplePassword!"
   }
   
-  - ## Sample Response Format:
+  - Sample Response Format:
   {
     "ID": 6,
     "CreatedAt": "2023-02-24T17:20:46.634953-05:00",

@@ -12,7 +12,7 @@ The endpoints created include:
 - DELETE /user/{id} - delete an existing user account
 
 ## Request and Response Formats 
-- `POST /users` request format
+- `POST /users` 
 No additional parameters, data format is JSON
   - Sample Request Format :
   {
@@ -34,7 +34,7 @@ No additional parameters, data format is JSON
     "password": "samplePassword!"
   }
   
-- `GET /users` request format
+- `GET /users`
 No additional parameters, data format is JSON
   - Sample Request Format:
     - Nothing needed
@@ -76,4 +76,39 @@ No additional parameters, data format is JSON
     "password": "differentPassword!"
     }
     
- - 
+- `PUT /users{id}`
+  Requires an id, data format is in JSON
+    - Sample Request Format:
+    {
+    "firstname": "This",
+    "lastname": "Is Updated",
+    "username": "megan.shah07@gmail.com",
+    "Password": "samplePassword!"
+    }
+    - Sample Response Format:
+    {
+    "ID": 6,
+    "CreatedAt": "2023-02-24T17:20:46.634953-05:00",
+    "UpdatedAt": "2023-02-27T14:44:38.119619-05:00",
+    "DeletedAt": null,
+    "firstname": "This",
+    "lastname": "Is Updated",
+    "username": "megan.shah07@gmail.com",
+    "password": "samplePassword!"
+  }
+  
+- `DELETE /users{id}`
+  Requires an id, data format is in JSON
+    - Sample Request Format:
+      - Nothing needed
+    - Sample Response Format:
+    "The user has successfully been deleted."
+    
+## Error Handling
+
+If an error is encountered, the API will return the following error codes:
+- 400 - Bad Request
+- 401 - Unauthorized
+- 403 - Forbidden
+- 404 - Not Found
+- 500 - Internal Server Error

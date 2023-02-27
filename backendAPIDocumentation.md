@@ -60,7 +60,7 @@ No additional parameters, data format is JSON
         "password": "checkPassword*"
     }
     
-  - `GET /users{id}`
+- `GET /users{id}`
   Requires an id, data format is in JSON
     - Sample Request Format:
       - Nothing needed

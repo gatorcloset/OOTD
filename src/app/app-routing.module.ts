@@ -4,19 +4,17 @@ import { EntranceComponent } from './entrance/entrance.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { ClosetComponent } from './closet/closet.component';
-// import { ItemsComponent } from './closet/items/items.component';
+import { HomeComponent } from './home/home.component';
+import { UserComponent } from './user/user.component';
 
 const routes: Routes = [
-  {path: 'closet', component: ClosetComponent},
-  /*
-  {path: 'closet', children: [
-    {path: 'jeans', component: ItemsComponent} // TO DO: MAKE PATH CUSTOM TO WHATEVER IS CLICKED
-  ]}
-  */
+  { path: 'closet', component: ClosetComponent },
+  { path: 'home', component: HomeComponent },
+  { path: '', component: EntranceComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'signup', component: SignupComponent },
+  { path: 'user', component: UserComponent}
 
-  {path: '', component: EntranceComponent},
-  {path: 'login', component: LoginComponent},
-  {path: 'signup', component: SignupComponent}
 ];
 
 @NgModule({

@@ -15,14 +15,20 @@ The endpoints created include:
 - `POST /users` 
 No additional parameters, data format is JSON
   - Sample Request Format :
+  ````
+  ```
   {
     "firstname": "Megan",
     "lastname": "Shah",
     "username": "megan.shah07@gmail.com",
     "Password": "samplePassword!"
   }
+  ```
+  ````
   
   - Sample Response Format:
+  ````
+  ```
   {
     "ID": 6,
     "CreatedAt": "2023-02-24T17:20:46.634953-05:00",
@@ -33,12 +39,16 @@ No additional parameters, data format is JSON
     "username": "megan.shah07@gmail.com",
     "password": "samplePassword!"
   }
+  ```
+  ````
   
 - `GET /users`
 No additional parameters, data format is JSON
   - Sample Request Format:
     - Nothing needed
   - Sample Response Format (User list is truncated for the purposes of this demonstration):
+  ````
+  ```
   {
         "ID": 1,
         "CreatedAt": "2023-02-23T18:08:16.701245-05:00",
@@ -59,12 +69,16 @@ No additional parameters, data format is JSON
         "username": "nhodnett1",
         "password": "checkPassword*"
     }
+```
+````
     
 - `GET /users{id}`
   Requires an id, data format is in JSON
     - Sample Request Format:
       - Nothing needed
     - Sample Response Format:
+ ````
+  ```
     {
     "ID": 5,
     "CreatedAt": "2023-02-24T17:19:54.804819-05:00",
@@ -75,17 +89,25 @@ No additional parameters, data format is JSON
     "username": "aneesha.acharya",
     "password": "differentPassword!"
     }
+```
+````
     
 - `PUT /users{id}`
   Requires an id, data format is in JSON
     - Sample Request Format:
+  ````
+  ```
     {
     "firstname": "This",
     "lastname": "Is Updated",
     "username": "megan.shah07@gmail.com",
     "Password": "samplePassword!"
     }
+```
+````
     - Sample Response Format:
+  ````
+  ```
     {
     "ID": 6,
     "CreatedAt": "2023-02-24T17:20:46.634953-05:00",
@@ -96,6 +118,9 @@ No additional parameters, data format is JSON
     "username": "megan.shah07@gmail.com",
     "password": "samplePassword!"
   }
+  
+```
+````
   
 - `DELETE /users{id}`
   Requires an id, data format is in JSON

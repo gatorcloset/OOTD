@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +22,9 @@ import {MatInputModule} from '@angular/material/input';
 import { SignupComponent } from './signup/signup.component';
 
 import { ClosetModule } from './closet/closet.module';
+import { HomeComponent } from './home/home.component';
+import { HomeModule } from './home/home.module';
+import { UserComponent } from './user/user.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +34,9 @@ import { ClosetModule } from './closet/closet.module';
     ItemsComponent,
     EntranceComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    HomeComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +51,8 @@ import { ClosetModule } from './closet/closet.module';
     MatFormFieldModule,
     MatInputModule,
     ClosetModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

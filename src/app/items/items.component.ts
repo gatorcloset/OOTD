@@ -1,8 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Item } from 'src/app/mock-data/item';
-import { Category } from '../mock-data/category';
 import { ItemService } from 'src/app/services/item.service';
-import { CategoryService } from '../services/category.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({

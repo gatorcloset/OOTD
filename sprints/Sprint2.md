@@ -33,5 +33,4 @@ These tests were used to unit test the database CRUD functionality. The tests pe
 - Checks that accounts can be deleted (DELETE functionality)
 
 # API Documentation
-Find our backend CRUD API Documentation https://github.com/gatorcloset/OOTD/blob/main/backendAPIDocumentation.md
-https://github.com/gatorcloset/OOTD/blob/main/backendAPIDocumentation.md
+Find our backend CRUD API Documentation here -> https://github.com/gatorcloset/OOTD/blob/main/backendAPIDocumentation.md

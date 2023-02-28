@@ -1,8 +1,5 @@
 // Database structure
 export interface User {
-    UserID: number;
-    CreatedAt: string;
-    UpdatedAt: string;
     firstname: string;
     lastname: string;
     username: string;

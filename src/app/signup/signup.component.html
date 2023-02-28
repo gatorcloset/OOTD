@@ -3,28 +3,28 @@
         <mat-card-header>CREATE AN ACCOUNT</mat-card-header>
 
         <mat-form-field class="inputField" appearance="fill">
-            <mat-label>First Name</mat-label>
-            <input matInput>
+            <mat-label for="firstname">First Name</mat-label>
+            <input id="firstname" #firstname matInput>
         </mat-form-field>
 
         <mat-form-field class="inputField" appearance="fill">
-            <mat-label>Last Name</mat-label>
-            <input matInput>
+            <mat-label for="lastname">Last Name</mat-label>
+            <input id="lastname" #lastname matInput>
         </mat-form-field>
 
         <mat-form-field class="inputField" appearance="fill">
-            <mat-label>Email</mat-label>
-            <input matInput>
+            <mat-label for="email">Email</mat-label>
+            <input id="email" #email matInput>
         </mat-form-field>
 
         <mat-form-field class="inputField" appearance="fill">
-            <mat-label>Username</mat-label>
-            <input matInput>
+            <mat-label for="username">Username</mat-label>
+            <input id="username" #username matInput>
         </mat-form-field>
 
         <mat-form-field class="inputField" appearance="fill">
-            <mat-label>Password</mat-label>
-            <input matInput>
+            <mat-label class="password">Password</mat-label>
+            <input id="password" #password matInput>
         </mat-form-field>
 
         <mat-form-field class="inputField" appearance="fill">
@@ -34,12 +34,12 @@
 
         <div class="text-center">
             <button mat-raised-button class="login-button"
-                style= background-color:rgb(158,167,236)>
+                style= background-color:rgb(158,167,236) [routerLink]="['/user']" (click)="createUser(firstname.value, lastname.value, username.value, password.value)">
                 SIGN UP
             </button>
         </div>
 
-        <small>Already have an accout?</small>
+        <small>Already have an account?</small>
         <small>
             <button [routerLink]="['/login']"> Sign In</button>
         </small>

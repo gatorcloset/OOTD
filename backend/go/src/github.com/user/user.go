@@ -19,7 +19,7 @@ type User struct {
 	gorm.Model
 	First_Name string `json:"firstname"`
 	Last_Name  string `json:"lastname"`
-	Username      string `json:"username"`
+	Username   string `json:"username"`
 	Password   string `json:"password"`
 }
 
@@ -72,7 +72,7 @@ func UpdateUser(w http.ResponseWriter, r *http.Request) {
 	db.First(&user, params["id"])
 	json.NewDecoder(r.Body).Decode(&user)
 	db.Save(&user)
-	json.NewEncoder(w).Encode(user) 
+	json.NewEncoder(w).Encode(user)
 }
 
 func DeleteUser(w http.ResponseWriter, r *http.Request) {
@@ -81,5 +81,5 @@ func DeleteUser(w http.ResponseWriter, r *http.Request) {
 	var user User
 	db.First(&user, params["id"])
 	db.Delete(&user, params["id"])
-	json.NewEncoder(w).Encode("The user has successfully been deleted.") 
+	json.NewEncoder(w).Encode("The user has successfully been deleted.")
 }

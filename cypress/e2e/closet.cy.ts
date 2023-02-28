@@ -15,4 +15,5 @@ describe('My Closet Page', () => {
     cy.url().should('include', '/closet/jeans')
     cy.url().should('eq', 'http://localhost:4200/closet/jeans')
   })
+  // delete this comment
 })

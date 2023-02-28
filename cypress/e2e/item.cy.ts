@@ -11,4 +11,6 @@ describe('Closet Item Page', () => {
     cy.get('mat-grid-tile')
     cy.wrap({ category: CATEGORIES[0].name }).its('category').should('eq', 'Jeans')
   })
+
+  // delete this comment
 })

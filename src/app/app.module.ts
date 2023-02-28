@@ -22,8 +22,6 @@ import {MatInputModule} from '@angular/material/input';
 import { SignupComponent } from './signup/signup.component';
 
 import { ClosetModule } from './closet/closet.module';
-import { HomeComponent } from './home/home.component';
-import { HomeModule } from './home/home.module';
 import { UserComponent } from './user/user.component';
 
 @NgModule({
@@ -35,7 +33,6 @@ import { UserComponent } from './user/user.component';
     EntranceComponent,
     LoginComponent,
     SignupComponent,
-    HomeComponent,
     UserComponent
   ],
   imports: [

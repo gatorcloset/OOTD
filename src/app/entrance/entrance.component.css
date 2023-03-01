@@ -18,13 +18,13 @@ ul#title li {
     text-align: center;
 }
 
-button {
-    margin-top: 200px;
-}
-
 .center {
   display: block;
   margin-left: auto;
   margin-right: auto;
   width: 50%;
+}
+
+.login-button {
+    background-color: transparent;
 }

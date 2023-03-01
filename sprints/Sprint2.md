@@ -23,7 +23,7 @@ The Cypress framework was used to unit test the "Closet" page. The tests perform
 - Checks that closet items are filtering properly according to the activiated router. Specifically, the test checks that if the user clicks the "Jeans" category, they should be redirected to a page that only displays clothing cards under the "Jean" category.
 
 ## Backend
-The unit tests for the backend can be found [here]
+The unit tests for the backend can be found [here](https://github.com/gatorcloset/OOTD/blob/main/backend/go/src/github.com/user/user_test.go)
 
 These tests were used to unit test the database CRUD functionality. The tests perform the following:
 - Checks that database can be accessed and requests can be made via [http://localhost:9000]

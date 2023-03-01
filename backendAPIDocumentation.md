@@ -135,3 +135,7 @@ If an error is encountered, the API will return the following error codes:
 - 403 - Forbidden
 - 404 - Not Found
 - 500 - Internal Server Error
+
+## Backend Unit Tests for CRUD functions
+
+The backend unit tests for CRUD functions can be found here -> https://github.com/gatorcloset/OOTD/blob/main/backend/go/src/github.com/user/user_test.go

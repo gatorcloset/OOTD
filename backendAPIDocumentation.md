@@ -91,7 +91,6 @@ No additional parameters, data format is JSON
     }
 ```
 ````
-    
 - `PUT /users{id}`
   Requires an id, data format is in JSON
     - Sample Request Format:
@@ -121,7 +120,6 @@ No additional parameters, data format is JSON
   
 ```
 ````
-  
 - `DELETE /users{id}`
   Requires an id, data format is in JSON
     - Sample Request Format:

@@ -11,6 +11,6 @@ export class AppComponent {
   constructor(private router: Router) {}
 
   noNavbar(): boolean {
-    return this.router.url.includes('login') || this.router.url.includes('signup') || this.router.url.endsWith('');
+    return this.router.url.includes('login') || this.router.url.includes('signup') || ;
 }
 }

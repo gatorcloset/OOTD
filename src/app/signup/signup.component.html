@@ -23,13 +23,13 @@
         </mat-form-field>
 
         <mat-form-field class="inputField" appearance="fill">
-            <mat-label class="password">Password</mat-label>
+            <mat-label for="password">Password</mat-label>
             <input id="password" #password matInput>
         </mat-form-field>
 
         <mat-form-field class="inputField" appearance="fill">
-            <mat-label>Confirm Password</mat-label>
-            <input matInput>
+            <mat-label for="confirm">Confirm Password</mat-label>
+            <input id="confirm" #password matInput>
         </mat-form-field>
 
         <div class="text-center">
@@ -38,11 +38,13 @@
                 SIGN UP
             </button>
         </div>
+        
 
         <small>Already have an account?</small>
         <small>
             <button [routerLink]="['/login']"> Sign In</button>
         </small>
+
         
     </mat-card>
 </body>

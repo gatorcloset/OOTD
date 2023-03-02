@@ -1,6 +1,24 @@
 <body>
     <mat-card class="mat-card-container">
-        <mat-card-header>CREATE AN ACCOUNT</mat-card-header>
+        <div class="top-buttons">
+            <span>
+                <button mat-button class="login-signup-page-button"
+                    style="
+                        color:rgb(75,89,190);
+                        background-color: rgb(239,241,255);"
+                        [routerLink]="['/login']">
+                    LOG IN
+                </button>
+            </span>
+            <span>
+                <button mat-button class="login-signup-page-button" 
+                    style="
+                        color:rgb(239,241,255);
+                        background-color: rgb(75,89,190);">
+                    SIGN UP
+                </button>
+            </span>
+        </div>
 
         <mat-form-field class="inputField" appearance="fill">
             <mat-label for="firstname">First Name</mat-label>
@@ -33,19 +51,25 @@
         </mat-form-field>
 
         <div class="text-center">
+            <button mat-button class="login-signup-page-button" 
+                style="
+                    color:rgb(239,241,255);
+                    background-color: rgb(75,89,190);
+                    margin-top: 5%;
+                    margin-bottom: 10%;"
+                    [routerLink]="['/user']" (click)="createUser(firstname.value, lastname.value, username.value, password.value)">
+                    SIGN UP
+            </button>
+        </div>
+
+        <!--
+        <div class="text-center">
             <button mat-raised-button class="login-button"
                 style= background-color:rgb(158,167,236) [routerLink]="['/user']" (click)="createUser(firstname.value, lastname.value, username.value, password.value)">
                 SIGN UP
             </button>
         </div>
-        
-
-        <small>Already have an account?</small>
-        <small>
-            <button [routerLink]="['/login']"> Sign In</button>
-        </small>
-
-        
+    -->
     </mat-card>
 </body>
 

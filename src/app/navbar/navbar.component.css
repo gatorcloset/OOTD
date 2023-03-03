@@ -10,6 +10,14 @@
     flex: 1 1 auto;
 }
 
+mat-toolbar {
+    background-color: rgb(233,235,249);
+}
+
+.user-icon:hover {
+    box-shadow: 2px 2px 5px rgb(179,181,191);
+}
+
 /*
 button {
     background-color: #eee;

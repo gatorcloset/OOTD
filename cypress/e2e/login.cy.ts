@@ -9,7 +9,7 @@ describe('template spec', () => {
   })
 
   it('clicks on sign up and navigates to sign up page', () => {
-    cy.get('button').eq(3).click('center')
+    cy.get('button').eq(1).click('center')
     cy.url().should('include', '/signup')
     cy.url().should('eq', 'http://localhost:4200/signup')
   })

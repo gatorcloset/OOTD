@@ -1,3 +1,4 @@
+
 // Database structure
 export interface User {
     firstname: string;
@@ -6,7 +7,7 @@ export interface User {
     password: string;
     // Closet: Closet;
 }
-
+/*
 export interface Closet {
     ClosetID: number;
     UserID: number;
@@ -26,31 +27,19 @@ export interface Item {
 // The two tables below are separate because I want a tag to be used on many different items.
 // If we consolidate into one table, then a tag will be associated with only a singular item.
 
+
 // General tag
 export interface Tag {
     TagID: number;
     TagName: string;
 }
 
+
 // Associate tag to a specific item
 export interface ItemTag {
     ItemID: number;
     TagID: number;
 }
-
-// Mock data
-export interface Category1 {
-    name: string;
-    image: string;
-}
-
-export const CATEGORIES1: Category1[] = [
-    { name: 'Bottoms', image: 'https://static.vecteezy.com/system/resources/previews/004/459/001/original/women-s-jeans-linear-icon-thin-line-illustration-trousers-contour-symbol-isolated-outline-drawing-vector.jpg' },
-    { name: 'Tops', image: 'https://static.vecteezy.com/system/resources/previews/007/836/815/non_2x/hand-drawn-icon-of-t-shirt-outline-symbol-illustration-in-doodle-sketch-style-vector.jpg' },
-    { name: 'Shoes', image: ''},
-    { name: 'Accessories', image: 'https://i.pinimg.com/originals/3c/fb/d1/3cfbd1b9bdced80abe1e02fa8d77113e.png'},
-    { name: 'One-Pieces', image: ''}
-]
 
 export const ITEMTAGS: ItemTag[] = [
     { ItemID: 1, TagID: 1 },
@@ -71,7 +60,7 @@ export const ITEMS: Item[] = [
 export const CLOSETS: Closet[] = [
     { ClosetID: 1, UserID: 1, ClosetName: "Michelle's Closet", Items: [] }
 ]
-
+*/
 /*
 export const USERS: User[] = [
     { UserID: 1, FirstName: "Michelle", LastName: "Taing", Username: "michelletaing", Password: "hello1234", Closet: CLOSETS[0] }

@@ -23,6 +23,11 @@ import { SignupComponent } from './signup/signup.component';
 
 import { ClosetModule } from './closet/closet.module';
 import { UserComponent } from './user/user.component';
+import { HomeComponent } from './home/home.component';
+import { NewItemComponent } from './new-item/new-item.component';
+import { MatChipsModule } from '@angular/material/chips';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [
@@ -33,7 +38,9 @@ import { UserComponent } from './user/user.component';
     EntranceComponent,
     LoginComponent,
     SignupComponent,
-    UserComponent
+    UserComponent,
+    HomeComponent,
+    NewItemComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +56,10 @@ import { UserComponent } from './user/user.component';
     MatInputModule,
     ClosetModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    MatChipsModule,
+    ReactiveFormsModule,
+    MatAutocompleteModule
   ],
   providers: [],
   bootstrap: [AppComponent]

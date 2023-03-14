@@ -1,10 +1,28 @@
 <div class="container">
     <h1>New Clothing Item</h1>
     <form>
+      <!-- UPLOAD IMAGE -->
+      <app-upload-image></app-upload-image>
+
+      <!-- INPUT NAME -->
       <mat-form-field class="input" appearance="fill">
         <mat-label>Name</mat-label>
         <input matInput>
       </mat-form-field>
+
+      <!-- SELECT CATEGORY-->
+      <mat-form-field class="input" appearance="fill">
+        <mat-label>Category</mat-label>
+        <mat-select>
+          <mat-option value="one">Top</mat-option>
+          <mat-option value="two">Bottom</mat-option>
+          <mat-option value="two">One-piece</mat-option>
+          <mat-option value="two">Shoes</mat-option>
+          <mat-option value="two">Accessory</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- SELECT TAGS -->
       <mat-form-field class="input" appearance="fill">
         <mat-label>Clothing tags</mat-label>
         <mat-chip-grid #chipGrid aria-label="Fruit selection">
@@ -25,7 +43,9 @@
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
-      
+
+      <!-- SUBMIT -->
+      <button mat-flat-button color="primary">Add Item</button>
     </form>
     
 </div>

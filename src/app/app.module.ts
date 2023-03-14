@@ -28,6 +28,8 @@ import { NewItemComponent } from './new-item/new-item.component';
 import { MatChipsModule } from '@angular/material/chips';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { UploadImageComponent } from './upload-image/upload-image.component';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     SignupComponent,
     UserComponent,
     HomeComponent,
-    NewItemComponent
+    NewItemComponent,
+    UploadImageComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +62,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     HttpClientModule,
     MatChipsModule,
     ReactiveFormsModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

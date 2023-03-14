@@ -22,32 +22,32 @@
 
         <mat-form-field class="inputField" appearance="fill">
             <mat-label for="firstname">First Name</mat-label>
-            <input id="firstname" #firstname matInput>
+            <input id="firstname" type="text" #firstname matInput>
         </mat-form-field>
 
         <mat-form-field class="inputField" appearance="fill">
             <mat-label for="lastname">Last Name</mat-label>
-            <input id="lastname" #lastname matInput>
+            <input id="lastname" type="text" #lastname matInput>
         </mat-form-field>
 
         <mat-form-field class="inputField" appearance="fill">
             <mat-label for="email">Email</mat-label>
-            <input id="email" #email matInput>
+            <input id="email" type="email" #email matInput>
         </mat-form-field>
 
         <mat-form-field class="inputField" appearance="fill">
             <mat-label for="username">Username</mat-label>
-            <input id="username" #username matInput>
+            <input id="username" type="text" #username matInput>
         </mat-form-field>
 
         <mat-form-field class="inputField" appearance="fill">
             <mat-label for="password">Password</mat-label>
-            <input id="password" #password matInput>
+            <input id="password" type="password" #password matInput>
         </mat-form-field>
 
         <mat-form-field class="inputField" appearance="fill">
             <mat-label for="confirm">Confirm Password</mat-label>
-            <input id="confirm" #password matInput>
+            <input id="confirm" type="password" #password matInput>
         </mat-form-field>
 
         <div class="text-center">
@@ -57,8 +57,7 @@
                     background-color: rgb(75,89,190);
                     margin-top: 5%;
                     margin-bottom: 10%;"
-                    [routerLink]="['/user']" (click)="createUser(firstname.value, lastname.value, username.value, password.value)">
-                    SIGN UP
+                    [routerLink]="['/user']" (click)="createUser(firstname.value, lastname.value, username.value, password.value)">SIGN UP
             </button>
         </div>
 

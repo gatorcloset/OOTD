@@ -6,6 +6,7 @@ import {MatChipInputEvent} from '@angular/material/chips';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import { Tag } from '../mock-data/tag';
+import { NewItemService } from '../services/new-item.service';
 import { TagService } from '../services/tag.service';
 
 
@@ -20,10 +21,11 @@ export class NewItemComponent {
   filteredTags: Observable<string[]>;
   allTags: Tag[] = []; // All tags from database
   tags: string[] = []; // Tags selected by the user in the chips component
+  selectedCat: string = "";
 
   @ViewChild('tagInput', {static: true}) tagInput!: ElementRef<HTMLInputElement>;
 
-  constructor(private tagService: TagService) {
+  constructor(private tagService: TagService, private newItem: NewItemService) {
     this.filteredTags = this.tagCtrl.valueChanges.pipe(
       startWith(null),
       map((tag: string | null) => (tag ? this._filter(tag).map(tag => tag.name) : this.allTags.map(tag => tag.name)),
@@ -66,6 +68,23 @@ export class NewItemComponent {
 
   getTags(): void {
     this.allTags = this.tagService.getTags();
+  }
+
+  onSelected(value: string) {
+    this.selectedCat = value;
+  }
+
+  onSubmit(name: string, category: string, event: Event) {
+    event.preventDefault();
+    // Populate FormData object based on input values
+    this.newItem.set('name', name);
+    this.newItem.set('category', category);
+
+    // Call POST function
+    this.newItem.createItem().subscribe(
+      res => console.log(res),
+      error => console.error(error)
+    )
   }
 
   ngOnInit(): void {

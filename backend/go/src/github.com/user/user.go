@@ -11,6 +11,8 @@ import (
 
 	"github.com/gorilla/mux"
 	_ "github.com/mattn/go-sqlite3"
+	"golang.org/x/crypto/bcrypt"
+	
 )
 
 var db *gorm.DB
@@ -19,7 +21,7 @@ type User struct {
 	gorm.Model
 	First_Name string `json:"firstname"`
 	Last_Name  string `json:"lastname"`
-	Username      string `json:"username"`
+	Username   string `json:"username"`
 	Password   string `json:"password"`
 }
 
@@ -61,6 +63,13 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	var user User
 	json.NewDecoder(r.Body).Decode(&user)
+	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(user.Password), bcrypt.DefaultCost)
+	if err != nil {
+		http.Error(w, "Error hashing password", http.StatusInternalServerError)
+		return
+	}
+	user.Password = string(hashedPassword)
+
 	db.Create(&user)
 	json.NewEncoder(w).Encode(user)
 }
@@ -82,4 +91,14 @@ func DeleteUser(w http.ResponseWriter, r *http.Request) {
 	db.First(&user, params["id"])
 	db.Delete(&user, params["id"])
 	json.NewEncoder(w).Encode("The user has successfully been deleted.") 
+}
+
+func HashPassword(password string) (string, error) {
+    bytes, err := bcrypt.GenerateFromPassword([]byte(password), 14)
+    return string(bytes), err
+}
+
+func CheckPasswordHash(password, hash string) bool {
+    err := bcrypt.CompareHashAndPassword([]byte(hash), []byte(password))
+    return err == nil
 }

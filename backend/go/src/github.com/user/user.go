@@ -93,6 +93,34 @@ func DeleteUser(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode("The user has successfully been deleted.") 
 }
 
+func LoginUser(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+
+	var loginRequest struct {
+        Username string `json:"username"`
+        Password string `json:"password"`
+    }
+
+	if err := json.NewDecoder(r.Body).Decode(&loginRequest); err != nil {
+        http.Error(w, "Error processing login request", http.StatusBadRequest)
+        return
+    }
+
+	// Find the user with the given username
+    var user User
+    if err := db.Where("username = ?", loginRequest.Username).First(&user).Error; err != nil {
+        http.Error(w, "Invalid username or password", http.StatusUnauthorized)
+        return
+    }
+
+	if !CheckPasswordHash(loginRequest.Password, user.Password) {
+        http.Error(w, "Invalid username or password", http.StatusUnauthorized)
+        return
+    }
+
+	json.NewEncoder(w).Encode(user)
+}
+
 func HashPassword(password string) (string, error) {
     bytes, err := bcrypt.GenerateFromPassword([]byte(password), 14)
     return string(bytes), err
@@ -101,4 +129,10 @@ func HashPassword(password string) (string, error) {
 func CheckPasswordHash(password, hash string) bool {
     err := bcrypt.CompareHashAndPassword([]byte(hash), []byte(password))
     return err == nil
+}
+
+func Logout(w http.ResponseWriter, r *http.Request) {
+    // Clear any user authentication/session data here (e.g. JWT token)
+    // Redirect user to login page or any other relevant page
+    http.Redirect(w, r, "/login", http.StatusSeeOther)
 }

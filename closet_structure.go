@@ -1,14 +1,14 @@
 // Notice that the User doesn't have a Closet anymore
 // That's a Closet struct is really needed. A User just has a collection of Items.
 
-
+package main
 
 import (
 	"fmt"
 
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
-	"/Users/nataliehodnett/Desktop/Git Repository SWE/OOTD/backend/go/src/git/user/database.go"
+	"/Users/nataliehodnett/Desktop/Git Repository SWE/OOTD/backend/go/src/github.com/user/database.go"
 )
 
 type Tag struct {
@@ -74,6 +74,8 @@ func createUserStruct() {
 	}
 */
 func CreateItemTable() {
+	//db, err := gorm.Open(sqlite.Open("OOTD.db"), &gorm.Config{})
+	//var db *gorm.DB = "OOTD.db"
 
 	// Migrate the schema
 	err = db.AutoMigrate(&Item{})

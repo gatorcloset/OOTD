@@ -2,18 +2,18 @@
     <h1>New Clothing Item</h1>
     <form enctype="multipart/form-data">
       <!-- UPLOAD IMAGE -->
-      <app-upload-image></app-upload-image>
+      <app-upload-image id="upload"></app-upload-image>
 
       <!-- INPUT NAME -->
       <mat-form-field class="input" appearance="fill">
         <mat-label>Name</mat-label>
-        <input #name matInput>
+        <input #name id="name" matInput>
       </mat-form-field>
 
       <!-- SELECT CATEGORY-->
       <mat-form-field class="input" appearance="fill">
         <mat-label>Category</mat-label>
-        <mat-select #categories>
+        <mat-select #categories id="categories">
           <mat-option value="top">Top</mat-option>
           <mat-option value="bottom">Bottom</mat-option>
           <mat-option value="one-piece">One-piece</mat-option>
@@ -45,7 +45,7 @@
       </mat-form-field>
 
       <!-- SUBMIT -->
-      <button mat-flat-button color="primary" (click)="onSubmit(name.value, categories.value, $event)">Add Item</button>
+      <button mat-flat-button color="primary" (click)="onSubmit(name.value, categories.value, $event)" id="add-button">Add Item</button>
 
     </form>
     

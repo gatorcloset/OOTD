@@ -15,12 +15,18 @@
 
 # Unit Tests
 
-
 ## Frontend
 The Cypress testing for the frontend can be found [here]
 
 ## Backend
 The unit tests for the backend can be found [here]
+These tests were used to unit test the database CRUD functionality for our tag and item tables. The tests perform the following on each of the tables:
+
+Checks that database can be accessed and requests can be made via [http://localhost:9000]
+Checks that new tags and items can be created (POST functionality)
+Checks that entries can be read (GET functionality for one user and entire list of users)
+Checks that tag and item information can be updated (UPDATE functionality)
+Checks that tags and items can be deleted (DELETE functionality)
 
 # Detailed Backend Documentation
 Find our detailed backend documentation here -> 

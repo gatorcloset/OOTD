@@ -23,6 +23,14 @@ import { SignupComponent } from './signup/signup.component';
 
 import { ClosetModule } from './closet/closet.module';
 import { UserComponent } from './user/user.component';
+import { HomeComponent } from './home/home.component';
+import { NewItemComponent } from './new-item/new-item.component';
+import { MatChipsModule } from '@angular/material/chips';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { UploadImageComponent } from './upload-image/upload-image.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { CarouselModule } from './carousel/carousel.module';
 import { CarouselComponent } from './carousel/carousel.component';
 
@@ -35,7 +43,10 @@ import { CarouselComponent } from './carousel/carousel.component';
     EntranceComponent,
     LoginComponent,
     SignupComponent,
-    UserComponent
+    UserComponent,
+    HomeComponent,
+    NewItemComponent,
+    UploadImageComponent
   ],
   imports: [
     BrowserModule,
@@ -52,6 +63,11 @@ import { CarouselComponent } from './carousel/carousel.component';
     ClosetModule,
     AppRoutingModule,
     HttpClientModule,
+    MatChipsModule,
+    ReactiveFormsModule,
+    MatAutocompleteModule,
+    MatSelectModule,
+    MaterialFileInputModule,
     CarouselModule
   ],
   providers: [],

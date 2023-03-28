@@ -1,5 +1,5 @@
 <body>
-    <mat-card class="mat-card-container">
+    <mat-card class="mat-card-container" id="card">
         <div class="top-buttons">
             <span>
                 <button mat-button class="login-signup-page-button" 
@@ -22,23 +22,29 @@
         
         <mat-form-field class="inputField" appearance="fill">
             <mat-label>Username</mat-label>
-            <input matInput>
+            <input matInput #user id="user" [formControl]="username" required >
+            <mat-error id="userError" #userError *ngIf="username.invalid">{{userErrorMessage()}}</mat-error>
         </mat-form-field>
         <mat-form-field class="inputField" appearance="fill">
             <mat-label>Password</mat-label>
-            <input matInput>
+            <input matInput #pass id="pass" [formControl]="password" required>
+            <mat-error id="passError" #passError *ngIf="password.invalid">{{passErrorMessage()}}</mat-error>
         </mat-form-field>
-        
+
+        <mat-error class="inputField" id="invalidLogin">{{this.loginError}}</mat-error>
+
         <div class="text-center">
-            <button mat-button class="login-signup-page-button" 
+            <button mat-button class="login-signup-page-button" (click)="login(user.value, pass.value)" id="login"
                     style="
                         color:rgb(239,241,255);
                         background-color: rgb(75,89,190);
                         margin-top: 5%;
                         margin-bottom: 10%;">
                     LOG IN
-                </button>
+            </button>
         </div>
+
+        
 
         <!--
         <small>Don't have an account?</small>

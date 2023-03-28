@@ -5,6 +5,8 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { ClosetComponent } from './closet/closet.component';
 import { UserComponent } from './user/user.component';
+import { HomeComponent } from './home/home.component';
+import { NewItemComponent } from './new-item/new-item.component';
 import { CarouselComponent } from './carousel/carousel.component';
 
 const routes: Routes = [
@@ -13,6 +15,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'user', component: UserComponent},
+  { path: 'home', component: HomeComponent},
+  { path: 'add', component: NewItemComponent},
   { path: 'builder', component: CarouselComponent}
 ];
 

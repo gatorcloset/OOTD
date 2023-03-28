@@ -268,3 +268,51 @@ func TestLoginUser(t *testing.T) {
             responseBody.Username, "johndoe@example.com")
     }
 }
+
+func TestPasswordHashing(t *testing.T) {
+		// Create a test user
+	setupTest()
+	defer cleanupTest()
+	
+		user := User{
+			First_Name: "John",
+			Last_Name: "Doe",
+			Username: "johndoe",
+			Password: "password",
+		}
+	
+		// Encode the user as JSON
+		jsonUser, err := json.Marshal(user)
+		if err != nil {
+			t.Fatal(err)
+		}
+	
+		// Make a POST request to create the user
+		req, err := http.NewRequest("POST", "/users", bytes.NewBuffer(jsonUser))
+		if err != nil {
+			t.Fatal(err)
+		}
+	
+		rr := httptest.NewRecorder()
+		handler := http.HandlerFunc(CreateUser)
+		handler.ServeHTTP(rr, req)
+	
+		// Check that the status code is 200
+		if status := rr.Code; status != http.StatusOK {
+			t.Errorf("handler returned wrong status code: got %v, want %v", status, http.StatusOK)
+		}
+	
+		// Decode the response body
+		var createdUser User
+		if err := json.NewDecoder(rr.Body).Decode(&createdUser); err != nil {
+			t.Errorf("error unmarshaling response body: %v", err)
+		}
+	
+		// Check that the password in the database is not what the user entered
+		if createdUser.Password == user.Password {
+			t.Errorf("passwords match: %v", createdUser.Password)
+		}
+	
+		// Delete the test user
+		db.Delete(&createdUser)
+}

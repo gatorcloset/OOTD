@@ -23,6 +23,7 @@ import { SignupComponent } from './signup/signup.component';
 
 import { ClosetModule } from './closet/closet.module';
 import { UserComponent } from './user/user.component';
+import { BuilderComponent } from './builder/builder.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { UserComponent } from './user/user.component';
     EntranceComponent,
     LoginComponent,
     SignupComponent,
-    UserComponent
+    UserComponent,
+    BuilderComponent
   ],
   imports: [
     BrowserModule,

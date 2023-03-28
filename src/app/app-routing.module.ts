@@ -5,14 +5,15 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { ClosetComponent } from './closet/closet.component';
 import { UserComponent } from './user/user.component';
+import { BuilderComponent } from './builder/builder.component';
 
 const routes: Routes = [
   { path: 'closet', component: ClosetComponent },
   { path: '', component: EntranceComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'user', component: UserComponent}
-
+  { path: 'user', component: UserComponent},
+  { path: 'builder', component: BuilderComponent}
 ];
 
 @NgModule({

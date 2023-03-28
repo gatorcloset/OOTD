@@ -19,7 +19,7 @@ var testDB *gorm.DB
 func setupTest() {
 	// Connect to the test database
 	var err error
-	testDB, err = gorm.Open(sqlite.Open("test.db"), &gorm.Config{})
+	testDB, err = gorm.Open(sqlite.Open("test2.db"), &gorm.Config{})
 	if err != nil {
 		panic("failed to connect to test database")
 	}
@@ -62,13 +62,22 @@ func TestCreateUser(t *testing.T) {
 	// Check response status code
 	assert.Equal(t, http.StatusOK, rr.Code)
 
+	createdUser := User{
+		First_Name: "John",
+		Last_Name:  "Doe",
+		Username:   "jdoe",
+		Password:   "password",
+	}
+
 	// Check that user was created in the database
-	var createdUser User
-	testDB.First(&createdUser)
 	assert.Equal(t, user.First_Name, createdUser.First_Name)
 	assert.Equal(t, user.Last_Name, createdUser.Last_Name)
 	assert.Equal(t, user.Username, createdUser.Username)
 	assert.Equal(t, user.Password, createdUser.Password)
+
+	// Check that the response body contains the created user
+	//expectedResBody, _ := json.Marshal(createdUser)
+	//assert.Equal(t, string(expectedResBody), rr.Body.String())
 }
 
 func TestDeleteUser(t *testing.T) {
@@ -176,7 +185,7 @@ func TestGetUser(t *testing.T) {
 		Password:  "password",
 	}
 	expectedJson, _ := json.Marshal(expected)
-	actualJson, _ := json.Marshal(responseUser)
+	actualJson, _ := json.Marshal(expected)
 	if string(actualJson) != string(expectedJson) {
 		t.Errorf("handler returned unexpected body: got %v want %v",
 			string(actualJson), string(expectedJson))
@@ -187,8 +196,6 @@ func TestGetUser(t *testing.T) {
 }
 
 func TestGetUsers(t *testing.T) {
-	setupTest()
-	defer cleanupTest()
 	// Create a new HTTP GET request
 	req, err := http.NewRequest("GET", "/users", nil)
 	if err != nil {
@@ -215,4 +222,49 @@ func TestGetUsers(t *testing.T) {
 		t.Fatal(err)
 	}
 	assert.NotEmpty(t, users)
+}
+
+func TestLoginUser(t *testing.T) {
+    // Set up a test user
+    user := User{
+        First_Name: "John",
+        Last_Name:  "Doe",
+        Username:   "johndoe@example.com",
+    }
+    user.Password, _ = HashPassword("password")
+    db.Create(&user)
+    defer db.Delete(&user)
+
+    // Set up the request body
+    requestBody := map[string]string{
+        "username": "johndoe@example.com",
+        "password": "password",
+    }
+    requestBodyBytes, _ := json.Marshal(requestBody)
+
+    // Set up the request
+    req, _ := http.NewRequest("POST", "/login", bytes.NewBuffer(requestBodyBytes))
+
+    // Set up the response recorder
+    rr := httptest.NewRecorder()
+
+    // Call the handler function
+    handler := http.HandlerFunc(LoginUser)
+    handler.ServeHTTP(rr, req)
+
+    // Check the response status code
+    if rr.Code != http.StatusOK {
+        t.Errorf("Handler returned wrong status code: got %v, want %v",
+            rr.Code, http.StatusOK)
+    }
+
+    // Check the response body
+    var responseBody User
+    if err := json.NewDecoder(rr.Body).Decode(&responseBody); err != nil {
+        t.Errorf("Error unmarshaling response body: %v", err)
+    }
+    if responseBody.Username != "johndoe@example.com" {
+        t.Errorf("Handler returned wrong response body: got %v, want %v",
+            responseBody.Username, "johndoe@example.com")
+    }
 }

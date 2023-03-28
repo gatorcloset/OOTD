@@ -5,7 +5,6 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { ClosetComponent } from './closet/closet.component';
 import { UserComponent } from './user/user.component';
-import { BuilderComponent } from './builder/builder.component';
 import { CarouselComponent } from './carousel/carousel.component';
 
 const routes: Routes = [

@@ -31,6 +31,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { UploadImageComponent } from './upload-image/upload-image.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
+import { CarouselModule } from './carousel/carousel.module';
+import { CarouselComponent } from './carousel/carousel.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +67,8 @@ import { MaterialFileInputModule } from 'ngx-material-file-input';
     ReactiveFormsModule,
     MatAutocompleteModule,
     MatSelectModule,
-    MaterialFileInputModule
+    MaterialFileInputModule,
+    CarouselModule
   ],
   providers: [],
   bootstrap: [AppComponent]

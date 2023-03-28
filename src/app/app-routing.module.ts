@@ -7,6 +7,7 @@ import { ClosetComponent } from './closet/closet.component';
 import { UserComponent } from './user/user.component';
 import { HomeComponent } from './home/home.component';
 import { NewItemComponent } from './new-item/new-item.component';
+import { CarouselComponent } from './carousel/carousel.component';
 
 const routes: Routes = [
   { path: 'closet', component: ClosetComponent },
@@ -15,8 +16,8 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'user', component: UserComponent},
   { path: 'home', component: HomeComponent},
-  { path: 'add', component: NewItemComponent}
-
+  { path: 'add', component: NewItemComponent},
+  { path: 'builder', component: CarouselComponent}
 ];
 
 @NgModule({

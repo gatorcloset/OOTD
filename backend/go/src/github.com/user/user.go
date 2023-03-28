@@ -31,8 +31,8 @@ type User struct {
 
 type Item struct {
 	gorm.Model
-	ItemID       uint   `gorm:"primaryKey"`
-    Name     string `json:"name"`
+	UserID uint `json:"user_id"`
+    Name string `json:"name"`
     Category string `json:"category"`
     ImagePath string `json:"image"`
 }
@@ -135,7 +135,6 @@ func LoginUser(w http.ResponseWriter, r *http.Request) {
 }
 
 func CreateItem(w http.ResponseWriter, r *http.Request) {
-
     // Parse the multipart form data
     if err := r.ParseMultipartForm(32 << 20); err != nil {
         http.Error(w, "error parsing multipart form data", http.StatusBadRequest)

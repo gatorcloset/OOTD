@@ -23,7 +23,8 @@ import { SignupComponent } from './signup/signup.component';
 
 import { ClosetModule } from './closet/closet.module';
 import { UserComponent } from './user/user.component';
-import { BuilderComponent } from './builder/builder.component';
+import { CarouselModule } from './carousel/carousel.module';
+import { CarouselComponent } from './carousel/carousel.component';
 
 @NgModule({
   declarations: [
@@ -34,8 +35,7 @@ import { BuilderComponent } from './builder/builder.component';
     EntranceComponent,
     LoginComponent,
     SignupComponent,
-    UserComponent,
-    BuilderComponent
+    UserComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +51,8 @@ import { BuilderComponent } from './builder/builder.component';
     MatInputModule,
     ClosetModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    CarouselModule
   ],
   providers: [],
   bootstrap: [AppComponent]

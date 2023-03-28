@@ -1,7 +1,27 @@
 <mat-toolbar>
-    <span class="name">OOTD</span>
+    <span>
+        <img style="margin-top: 8%;" src="assets/small-ootd-logo.svg">
+    </span>
     <span class="spacer"></span>
-    <button mat-button [routerLink]="['/closet']">CLOSET</button>
-    <button mat-button>OUTFIT BUILDER</button>
+    <button mat-button [routerLink]="['/closet']" style="color:rgb(44,58,161);">
+        <span>
+            <img src="assets/Hanger.svg">
+        </span>
+        CLOSET
+    </button>
+    <button mat-button [routerLink]="['/builder']" style="color:rgb(44,58,161);">
+        <span>
+            <img src="assets/builder.svg">
+        </span>
+        OUTFIT BUILDER
+    </button>
     <span class="spacer"></span>
+    <span>
+        <button mat-mini-fab class="user-icon" style="background-color: transparent;"
+            [routerLink]="['/user']">
+            <img style="margin-top: 8.8%;" 
+                src="assets/user-icon.svg">
+        </button>
+    
+    </span>
 </mat-toolbar>

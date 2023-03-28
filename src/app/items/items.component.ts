@@ -1,8 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Item } from 'src/app/mock-data/item';
-import { Category } from '../mock-data/category';
 import { ItemService } from 'src/app/services/item.service';
-import { CategoryService } from '../services/category.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -32,6 +30,6 @@ export class ItemsComponent {
     // Retrieves the name element of the router
     this.selectedCategory = this.activatedRoute.snapshot.paramMap.get('name')!;
     // Sets the array of selected items = to the original items array, but filtered
-    this.selectedItems = this.itemService.getItems().filter(x => x.category.name.toLowerCase() === this.selectedCategory);
+    this.selectedItems = this.itemService.getItems().filter(x => x.category.toLowerCase() === this.selectedCategory);
   }
 }

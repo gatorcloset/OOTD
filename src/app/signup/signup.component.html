@@ -1,0 +1,76 @@
+<body>
+    <mat-card class="mat-card-container">
+        <div class="top-buttons">
+            <span>
+                <button mat-button class="login-signup-page-button"
+                    style="
+                        color:rgb(75,89,190);
+                        background-color: rgb(239,241,255);"
+                        [routerLink]="['/login']">
+                    LOG IN
+                </button>
+            </span>
+            <span>
+                <button mat-button class="login-signup-page-button" 
+                    style="
+                        color:rgb(239,241,255);
+                        background-color: rgb(75,89,190);">
+                    SIGN UP
+                </button>
+            </span>
+        </div>
+
+        <mat-form-field class="inputField" appearance="fill">
+            <mat-label for="firstname">First Name</mat-label>
+            <input id="firstname" type="text" #firstname matInput>
+        </mat-form-field>
+
+        <mat-form-field class="inputField" appearance="fill">
+            <mat-label for="lastname">Last Name</mat-label>
+            <input id="lastname" type="text" #lastname matInput>
+        </mat-form-field>
+
+        <!--
+        <mat-form-field class="inputField" appearance="fill">
+            <mat-label for="email">Email</mat-label>
+            <input id="email" type="email" #email matInput>
+        </mat-form-field>
+        -->
+
+        <mat-form-field class="inputField" appearance="fill">
+            <mat-label for="username">Username</mat-label>
+            <input id="username" type="text" #username matInput>
+        </mat-form-field>
+
+        <mat-form-field class="inputField" appearance="fill">
+            <mat-label for="password">Password</mat-label>
+            <input id="password" type="password" #password matInput>
+        </mat-form-field>
+
+        <mat-form-field class="inputField" appearance="fill">
+            <mat-label for="confirm">Confirm Password</mat-label>
+            <input id="confirm" type="password" #password matInput>
+        </mat-form-field>
+
+        <div class="text-center">
+            <button mat-button class="login-signup-page-button" 
+                style="
+                    color:rgb(239,241,255);
+                    background-color: rgb(75,89,190);
+                    margin-top: 5%;
+                    margin-bottom: 10%;"
+                    [routerLink]="['/user']" (click)="createUser(firstname.value, lastname.value, username.value, password.value)">SIGN UP
+            </button>
+        </div>
+
+        <!--
+        <div class="text-center">
+            <button mat-raised-button class="login-button"
+                style= background-color:rgb(158,167,236) [routerLink]="['/user']" (click)="createUser(firstname.value, lastname.value, username.value, password.value)">
+                SIGN UP
+            </button>
+        </div>
+    -->
+    </mat-card>
+</body>
+

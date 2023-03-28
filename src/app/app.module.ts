@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,15 +15,38 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatGridListModule} from '@angular/material/grid-list';
+import { EntranceComponent } from './entrance/entrance.component';
+import { LoginComponent } from './login/login.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import { SignupComponent } from './signup/signup.component';
 
 import { ClosetModule } from './closet/closet.module';
+import { UserComponent } from './user/user.component';
+import { HomeComponent } from './home/home.component';
+import { NewItemComponent } from './new-item/new-item.component';
+import { MatChipsModule } from '@angular/material/chips';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { UploadImageComponent } from './upload-image/upload-image.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MaterialFileInputModule } from 'ngx-material-file-input';
+import { CarouselModule } from './carousel/carousel.module';
+import { CarouselComponent } from './carousel/carousel.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     ClosetComponent,
-    ItemsComponent
+    ItemsComponent,
+    EntranceComponent,
+    LoginComponent,
+    SignupComponent,
+    UserComponent,
+    HomeComponent,
+    NewItemComponent,
+    UploadImageComponent
   ],
   imports: [
     BrowserModule,
@@ -33,8 +57,18 @@ import { ClosetModule } from './closet/closet.module';
     MatButtonModule,
     MatDividerModule,
     MatGridListModule,
+    //RouterModule.forRoot(appRoute),
+    MatFormFieldModule,
+    MatInputModule,
     ClosetModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    MatChipsModule,
+    ReactiveFormsModule,
+    MatAutocompleteModule,
+    MatSelectModule,
+    MaterialFileInputModule,
+    CarouselModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,53 @@
+
+body {
+    background-color: rgb(109, 119, 193);
+    padding: 100px;
+}
+
+mat-card {
+    margin-left: 50;
+    margin-right: 50;
+    border-radius: 30px;
+    background-color: rgb(208,213,255);
+}
+
+mat-card-header {
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 25px;
+    font-weight: 500;
+    font-size: 20px;
+}
+.mat-card-container {
+    margin-left: 400px;
+    margin-right: 400px;
+}
+
+.inputField {
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+small {
+    text-align: center;
+}
+
+.top-buttons {
+    text-align: center;
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+
+.login-signup-page-button {
+    margin-right: 5%;
+    margin-left: 5%;
+    padding-right: 10%;
+    padding-left: 10%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    border-radius: 10px;
+}

@@ -23,6 +23,14 @@ import { SignupComponent } from './signup/signup.component';
 
 import { ClosetModule } from './closet/closet.module';
 import { UserComponent } from './user/user.component';
+import { HomeComponent } from './home/home.component';
+import { NewItemComponent } from './new-item/new-item.component';
+import { MatChipsModule } from '@angular/material/chips';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { UploadImageComponent } from './upload-image/upload-image.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MaterialFileInputModule } from 'ngx-material-file-input';
 
 @NgModule({
   declarations: [
@@ -33,7 +41,10 @@ import { UserComponent } from './user/user.component';
     EntranceComponent,
     LoginComponent,
     SignupComponent,
-    UserComponent
+    UserComponent,
+    HomeComponent,
+    NewItemComponent,
+    UploadImageComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +60,12 @@ import { UserComponent } from './user/user.component';
     MatInputModule,
     ClosetModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    MatChipsModule,
+    ReactiveFormsModule,
+    MatAutocompleteModule,
+    MatSelectModule,
+    MaterialFileInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

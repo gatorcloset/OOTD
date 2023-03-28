@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { User } from '../mock-data/data';
+import { User } from '../mock-data/user';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -19,7 +19,7 @@ export class SignupComponent {
     username = username.trim();
 
     this.userService.createUser({ firstname, lastname, username, password } as User).subscribe(
-      newUser => this.newUser = newUser
+    newUser => this.newUser = newUser
     )
 
   }

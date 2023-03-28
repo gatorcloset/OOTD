@@ -19,6 +19,7 @@ func initializeRouter() {
 	r.HandleFunc("/users/{id}", UpdateUser).Methods("PUT")
 	r.HandleFunc("/users/{id}", DeleteUser).Methods("DELETE")
 	r.HandleFunc("/login", LoginUser).Methods("POST")
+	r.HandleFunc("/item", CreateItem).Methods("POST")
 
 	log.Fatal(http.ListenAndServe(":9000", corsHandler(r)))
 

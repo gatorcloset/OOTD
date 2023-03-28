@@ -1,4 +1,4 @@
-import { CATEGORIES } from "src/app/mock-data/mock-categories"
+import { CATEGORIES } from "src/app/mock-data/default-categories"
 
 describe('Closet Item Page', () => {
   beforeEach(() => {
@@ -7,9 +7,9 @@ describe('Closet Item Page', () => {
   })
   
   it('on the jeans page, only clothing under the jeans category is displayed', () => {
-    cy.visit('http://localhost:4200/closet/jeans')
+    cy.visit('http://localhost:4200/closet/bottoms')
     cy.get('mat-grid-tile')
-    cy.wrap({ category: CATEGORIES[0].name }).its('category').should('eq', 'Jeans')
+    cy.wrap({ category: CATEGORIES[0].name }).its('category').should('eq', 'Bottoms')
   })
 
   // delete this comment

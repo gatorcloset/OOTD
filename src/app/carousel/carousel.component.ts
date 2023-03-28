@@ -14,6 +14,7 @@ interface carouselImage {
 export class CarouselComponent implements OnInit{
 
   @Input() images: carouselImage[] = []
+  @Input() indicators = true;
 
   selectedIndex = 0;
 

@@ -3,5 +3,14 @@
         [src]="image.imageSrc" [alt]="image.imageAlt"
         [ngClass]="{'image-active': selectedIndex === i}"
     >
+
+    <div *ngIf="indicators" class="carousel-dot-container">
+        <span *ngFor="let for of images; let i=index" 
+            class="dot"
+            [ngClass]="{'active': selectedIndex === i}"
+        >
+
+        </span>
+    </div>
 </div>
 

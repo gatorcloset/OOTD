@@ -29,4 +29,4 @@ Checks that tag and item information can be updated (UPDATE functionality)
 Checks that tags and items can be deleted (DELETE functionality)
 
 # Detailed Backend Documentation
-Find our detailed backend documentation here -> 
+Find our detailed backend documentation here -> https://github.com/gatorcloset/OOTD/blob/main/Sprint3BackendDocumentation.md

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { User } from '../mock-data/data';
+import { User } from '../mock-data/user';
 import { UserService } from '../services/user.service';
 
 

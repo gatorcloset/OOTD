@@ -8,7 +8,8 @@ Our vision for the database is to have our four tables house user-specific image
 
 The endpoints created for this sprint include:
 
-- POST /login - log in a user
+- POST /login - authenticates a user and creates a session
+- POST /logout - logs out a user and clears session information
 - POST /item - create an item
 - GET /item - retrieve a list of all items
 - GET /item/{id} - retrieve information for a specific item
@@ -20,7 +21,16 @@ The endpoints created for this sprint include:
 - PUT /tag/{id} - update an existing tag
 - DELETE /tag/{id} - delete an existing tag
 
-## Request and Response Formats 
+## Request and Response Formats
+- `POST /item` 
+ Sample Request Format:
+  - Input is a multipart form with the following information:
+    - name
+    - category
+    - image file
+  Sample Response Format:
+  
+
 
 ## Error Handling
 
@@ -33,4 +43,4 @@ If an error is encountered, the API will return the following error codes:
 
 ## Backend Unit Tests for CRUD functions
 
-The backend unit tests for CRUD functions can be found here
+The backend unit tests for CRUD functions can be found [here](

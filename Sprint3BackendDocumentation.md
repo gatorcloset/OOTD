@@ -23,6 +23,7 @@ The endpoints created for this sprint include:
 
 ## Request and Response Formats
 - `POST /item` 
+
  Sample Request Format:
   - Input is a multipart form with the following information:
     - name

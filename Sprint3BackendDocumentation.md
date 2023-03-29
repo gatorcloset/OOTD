@@ -53,7 +53,6 @@ No additional parameters, data format is JSON
   - Sample Request Format:
     - Nothing needed
   - Sample Response Format (Item list is truncated for the purposes of this demonstration):
-  
   ````
   ```
    {
@@ -126,8 +125,7 @@ No additional parameters, data format is JSON
    "name" : "\"name\"",
    "category" : "\"category\"",
    "image" : "images/6abd7ac-60eb-4c8f-81c3-425e2fe37ce41111111.jpg" 
-   }
-  
+   }  
 ```
 ````
 
@@ -140,7 +138,109 @@ No additional parameters, data format is JSON
     
 **For tag table (which stores tags associated to images)**
 
+- `POST /tag` 
+No additional parameters, data format is JSON
+  - Sample Request Format :
+  ````
+  ```
+  {
+    "tagname" : "blue"
+  }
+  ```
+  ````
+  
+  - Sample Response Format:
+  ````
+  ```
+  {
+    "ID": 4,
+    "CreatedAt": "2023-03-29T15:18:04.654446-04:00",
+    "UpdatedAt": "2023-03-29T15:18:04.654446-04:00",
+    "DeletedAt": null,
+    "tagname": "blue"
+}
+  ```
+  ````
+  
+- `GET /tag`
+No additional parameters, data format is JSON
+  - Sample Request Format:
+    - Nothing needed
+  - Sample Response Format (User list is truncated for the purposes of this demonstration):
+  ````
+  ```
+    {
+        "ID": 1,
+        "CreatedAt": "2023-03-28T23:29:05.193164-04:00",
+        "UpdatedAt": "2023-03-28T23:29:05.193164-04:00",
+        "DeletedAt": null,
+        "tagname": "does this work"
+    },
+    {
+        "ID": 2,
+        "CreatedAt": "2023-03-28T23:29:14.732912-04:00",
+        "UpdatedAt": "2023-03-28T23:29:14.732912-04:00",
+        "DeletedAt": null,
+        "tagname": "hello"
+    }
+```
+````
 
+- `GET /tag{id}`
+  Requires an id, data format is in JSON
+    - Sample Request Format:
+      - Nothing needed
+    - Sample Response Format:
+ ````
+  ```
+    {
+        "ID": 4,
+        "CreatedAt": "2023-03-29T15:18:04.654446-04:00",
+        "UpdatedAt": "2023-03-29T15:18:04.654446-04:00",
+        "DeletedAt": null,
+        "tagname": "blue"
+    }
+```
+````
+
+- `PUT /tag{id}`
+  Requires an id, data format is in JSON
+    - Sample Request Format:
+  ````
+  ```
+    {
+    "ID": 1,
+    "CreatedAt": "2023-03-28T23:29:05.193164-04:00",
+    "UpdatedAt": "2023-03-29T15:22:57.661844-04:00",
+    "DeletedAt": null,
+    "tagname": "is_this_updated"
+  }
+```
+````
+
+ - Sample Response Format:
+  ````
+  ```
+    {
+    "ID": 6,
+    "CreatedAt": "2023-02-24T17:20:46.634953-05:00",
+    "UpdatedAt": "2023-02-27T14:44:38.119619-05:00",
+    "DeletedAt": null,
+    "firstname": "This",
+    "lastname": "Is Updated",
+    "username": "megan.shah07@gmail.com",
+    "password": "samplePassword!"
+  }
+  
+```
+````
+
+- `DELETE /tag{id}`
+  Requires an id, data format is in JSON
+    - Sample Request Format:
+      - Nothing needed
+    - Sample Response Format:
+    "The tag has successfully been deleted."
 
 ## Error Handling
 
@@ -153,4 +253,4 @@ If an error is encountered, the API will return the following error codes:
 
 ## Backend Unit Tests for CRUD functions
 
-The backend unit tests for CRUD functions can be found [here](
+The backend unit tests for CRUD functions can be found [here](https://github.com/gatorcloset/OOTD/blob/main/backend/go/src/github.com/user/user_test.go)

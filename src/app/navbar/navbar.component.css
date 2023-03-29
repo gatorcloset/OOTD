@@ -18,6 +18,11 @@ mat-toolbar {
     box-shadow: 2px 2px 5px rgb(179,181,191);
 }
 
+.page-button {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
 /*
 button {
     background-color: #eee;

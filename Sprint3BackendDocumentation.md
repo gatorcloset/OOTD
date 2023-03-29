@@ -158,7 +158,7 @@ No additional parameters, data format is JSON
     "UpdatedAt": "2023-03-29T15:18:04.654446-04:00",
     "DeletedAt": null,
     "tagname": "blue"
-}
+  }
   ```
   ````
   
@@ -214,7 +214,7 @@ No additional parameters, data format is JSON
     "UpdatedAt": "2023-03-29T15:22:57.661844-04:00",
     "DeletedAt": null,
     "tagname": "is_this_updated"
-  }
+    }
 ```
 ````
 

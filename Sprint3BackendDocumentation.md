@@ -28,6 +28,7 @@ The endpoints created for this sprint include:
     - name
     - category
     - image file
+    
   Sample Response Format:
   
 

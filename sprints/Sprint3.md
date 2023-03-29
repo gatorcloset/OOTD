@@ -19,7 +19,7 @@
 The Cypress testing for the frontend can be found [here]
 
 ## Backend
-The unit tests for the backend can be found [here] (https://github.com/gatorcloset/OOTD/blob/main/backend/go/src/github.com/user/user_test.go)
+The unit tests for the backend can be found [here](https://github.com/gatorcloset/OOTD/blob/main/backend/go/src/github.com/user/user_test.go)
 These tests were used to unit test the database CRUD functionality for our tag and item tables. The tests perform the following on each of the tables:
 
 Checks that database can be accessed and requests can be made via [http://localhost:9000]

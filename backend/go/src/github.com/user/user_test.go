@@ -33,6 +33,8 @@ func cleanupTest() {
 	testDB.Delete(&User{})
 }
 
+//==TEST USER==//
+
 func TestCreateUser(t *testing.T) {
 	// Set up test database connection and data
 	setupTest()
@@ -224,95 +226,440 @@ func TestGetUsers(t *testing.T) {
 	assert.NotEmpty(t, users)
 }
 
+//==TEST TAG==//
+
+func TestCreateTag(t *testing.T) {
+	//Set up test database connection and data
+	setupTest()
+	defer cleanupTest()
+
+	// Create a new tag
+	newTag := Tag{TagName: "Test Tag"}
+
+	reqBody, _ := json.Marshal(newTag)
+
+	//Create request to create tag
+	req, err := http.NewRequest("POST", "/tag", bytes.NewBuffer(reqBody))
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	//Set up router and execute request
+	router := mux.NewRouter()
+	router.HandleFunc("/tag", CreateTag)
+	rr := httptest.NewRecorder()
+	router.ServeHTTP(rr, req)
+
+	//Check response status code
+	assert.Equal(t, http.StatusOK, rr.Code)
+
+	createdTag := Tag{
+		TagName: "Test Tag",
+	}
+
+	assert.Equal(t, newTag.TagName, createdTag.TagName)
+}
+
+type expectedTag struct {
+	TagName string `json:"tagname"`
+}
+
+func TestGetTag(t *testing.T) {
+	setupTest()
+	defer cleanupTest()
+
+	// Create a new tag
+	tag := Tag{TagName: "Test Tag"}
+	db.Create(&tag)
+
+	// Create a new request with a URL that includes the user ID parameter
+	req, err := http.NewRequest("GET", "/tag/"+strconv.Itoa(int(tag.ID)), nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	// Create a new ResponseRecorder (which satisfies http.ResponseWriter) to record the response
+	rr := httptest.NewRecorder()
+
+	// Call the GetTag function with the request and response recorder
+	handler := http.HandlerFunc(GetTag)
+	handler.ServeHTTP(rr, req)
+
+	// Check the response status code
+	if status := rr.Code; status != http.StatusOK {
+		t.Errorf("handler returned wrong status code: got %v want %v",
+			status, http.StatusOK)
+	}
+
+	// Check the response Content-Type header
+	if ctype := rr.Header().Get("Content-Type"); ctype != "application/json" {
+		t.Errorf("handler returned wrong content type: got %v want %v",
+			ctype, "application/json")
+	}
+
+	// Check the response body (JSON-encoded user object)
+	var responseTag expectedTag
+	if err := json.Unmarshal(rr.Body.Bytes(), &responseTag); err != nil {
+		t.Errorf("failed to unmarshal response body: %v", err)
+	}
+
+	expected := expectedTag{
+		TagName: "Test Tag",
+	}
+	expectedJson, _ := json.Marshal(expected)
+	actualJson, _ := json.Marshal(expected)
+	if string(actualJson) != string(expectedJson) {
+		t.Errorf("handler returned unexpected body: got %v want %v",
+			string(actualJson), string(expectedJson))
+	}
+
+	// Delete the tag from the database
+	db.Delete(&tag)
+}
+
+func TestGetTags(t *testing.T) {
+	// Create a new HTTP GET request
+	req, err := http.NewRequest("GET", "/tag", nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	// Create a new HTTP recorder to record the response
+	rr := httptest.NewRecorder()
+
+	// Initialize a new router and define the route for getting all users
+	router := mux.NewRouter()
+	router.HandleFunc("/tag", GetUsers).Methods("GET")
+
+	// Serve the HTTP request
+	router.ServeHTTP(rr, req)
+
+	// Check the status code
+	assert.Equal(t, http.StatusOK, rr.Code)
+
+	// Check the response body
+	var tag []Tag
+	err = json.Unmarshal(rr.Body.Bytes(), &tag)
+	if err != nil {
+		t.Fatal(err)
+	}
+	assert.NotEmpty(t, tag)
+}
+
+func TestUpdateTags(t *testing.T) {
+	setupTest()
+	defer cleanupTest()
+	// Create a new user
+	tag := Tag{TagName: ""}
+	db.Create(&tag)
+
+	// Define the update request body
+	update := Tag{TagName: ""}
+
+	// Update the user in the database
+	db.Model(&tag).Updates(update)
+
+	// Check that the user was updated in the database
+	var updatedTag Tag
+	db.First(&updatedTag, tag.ID)
+	assert.Equal(t, update.TagName, updatedTag.TagName)
+
+	// Delete the user from the database
+	db.Delete(&updatedTag)
+}
+
+func TestDeleteTag(t *testing.T) {
+	// Set up test database connection and data
+	setupTest()
+	defer cleanupTest()
+	tag := Tag{TagName: "Test Tag"}
+	db.Create(&tag)
+
+	// Create a new request to delete the user
+	req, err := http.NewRequest("DELETE", "/tag/"+strconv.Itoa(int(tag.ID)), nil)
+	if err != nil {
+		t.Fatalf("failed to create request: %v", err)
+	}
+
+	// Create a new response recorder
+	rr := httptest.NewRecorder()
+
+	// Call the DeleteUser function with the request and response recorder
+	handler := http.HandlerFunc(DeleteTag)
+	handler.ServeHTTP(rr, req)
+
+	// Assert that the response status code is OK
+	assert.Equal(t, http.StatusOK, rr.Code, "handler returned wrong status code")
+
+	// Assert that the response body is correct
+	assert.Equal(t, "\"This tag has successfully been deleted.\"\n", rr.Body.String(), "handler returned unexpected body")
+}
+
+// ==TEST ITEM==//
+func TestCreateItem(t *testing.T) {
+	//Set up test database connection and data
+	setupTest()
+	defer cleanupTest()
+
+	// Create a new tag
+	item := Item{Name: "Name", Category: "Category"}
+
+	reqBody, _ := json.Marshal(item)
+
+	//Create request to create tag
+	req, err := http.NewRequest("POST", "/item", bytes.NewBuffer(reqBody))
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	//Set up router and execute request
+	router := mux.NewRouter()
+	router.HandleFunc("/item", CreateTag)
+	rr := httptest.NewRecorder()
+	router.ServeHTTP(rr, req)
+
+	//Check response status code
+	assert.Equal(t, http.StatusOK, rr.Code)
+
+	createdItem := Item{
+		Name:     "Name",
+		Category: "Category",
+	}
+
+	assert.Equal(t, item.Name, createdItem.Name)
+	assert.Equal(t, item.Category, createdItem.Category)
+}
+
+type expectedItem struct {
+	UserID    uint   `json:"user_id"`
+	Name      string `json:"name"`
+	Category  string `json:"category"`
+	ImagePath string `json:"image"`
+}
+
+func TestGetItem(t *testing.T) {
+	setupTest()
+	defer cleanupTest()
+
+	// Create a new item
+	item := Item{Name: "Name", Category: "Category"}
+	db.Create(&item)
+
+	// Create a new request with a URL that includes the user ID parameter
+	req, err := http.NewRequest("GET", "/item/"+strconv.Itoa(int(item.ID)), nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	// Create a new ResponseRecorder (which satisfies http.ResponseWriter) to record the response
+	rr := httptest.NewRecorder()
+
+	// Call the GetItem function with the request and response recorder
+	handler := http.HandlerFunc(GetItem)
+	handler.ServeHTTP(rr, req)
+
+	// Check the response status code
+	if status := rr.Code; status != http.StatusOK {
+		t.Errorf("handler returned wrong status code: got %v want %v",
+			status, http.StatusOK)
+	}
+
+	// Check the response Content-Type header
+	if ctype := rr.Header().Get("Content-Type"); ctype != "application/json" {
+		t.Errorf("handler returned wrong content type: got %v want %v",
+			ctype, "application/json")
+	}
+
+	// Check the response body (JSON-encoded user object)
+	var responseTag expectedItem
+	if err := json.Unmarshal(rr.Body.Bytes(), &responseTag); err != nil {
+		t.Errorf("failed to unmarshal response body: %v", err)
+	}
+
+	expected := expectedItem{
+		Name:     "Name",
+		Category: "Category",
+	}
+	expectedJson, _ := json.Marshal(expected)
+	actualJson, _ := json.Marshal(expected)
+	if string(actualJson) != string(expectedJson) {
+		t.Errorf("handler returned unexpected body: got %v want %v",
+			string(actualJson), string(expectedJson))
+	}
+
+	// Delete the item from the database
+	db.Delete(&item)
+}
+
+func TestDeleteItem(t *testing.T) {
+	// Set up test database connection and data
+	setupTest()
+	defer cleanupTest()
+	item := Item{Name: "Name", Category: "Category"}
+
+	db.Create(&item)
+
+	// Create a new request to delete the user
+	req, err := http.NewRequest("DELETE", "/users/"+strconv.Itoa(int(item.ID)), nil)
+	if err != nil {
+		t.Fatalf("failed to create request: %v", err)
+	}
+
+	// Create a new response recorder
+	rr := httptest.NewRecorder()
+
+	// Call the DeleteUser function with the request and response recorder
+	handler := http.HandlerFunc(DeleteItem)
+	handler.ServeHTTP(rr, req)
+
+	// Assert that the response status code is OK
+	assert.Equal(t, http.StatusOK, rr.Code, "handler returned wrong status code")
+
+	// Assert that the response body is correct
+	assert.Equal(t, "\"This item has successfully been deleted.\"\n", rr.Body.String(), "handler returned unexpected body")
+}
+
+func TestUpdateItem(t *testing.T) {
+	setupTest()
+	defer cleanupTest()
+	// Create a new user
+	item := Item{Name: "Name", Category: "Category"}
+	db.Create(&item)
+
+	// Define the update request body
+	update := Item{Name: "Name", Category: "Category"}
+
+	// Update the user in the database
+	db.Model(&item).Updates(update)
+
+	// Check that the user was updated in the database
+	var updatedItem Item
+	db.First(&updatedItem, item.ID)
+	assert.Equal(t, update.Name, updatedItem.Name)
+	assert.Equal(t, update.Category, updatedItem.Category)
+
+	// Delete the user from the database
+	db.Delete(&updatedItem)
+}
+
+func TestGetItems(t *testing.T) {
+	// Create a new HTTP GET request
+	req, err := http.NewRequest("GET", "/item", nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	// Create a new HTTP recorder to record the response
+	rr := httptest.NewRecorder()
+
+	// Initialize a new router and define the route for getting all users
+	router := mux.NewRouter()
+	router.HandleFunc("/item", GetUsers).Methods("GET")
+
+	// Serve the HTTP request
+	router.ServeHTTP(rr, req)
+
+	// Check the status code
+	assert.Equal(t, http.StatusOK, rr.Code)
+
+	// Check the response body
+	var item []Item
+	err = json.Unmarshal(rr.Body.Bytes(), &item)
+	if err != nil {
+		t.Fatal(err)
+	}
+	assert.NotEmpty(t, item)
+}
+
 func TestLoginUser(t *testing.T) {
-    // Set up a test user
-    user := User{
-        First_Name: "John",
-        Last_Name:  "Doe",
-        Username:   "johndoe@example.com",
-    }
-    user.Password, _ = HashPassword("password")
-    db.Create(&user)
-    defer db.Delete(&user)
+	// Set up a test user
+	user := User{
+		First_Name: "John",
+		Last_Name:  "Doe",
+		Username:   "johndoe@example.com",
+	}
+	user.Password, _ = HashPassword("password")
+	db.Create(&user)
+	defer db.Delete(&user)
 
-    // Set up the request body
-    requestBody := map[string]string{
-        "username": "johndoe@example.com",
-        "password": "password",
-    }
-    requestBodyBytes, _ := json.Marshal(requestBody)
+	// Set up the request body
+	requestBody := map[string]string{
+		"username": "johndoe@example.com",
+		"password": "password",
+	}
+	requestBodyBytes, _ := json.Marshal(requestBody)
 
-    // Set up the request
-    req, _ := http.NewRequest("POST", "/login", bytes.NewBuffer(requestBodyBytes))
+	// Set up the request
+	req, _ := http.NewRequest("POST", "/login", bytes.NewBuffer(requestBodyBytes))
 
-    // Set up the response recorder
-    rr := httptest.NewRecorder()
+	// Set up the response recorder
+	rr := httptest.NewRecorder()
 
-    // Call the handler function
-    handler := http.HandlerFunc(LoginUser)
-    handler.ServeHTTP(rr, req)
+	// Call the handler function
+	handler := http.HandlerFunc(LoginUser)
+	handler.ServeHTTP(rr, req)
 
-    // Check the response status code
-    if rr.Code != http.StatusOK {
-        t.Errorf("Handler returned wrong status code: got %v, want %v",
-            rr.Code, http.StatusOK)
-    }
+	// Check the response status code
+	if rr.Code != http.StatusOK {
+		t.Errorf("Handler returned wrong status code: got %v, want %v",
+			rr.Code, http.StatusOK)
+	}
 
-    // Check the response body
-    var responseBody User
-    if err := json.NewDecoder(rr.Body).Decode(&responseBody); err != nil {
-        t.Errorf("Error unmarshaling response body: %v", err)
-    }
-    if responseBody.Username != "johndoe@example.com" {
-        t.Errorf("Handler returned wrong response body: got %v, want %v",
-            responseBody.Username, "johndoe@example.com")
-    }
+	// Check the response body
+	var responseBody User
+	if err := json.NewDecoder(rr.Body).Decode(&responseBody); err != nil {
+		t.Errorf("Error unmarshaling response body: %v", err)
+	}
+	if responseBody.Username != "johndoe@example.com" {
+		t.Errorf("Handler returned wrong response body: got %v, want %v",
+			responseBody.Username, "johndoe@example.com")
+	}
 }
 
 func TestPasswordHashing(t *testing.T) {
-		// Create a test user
+	// Create a test user
 	setupTest()
 	defer cleanupTest()
-	
-		user := User{
-			First_Name: "John",
-			Last_Name: "Doe",
-			Username: "johndoe",
-			Password: "password",
-		}
-	
-		// Encode the user as JSON
-		jsonUser, err := json.Marshal(user)
-		if err != nil {
-			t.Fatal(err)
-		}
-	
-		// Make a POST request to create the user
-		req, err := http.NewRequest("POST", "/users", bytes.NewBuffer(jsonUser))
-		if err != nil {
-			t.Fatal(err)
-		}
-	
-		rr := httptest.NewRecorder()
-		handler := http.HandlerFunc(CreateUser)
-		handler.ServeHTTP(rr, req)
-	
-		// Check that the status code is 200
-		if status := rr.Code; status != http.StatusOK {
-			t.Errorf("handler returned wrong status code: got %v, want %v", status, http.StatusOK)
-		}
-	
-		// Decode the response body
-		var createdUser User
-		if err := json.NewDecoder(rr.Body).Decode(&createdUser); err != nil {
-			t.Errorf("error unmarshaling response body: %v", err)
-		}
-	
-		// Check that the password in the database is not what the user entered
-		if createdUser.Password == user.Password {
-			t.Errorf("passwords match: %v", createdUser.Password)
-		}
-	
-		// Delete the test user
-		db.Delete(&createdUser)
+
+	user := User{
+		First_Name: "John",
+		Last_Name:  "Doe",
+		Username:   "johndoe",
+		Password:   "password",
+	}
+
+	// Encode the user as JSON
+	jsonUser, err := json.Marshal(user)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	// Make a POST request to create the user
+	req, err := http.NewRequest("POST", "/users", bytes.NewBuffer(jsonUser))
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	rr := httptest.NewRecorder()
+	handler := http.HandlerFunc(CreateUser)
+	handler.ServeHTTP(rr, req)
+
+	// Check that the status code is 200
+	if status := rr.Code; status != http.StatusOK {
+		t.Errorf("handler returned wrong status code: got %v, want %v", status, http.StatusOK)
+	}
+
+	// Decode the response body
+	var createdUser User
+	if err := json.NewDecoder(rr.Body).Decode(&createdUser); err != nil {
+		t.Errorf("error unmarshaling response body: %v", err)
+	}
+
+	// Check that the password in the database is not what the user entered
+	if createdUser.Password == user.Password {
+		t.Errorf("passwords match: %v", createdUser.Password)
+	}
+
+	// Delete the test user
+	db.Delete(&createdUser)
 }

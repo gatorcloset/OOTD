@@ -40,7 +40,6 @@ type Item struct {
 
 type Tag struct {
 	gorm.Model
-	TagID   uint   `gorm:"primaryKey"`
 	TagName string `json:"tagname"`
 }
 
@@ -53,7 +52,7 @@ type ItemTag struct {
 func InitialMigration() {
 	// Connect to database
 	var err error
-	db, err = gorm.Open(sqlite.Open("OOTD.db"), &gorm.Config{})
+	db, err = gorm.Open(sqlite.Open("check.db"), &gorm.Config{})
 
 	// if error display message
 	if err != nil {
@@ -307,7 +306,6 @@ func GetTag(w http.ResponseWriter, r *http.Request) {
 	// Retrieve the tag from the database
 	var tag Tag
 	db.First(&tag, id)
-
 	json.NewEncoder(w).Encode(tag)
 }
 

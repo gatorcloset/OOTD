@@ -3,6 +3,12 @@
 [Sprint 3 Demo]
 
 ## Frontend
+- Added frontend validation to login page. Checks for the following:
+  - Required fields
+  - Valid username format
+  - Existing username/password in database
+- Created UI for "Add Item" page and implemented functionality:
+  - Item name, category, and image are added to the database
 
 ## Backend
 - Database is fully functional and set up, and compatible with front end login page (includes first name, last name, username, and hashed password columns)
@@ -16,7 +22,12 @@
 # Unit Tests
 
 ## Frontend
-The Cypress testing for the frontend can be found [here]
+The Cypress testing for the frontend can be found [here](https://github.com/gatorcloset/OOTD/tree/main/cypress/e2e)
+- add.cy.ts fills out the add item form by attaching an image, adding a name and category
+- login.cy.ts checks that error messages are visible for the 3 following cases:
+  - Displays error message for required fields that are empty
+  - Displays error message for invalid username format
+  - Displays error message for incorrect username or password
 
 ## Backend
 The unit tests for the backend can be found [here](https://github.com/gatorcloset/OOTD/blob/main/backend/go/src/github.com/user/user_test.go).

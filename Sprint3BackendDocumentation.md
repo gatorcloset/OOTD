@@ -1,6 +1,6 @@
-# Backend CRUD API Documentation
+# Deatiled Backend Documentation
 
-Our API provides create, read, update, and delete (CRUD) functionalities for storing user, tag, and item information in a SQLite database using GoLang and GORM. This database, called OOTD.db, houses a user's first and last name along with a username, hashed (encrypted) password, and a timestamp referring to when each entry was last accessed or modified. It also houses an item's name, category, image, and image ID and a relevant tag's name and tag ID for each image. We also implemented functionality to log a user in, which checks to see if the user attempting to log in exists by checking their username and password, ensuring that users would only be able to access their own information.
+Our API provides create, read, update, and delete (CRUD) functionalities for storing user, tag, and item information in a SQLite database using GoLang and GORM. This database, called "OOTD.db", houses a user's first and last name along with a username, hashed (encrypted) password, and a timestamp referring to when each entry was last accessed or modified. It also stores user-uploaded clothing items, the category they fall in, image, and image tags. We also implemented functionality to log a user in, which checks to see if the user attempting to log in exists by verifying their username and password against entries in the database, ensuring that users would only be able to access their own information.
 
 Our vision for the database is to have our four tables house user-specific images and tags which they will be able to access when they login to OOTD.
 
@@ -10,7 +10,7 @@ The endpoints created for this sprint include:
 
 - POST /login - log in a user
 - POST /item - create an item
-- GET /item - retrieve a list of all tags
+- GET /item - retrieve a list of all items
 - GET /item/{id} - retrieve information for a specific item
 - PUT /item/{id} - update an existing item
 - DELETE /item/{id} - delete an existing item

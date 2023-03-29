@@ -1,6 +1,6 @@
 # Completed Work
 
-[Sprint 3 Demo]
+[Sprint 3 Video Demo](https://youtu.be/v528_yKg0ns)
 
 ## Frontend
 - Added frontend validation to login page. Checks for the following:
@@ -8,7 +8,8 @@
   - Valid username format
   - Existing username/password in database
 - Created UI for "Add Item" page and implemented functionality:
-  - Item name, category, and image are added to the database
+  - Ability to create a new clothing item and specific the item name, category, and image
+  - Once submitted, the frontend makes a request to the backend API to create the new item
 - Created "Outfit Builder" page:
   - user is able to swipe through images of their tops, bottoms, and footwear in order to create an outfit
 - Added "add item" button in navbar with an icon that navigates to the "add item" page

@@ -64,4 +64,27 @@ export class AppComponent {
       imageAlt: 'pink-skirt',
     }
   ]
+
+  shoes = [
+    {
+      imageSrc: 'assets/builder-sample-pics/footwear/shoes1.webp',
+      imageAlt: 'biker-shorts',
+    },
+    {
+      imageSrc: 'assets/builder-sample-pics/footwear/shoes2.webp',
+      imageAlt: 'black-pants',
+    },
+    {
+      imageSrc: 'assets/builder-sample-pics/footwear/shoes3.jpg',
+      imageAlt: 'black-shorts',
+    },
+    {
+      imageSrc: 'assets/builder-sample-pics/footwear/shoes-4.jpg',
+      imageAlt: 'mom-jeans',
+    },
+    {
+      imageSrc: 'assets/builder-sample-pics/footwear/shoes5.jpg',
+      imageAlt: 'pink-skirt',
+    }
+  ]
 }

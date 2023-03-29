@@ -15,6 +15,7 @@ export class CarouselComponent implements OnInit{
 
   @Input() tops: carouselImage[] = []
   @Input() bottoms: carouselImage[] = []
+  @Input() shoes: carouselImage[] = []
   @Input() indicators = true;
   @Input() controls = true;
 
@@ -54,6 +55,22 @@ export class CarouselComponent implements OnInit{
 
   bottomsNextClick(): void {
     if(this.selectedIndex === this.bottoms.length-1) {
+      this.selectedIndex = 0;
+    } else {
+      this.selectedIndex++;
+    }
+  }
+
+  shoesPrevClick(): void {
+    if(this.selectedIndex === 0) {
+      this.selectedIndex = this.shoes.length - 1;
+    } else {
+      this.selectedIndex--;
+    }
+  }
+
+  shoesNextClick(): void {
+    if(this.selectedIndex === this.shoes.length-1) {
       this.selectedIndex = 0;
     } else {
       this.selectedIndex++;

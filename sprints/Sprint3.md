@@ -33,6 +33,7 @@ The Cypress testing for the frontend can be found [here](https://github.com/gato
   - Displays error message for invalid username format
   - Displays error message for incorrect username or password
 - builder: clicks through the tops, bottoms, and footwear
+- The remaining tests from the previous sprint and still passing
 
 ## Backend
 The unit tests for the backend can be found [here](https://github.com/gatorcloset/OOTD/blob/main/backend/go/src/github.com/user/user_test.go).

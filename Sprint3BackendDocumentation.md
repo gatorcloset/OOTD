@@ -22,6 +22,9 @@ The endpoints created for this sprint include:
 - DELETE /tag/{id} - delete an existing tag
 
 ## Request and Response Formats
+
+**For item table (which stores user-uploaded images of clothing)**
+
 - `POST /item` 
 
  Sample Request Format:
@@ -31,7 +34,112 @@ The endpoints created for this sprint include:
     - image file
     
   Sample Response Format:
+ ````
+  ```
+   {
+   "ID" : 9,
+   "CreatedAt" : "2023-03-29T12:47:36.074678-04:00"
+   "DeletedAt" : null,
+   "user_id" : 0,
+   "name" : "\"name\"",
+   "category" : "\"category\"",
+   "image" : "images/6fbc7ac-60eb-4c8f-81c3-425e2fe37ce4.jpg" 
+   }
+   ```
+  ````
   
+- `GET /items`
+No additional parameters, data format is JSON
+  - Sample Request Format:
+    - Nothing needed
+  - Sample Response Format (Item list is truncated for the purposes of this demonstration):
+  
+  ````
+  ```
+   {
+   "ID" : 9,
+   "CreatedAt" : "2023-03-27T12:47:10.074678-04:00"
+   "DeletedAt" : null,
+   "user_id" : 0,
+   "name" : "\"name\"",
+   "category" : "\"category\"",
+   "image" : "images/6abd7ac-60eb-4c8f-81c3-425e2fe37ce4.jpg" 
+   }
+   
+    {
+   "ID" : 10,
+   "CreatedAt" : "2023-03-29T12:47:35.074678-04:00"
+   "DeletedAt" : null,
+   "user_id" : 0,
+   "name" : "\"name\"",
+   "category" : "\"category\"",
+   "image" : "images/6fbc7ac-60eb-4c8f-81c3-425e2fwkjee37ce4.jpg" 
+   }
+   
+    {
+   "ID" : 11,
+   "CreatedAt" : "2023-03-29T12:47:36.074678-04:00"
+   "DeletedAt" : null,
+   "user_id" : 0,
+   "name" : "\"name\"",
+   "category" : "\"category\"",
+   "image" : "images/6fbac-60eb-4c8f-81djec3-425e2fe37ce4.jpg" 
+   }
+   ```
+  ````
+  
+  - `GET /item{id}`
+  Requires an id, data format is in JSON
+    - Sample Request Format:
+      - Nothing needed
+    - Sample Response Format:
+ ````
+  ```
+    {
+   "ID" : 9,
+   "CreatedAt" : "2023-03-27T12:47:10.074678-04:00"
+   "DeletedAt" : null,
+   "user_id" : 0,
+   "name" : "\"name\"",
+   "category" : "\"category\"",
+   "image" : "images/6abd7ac-60eb-4c8f-81c3-425e2fe37ce4.jpg" 
+   }
+```
+````
+
+- `PUT /item{id}`
+  Requires an id, data format is in JSON
+    - Sample Request Format:
+   - Input is an updated multipart form with at least one change to the following information:
+    - name
+    - category
+    - image file
+
+    - Sample Response Format:
+  ````
+  ```
+    {
+   "ID" : 9,
+   "CreatedAt" : "2023-03-27T12:47:10.074678-04:00"
+   "DeletedAt" : null,
+   "user_id" : 0,
+   "name" : "\"name\"",
+   "category" : "\"category\"",
+   "image" : "images/6abd7ac-60eb-4c8f-81c3-425e2fe37ce41111111.jpg" 
+   }
+  
+```
+````
+
+- `DELETE /item{id}`
+  Requires an id, data format is in JSON
+    - Sample Request Format:
+      - Nothing needed
+    - Sample Response Format:
+    "The item has successfully been deleted."
+    
+**For tag table (which stores tags associated to images)**
+
 
 
 ## Error Handling

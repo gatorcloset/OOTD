@@ -1,40 +1,116 @@
 
-<div *ngIf="images && images.length > 0" class="carousel-container">
-    <img *ngFor="let image of images; let i=index"
-        [src]="image.imageSrc" [alt]="image.imageAlt"
-        [ngClass]="{'image-active': selectedIndex === i}"
-        class="slide"
-    >
-
-    <div *ngIf="indicators" class="carousel-dot-container">
-        <span *ngFor="let for of images; let i=index" 
-            class="dot"
-            [ngClass]="{'active': selectedIndex === i}"
-            (click)="selectImage(i)"
+<div class="builder-container">
+    <div *ngIf="tops && tops.length > 0" class="carousel-container">
+        <img *ngFor="let top of tops; let i=index"
+            [src]="top.imageSrc" [alt]="top.imageAlt"
+            [ngClass]="{'image-active': selectedIndex === i}"
+            class="slide"
         >
-        </span>
-    </div>
-
-    <div *ngIf="controls" class="btn-carousel btn-prev">
-        <button class="left-btn"
-            (click)="onPrevClick()"
-        >
-            ◀
+    
+        <div *ngIf="indicators" class="carousel-dot-container">
+            <span *ngFor="let for of tops; let i=index" 
+                class="dot"
+                [ngClass]="{'active': selectedIndex === i}"
+                (click)="selectImage(i)"
+            >
+            </span>
+        </div>
+    
+        <div *ngIf="controls" class="btn-carousel btn-prev">
+            <button class="left-btn"
+                (click)="topsPrevClick()"
+            >
+                ◀
+                
+            </button>
             
-        </button>
-        
-    </div>
-
-    <div *ngIf="controls" class="btn-carousel btn-next">
-        <button class="right-btn"
-            (click)="onNextClick()"
-        >
-            ▶
+        </div>
+    
+        <div *ngIf="controls" class="btn-carousel btn-next">
+            <button class="right-btn"
+                (click)="topsNextClick()"
+            >
+                ▶
+                
+            </button>
             
-        </button>
-        
+        </div>
+    </div>
+    
+    
+    <div *ngIf="bottoms && bottoms.length > 0" class="carousel-container">
+        <img *ngFor="let bottom of bottoms; let i=index"
+            [src]="bottom.imageSrc" [alt]="bottom.imageAlt"
+            [ngClass]="{'image-active': selectedIndex === i}"
+            class="slide"
+        >
+    
+        <div *ngIf="indicators" class="carousel-dot-container">
+            <span *ngFor="let for of bottoms; let i=index" 
+                class="dot"
+                [ngClass]="{'active': selectedIndex === i}"
+                (click)="selectImage(i)"
+            >
+            </span>
+        </div>
+    
+        <div *ngIf="controls" class="btn-carousel btn-prev">
+            <button class="left-btn"
+                (click)="bottomsPrevClick()"
+            >
+                ◀
+                
+            </button>
+            
+        </div>
+    
+        <div *ngIf="controls" class="btn-carousel btn-next">
+            <button class="right-btn"
+                (click)="bottomsNextClick()"
+            >
+                ▶
+                
+            </button>
+            
+        </div>
+    </div>
+    
+    
+    <div *ngIf="shoes && shoes.length > 0" class="carousel-container">
+        <img *ngFor="let shoe of shoes; let i=index"
+            [src]="shoe.imageSrc" [alt]="shoe.imageAlt"
+            [ngClass]="{'image-active': selectedIndex === i}"
+            class="slide"
+        >
+    
+        <div *ngIf="indicators" class="carousel-dot-container">
+            <span *ngFor="let for of shoes; let i=index" 
+                class="dot"
+                [ngClass]="{'active': selectedIndex === i}"
+                (click)="selectImage(i)"
+            >
+            </span>
+        </div>
+    
+        <div *ngIf="controls" class="btn-carousel btn-prev">
+            <button class="left-btn"
+                (click)="shoesPrevClick()"
+            >
+                ◀
+                
+            </button>
+            
+        </div>
+    
+        <div *ngIf="controls" class="btn-carousel btn-next">
+            <button class="right-btn"
+                (click)="shoesNextClick()"
+            >
+                ▶
+                
+            </button>
+            
+        </div>
     </div>
 </div>
-
-
 

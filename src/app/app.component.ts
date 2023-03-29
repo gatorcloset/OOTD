@@ -19,7 +19,7 @@ export class AppComponent {
   }
 
   //sample images for outfit builder
-  images = [
+  tops = [
     {
       imageSrc: 'assets/builder-sample-pics/tops/black-blouse.webp',
       imageAlt: 'black-blouse',
@@ -39,6 +39,29 @@ export class AppComponent {
     {
       imageSrc: 'assets/builder-sample-pics/tops/white-sweatshirt.avif',
       imageAlt: 'white-sweatshirt',
+    }
+  ]
+
+  bottoms = [
+    {
+      imageSrc: 'assets/builder-sample-pics/bottoms/biker-shorts.avif',
+      imageAlt: 'biker-shorts',
+    },
+    {
+      imageSrc: 'assets/builder-sample-pics/bottoms/black-pants.avif',
+      imageAlt: 'black-pants',
+    },
+    {
+      imageSrc: 'assets/builder-sample-pics/bottoms/black-shorts.avif',
+      imageAlt: 'black-shorts',
+    },
+    {
+      imageSrc: 'assets/builder-sample-pics/bottoms/mom-jeans.avif',
+      imageAlt: 'mom-jeans',
+    },
+    {
+      imageSrc: 'assets/builder-sample-pics/bottoms/pink-skirt.avif',
+      imageAlt: 'pink-skirt',
     }
   ]
 }

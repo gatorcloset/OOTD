@@ -13,7 +13,8 @@ interface carouselImage {
 
 export class CarouselComponent implements OnInit{
 
-  @Input() images: carouselImage[] = []
+  @Input() tops: carouselImage[] = []
+  @Input() bottoms: carouselImage[] = []
   @Input() indicators = true;
   @Input() controls = true;
 
@@ -27,16 +28,32 @@ export class CarouselComponent implements OnInit{
     this.selectedIndex = index;
   }
 
-  onPrevClick(): void {
+  topsPrevClick(): void {
     if(this.selectedIndex === 0) {
-      this.selectedIndex = this.images.length - 1;
+      this.selectedIndex = this.tops.length - 1;
     } else {
       this.selectedIndex--;
     }
   }
 
-  onNextClick(): void {
-    if(this.selectedIndex === this.images.length-1) {
+  topsNextClick(): void {
+    if(this.selectedIndex === this.tops.length-1) {
+      this.selectedIndex = 0;
+    } else {
+      this.selectedIndex++;
+    }
+  }
+
+  bottomsPrevClick(): void {
+    if(this.selectedIndex === 0) {
+      this.selectedIndex = this.bottoms.length - 1;
+    } else {
+      this.selectedIndex--;
+    }
+  }
+
+  bottomsNextClick(): void {
+    if(this.selectedIndex === this.bottoms.length-1) {
       this.selectedIndex = 0;
     } else {
       this.selectedIndex++;

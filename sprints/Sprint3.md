@@ -24,7 +24,7 @@ These tests were used to unit test the database CRUD functionality for our tag a
 
 Checks that database can be accessed and requests can be made via [http://localhost:9000]
 Checks that new tags and items can be created (POST functionality)
-Checks that entries can be read (GET functionality for one user and entire list of users)
+Checks that entries can be read (GET functionality for one user and entire list of users, tags, and items)
 Checks that tag and item information can be updated (UPDATE functionality)
 Checks that tags and items can be deleted (DELETE functionality)
 

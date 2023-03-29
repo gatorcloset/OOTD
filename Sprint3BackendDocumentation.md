@@ -231,7 +231,6 @@ No additional parameters, data format is JSON
     "username": "megan.shah07@gmail.com",
     "password": "samplePassword!"
   }
-  
 ```
 ````
 

@@ -9,6 +9,9 @@
   - Existing username/password in database
 - Created UI for "Add Item" page and implemented functionality:
   - Item name, category, and image are added to the database
+- Created "Outfit Builder" page:
+  - user is able to swipe through images of their tops, bottoms, and footwear in order to create an outfit
+- Added "add item" button in navbar with an icon that navigates to the "add item" page
 
 ## Backend
 - Database is fully functional and set up, and compatible with front end login page (includes first name, last name, username, and hashed password columns)
@@ -28,6 +31,7 @@ The Cypress testing for the frontend can be found [here](https://github.com/gato
   - Displays error message for required fields that are empty
   - Displays error message for invalid username format
   - Displays error message for incorrect username or password
+- builder: clicks through the tops, bottoms, and footwear
 
 ## Backend
 The unit tests for the backend can be found [here](https://github.com/gatorcloset/OOTD/blob/main/backend/go/src/github.com/user/user_test.go).

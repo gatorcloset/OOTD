@@ -19,14 +19,16 @@
 The Cypress testing for the frontend can be found [here]
 
 ## Backend
-The unit tests for the backend can be found [here](https://github.com/gatorcloset/OOTD/blob/main/backend/go/src/github.com/user/user_test.go)
-These tests were used to unit test the database CRUD functionality for our tag and item tables. The tests perform the following on each of the tables:
+The unit tests for the backend can be found [here](https://github.com/gatorcloset/OOTD/blob/main/backend/go/src/github.com/user/user_test.go).
+
+These tests were used to verify the functionality of logging in, as well as CRUD functionality for our tag and item tables. The tests perform the following on each of the tables:
 
 Checks that database can be accessed and requests can be made via [http://localhost:9000]
 Checks that new tags and items can be created (POST functionality)
 Checks that entries can be read (GET functionality for one user and entire list of users, tags, and items)
 Checks that tag and item information can be updated (UPDATE functionality)
 Checks that tags and items can be deleted (DELETE functionality)
+Checks that a user is present in the database, and the username and password entered on the front end match with entries stored in database
 
 # Detailed Backend Documentation
 Find our detailed backend documentation here -> https://github.com/gatorcloset/OOTD/blob/main/Sprint3BackendDocumentation.md

@@ -142,6 +142,7 @@ func LoginUser(w http.ResponseWriter, r *http.Request) {
     // Set session values
     session.Values["authenticated"] = true
     session.Values["username"] = loginRequest.Username
+	session.Values["userID"] = user.ID
 
     // Save the session
     err = session.Save(r, w)

@@ -45,8 +45,8 @@ type Tag struct {
 
 type ItemTag struct {
 	gorm.Model
-	ItemID uint `json:"itemID"`
-	TagID  uint `json:"tagID"`
+	ItemID uint `json:"item_ID"`
+	TagID  uint `json:"tag_ID"`
 }
 
 func InitialMigration() {
@@ -90,6 +90,13 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	var user User
 	json.NewDecoder(r.Body).Decode(&user)
+
+	var existingUser User
+	if err := db.Where("username = ?", user.Username).First(&existingUser).Error; err == nil {
+		http.Error(w, "This username has already been taken. Choose another username", http.StatusConflict)
+		return
+	}
+
 	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(user.Password), bcrypt.DefaultCost)
 	if err != nil {
 		http.Error(w, "Error hashing password", http.StatusInternalServerError)

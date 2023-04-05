@@ -10,15 +10,20 @@ import (
 )
 
 func initializeRouter() {
-    corsHandler := cors.Default().Handler
-
     r := mux.NewRouter()
+
+    allowedOrigins := []string{"http://localhost:4200"}
+    corsHandler := cors.New(cors.Options{
+        AllowedOrigins: allowedOrigins,
+    }).Handler(r)
+
     r.HandleFunc("/users", GetUsers).Methods("GET")
     r.HandleFunc("/users/{id}", GetUser).Methods("GET")
     r.HandleFunc("/users", CreateUser).Methods("POST")
     r.HandleFunc("/users/{id}", UpdateUser).Methods("PUT")
-    r.HandleFunc("/users/{id}", DeleteUser).Methods("DELETE")
+    r.HandleFunc("/users/{id}", DeleteUser).Methogids("DELETE")
     r.HandleFunc("/login", LoginUser).Methods("POST")
+	r.HandleFunc("/logout", Logout).Methods("POST")
     r.HandleFunc("/item", CreateItem).Methods("POST")
     r.HandleFunc("/tag", CreateTag).Methods("POST")
     r.HandleFunc("/item_tag", CreateItemTag).Methods("POST")
@@ -28,7 +33,7 @@ func initializeRouter() {
     r.HandleFunc("/tag/{id}", DeleteTag).Methods("DELETE")
 	r.HandleFunc("/tag/{id}", UpdateTag).Methods("PUT")
 
-    log.Fatal(http.ListenAndServe(":9000", r))
+    log.Fatal(http.ListenAndServe(":9000", corsHandler))
 }
 
 func main() {

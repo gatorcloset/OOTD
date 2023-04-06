@@ -108,6 +108,8 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(user)
 }
 
+
+
 func UpdateUser(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	params := mux.Vars(r)
@@ -169,6 +171,24 @@ func LoginUser(w http.ResponseWriter, r *http.Request) {
 	}
 
 	json.NewEncoder(w).Encode(user)
+}
+
+func getUserData(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+    session, _ := store.Get(r, "session-name")
+
+    authenticated := session.Values["authenticated"]
+    username := session.Values["username"]
+    userID := session.Values["userID"]
+
+    // Return the session values in the response
+    data := map[string]interface{}{
+        "authenticated": authenticated,
+        "username":      username,
+        "userID":        userID,
+    }
+
+    json.NewEncoder(w).Encode(data)
 }
 
 func HashPassword(password string) (string, error) {

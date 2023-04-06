@@ -28,7 +28,7 @@ func initializeRouter() {
     r.HandleFunc("/tag/{id}", DeleteTag).Methods("DELETE")
 	r.HandleFunc("/tag/{id}", UpdateTag).Methods("PUT")
 
-    log.Fatal(http.ListenAndServe(":9000", r))
+    log.Fatal(http.ListenAndServe(":9000", corsHandler(r)))
 }
 
 func main() {

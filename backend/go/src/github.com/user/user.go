@@ -45,14 +45,14 @@ type Tag struct {
 
 type ItemTag struct {
 	gorm.Model
-	ItemID uint `json:"itemID"`
-	TagID  uint `json:"tagID"`
+	ItemID uint `json:"item_ID"`
+	TagID  uint `json:"tag_ID"`
 }
 
 func InitialMigration() {
 	// Connect to database
 	var err error
-	db, err = gorm.Open(sqlite.Open("check.db"), &gorm.Config{})
+	db, err = gorm.Open(sqlite.Open("OOTD.db"), &gorm.Config{})
 
 	// if error display message
 	if err != nil {
@@ -122,6 +122,7 @@ func DeleteUser(w http.ResponseWriter, r *http.Request) {
 
 func LoginUser(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Access-Control-Allow-Credentials", "true")
 
 	var loginRequest struct {
 		Username string `json:"username"`
@@ -162,6 +163,8 @@ func LoginUser(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
+
+	fmt.Println("UserID:", session.Values["userID"])
 
 	json.NewEncoder(w).Encode(user)
 }

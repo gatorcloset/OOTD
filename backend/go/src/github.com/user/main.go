@@ -10,7 +10,13 @@ import (
 )
 
 func initializeRouter() {
-    corsHandler := cors.Default().Handler
+    corsOptions := cors.Options{
+        AllowedOrigins: []string{"http://localhost:4200"},
+        AllowedMethods: []string{"GET", "POST", "PUT", "DELETE"},
+        AllowedHeaders: []string{"Authorization", "Content-Type"},
+        AllowCredentials: true,  
+    }
+    corsHandler := cors.New(corsOptions).Handler
 
     r := mux.NewRouter()
     r.HandleFunc("/users", GetUsers).Methods("GET")
@@ -28,7 +34,7 @@ func initializeRouter() {
     r.HandleFunc("/tag/{id}", DeleteTag).Methods("DELETE")
 	r.HandleFunc("/tag/{id}", UpdateTag).Methods("PUT")
 
-    log.Fatal(http.ListenAndServe(":9000", r))
+    log.Fatal(http.ListenAndServe(":9000", corsHandler(r)))
 }
 
 func main() {

@@ -14,6 +14,15 @@ export class UserService {
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   }
+  
+  /*
+  session = {
+    headers: new HttpHeaders({ 
+      'Content-Type':  'application/json'
+    }),
+    withCredentials: true
+  };
+  */
 
   constructor(private http: HttpClient) { }
 
@@ -26,8 +35,8 @@ export class UserService {
   }
 
   getUser(): Observable<User> {
-    console.log(this.authUser.ID);
-    const url = `${this.apiURL}/${this.authUser.ID}`;
+    const userID = sessionStorage.getItem('userID'); // THIS IS CURRENTLY NULL
+    const url = `${this.apiURL}/${userID}`;
     return this.http.get<User>(url);
   }
 
@@ -38,6 +47,7 @@ export class UserService {
 
   loginUser(user: LoginRequest): Observable<User> {
     const url = "http://localhost:9000/login";
-    return this.http.post<User>(url, user, this.httpOptions);
+    const options = { ...this.httpOptions, withCredentials: true };
+    return this.http.post<User>(url, user, options);
   }
 }

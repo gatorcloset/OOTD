@@ -1,53 +1,75 @@
-<div class="container">
-    <h1>New Clothing Item</h1>
-    <form enctype="multipart/form-data">
-      <!-- UPLOAD IMAGE -->
-      <app-upload-image id="upload"></app-upload-image>
-
-      <!-- INPUT NAME -->
-      <mat-form-field class="input" appearance="fill">
-        <mat-label>Name</mat-label>
-        <input #name id="name" matInput>
-      </mat-form-field>
-
-      <!-- SELECT CATEGORY-->
-      <mat-form-field class="input" appearance="fill">
-        <mat-label>Category</mat-label>
-        <mat-select #categories id="categories">
-          <mat-option value="top">Top</mat-option>
-          <mat-option value="bottom">Bottom</mat-option>
-          <mat-option value="one-piece">One-piece</mat-option>
-          <mat-option value="shoes">Shoes</mat-option>
-          <mat-option value="accessory">Accessory</mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <!-- SELECT TAGS -->
-      <mat-form-field class="input" appearance="fill">
-        <mat-label>Clothing tags</mat-label>
-        <mat-chip-grid #chipGrid aria-label="Fruit selection">
-          <mat-chip-row *ngFor="let tag of tags" (removed)="remove(tag)">
-            {{tag}}
-            <button matChipRemove [attr.aria-label]="'remove ' + tag">
-              <mat-icon>cancel</mat-icon>
-            </button>
-          </mat-chip-row>
-        </mat-chip-grid>
-        <input placeholder="New Tag..." #tagInput [formControl]="tagCtrl"
-          [matChipInputFor]="chipGrid" [matAutocomplete]="auto"
-          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-          (matChipInputTokenEnd)="add($event)"/>
-        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-          <mat-option *ngFor="let tag of filteredTags | async" [value]="tag">
-            {{tag}}
-          </mat-option>
-        </mat-autocomplete>
-      </mat-form-field>
-
-      <!-- SUBMIT -->
-      <button mat-flat-button color="primary" (click)="onSubmit(name.value, categories.value, $event)" id="add-button">Add Item</button>
-
-    </form>
+<body>
+  <div class="body-container">
+    <mat-card>
+      <div class="container">
+        <div class="title">
+          <h1>Add New Clothing Item</h1>
+        </div>
+        <form enctype="multipart/form-data">
+          <!-- UPLOAD IMAGE -->
+          <app-upload-image id="upload"></app-upload-image>
     
-</div>
+          <!-- INPUT NAME -->
+          <mat-form-field class="input" appearance="fill">
+            <mat-label>Name</mat-label>
+            <input #name id="name" matInput>
+          </mat-form-field>
+    
+          <!-- SELECT CATEGORY (USING CHIPS) -->
+          <mat-chip-listbox class="category" aria-label="category selection">
+            <mat-chip-option>Top</mat-chip-option>
+            <mat-chip-option>Bottom</mat-chip-option>
+            <mat-chip-option>One-piece</mat-chip-option>
+            <mat-chip-option>Shoes</mat-chip-option>
+            <mat-chip-option>Accesory</mat-chip-option>
+          </mat-chip-listbox>
+
+          <!-- SELECT CATEGORY-->
+          <mat-form-field class="input" appearance="fill">
+            <mat-label>Category</mat-label>
+            <mat-select #categories id="categories">
+              <mat-option value="top">Top</mat-option>
+              <mat-option value="bottom">Bottom</mat-option>
+              <mat-option value="one-piece">One-piece</mat-option>
+              <mat-option value="shoes">Shoes</mat-option>
+              <mat-option value="accessory">Accessory</mat-option>
+            </mat-select>
+          </mat-form-field>
+    
+          <!-- SELECT TAGS -->
+          <mat-form-field class="input" appearance="fill">
+            <mat-label>Clothing tags</mat-label>
+            <mat-chip-grid #chipGrid aria-label="Fruit selection">
+              <mat-chip-row *ngFor="let tag of tags" (removed)="remove(tag)">
+                {{tag}}
+                <button matChipRemove [attr.aria-label]="'remove ' + tag">
+                  <mat-icon>cancel</mat-icon>
+                </button>
+              </mat-chip-row>
+            </mat-chip-grid>
+            <input placeholder="New Tag..." #tagInput [formControl]="tagCtrl"
+              [matChipInputFor]="chipGrid" [matAutocomplete]="auto"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+              (matChipInputTokenEnd)="add($event)"/>
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+              <mat-option *ngFor="let tag of filteredTags | async" [value]="tag">
+                {{tag}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+    
+          <!-- SUBMIT -->
+          <button mat-flat-button color="primary" (click)="onSubmit(name.value, categories.value, $event)" id="add-button">Add Item</button>
+    
+        </form>
+        
+      </div>
+    </mat-card>
+    
+  </div>
+  
+</body>
+
+
+
 

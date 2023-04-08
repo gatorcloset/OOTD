@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { User } from '../mock-data/user';
 import { UserService } from '../services/user.service';
 import {FormControl, Validators} from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -19,7 +20,7 @@ export class SignupComponent {
   confirmPassword = new FormControl('', [Validators.required]);
   signUpError: string = "";
 
-  constructor(private userService: UserService) { 
+  constructor(private userService: UserService, private router: Router) { 
     this.usernameControl.valueChanges.subscribe(() => this.updateFormValidity());
     this.passwordControl.valueChanges.subscribe(() => this.updateFormValidity());
     this.first.valueChanges.subscribe(() => this.updateFormValidity());
@@ -99,7 +100,17 @@ export class SignupComponent {
     username = username.trim();
 
     this.userService.createUser({ firstname, lastname, username, password } as User).subscribe(
-    newUser => this.newUser = newUser
+      newUser => {
+        this.newUser = newUser
+        this.userService.authenticated = true;
+        this.userService.authUser = newUser;
+        this.router.navigateByUrl('/closet');
+      },
+      err => {
+        console.log(err);
+        this.userService.authenticated = false;
+        this.userService.authUser = undefined;
+      }
     )
 
   }

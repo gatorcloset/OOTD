@@ -45,14 +45,14 @@ type Tag struct {
 
 type ItemTag struct {
 	gorm.Model
-	ItemID uint `json:"itemID"`
-	TagID  uint `json:"tagID"`
+	ItemID uint `json:"item_ID"`
+	TagID  uint `json:"tag_ID"`
 }
 
 func InitialMigration() {
 	// Connect to database
 	var err error
-	db, err = gorm.Open(sqlite.Open("check.db"), &gorm.Config{})
+	db, err = gorm.Open(sqlite.Open("OOTD.db"), &gorm.Config{})
 
 	// if error display message
 	if err != nil {
@@ -90,6 +90,13 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	var user User
 	json.NewDecoder(r.Body).Decode(&user)
+
+	var existingUser User
+	if err := db.Where("username = ?", user.Username).First(&existingUser).Error; err == nil {
+		http.Error(w, "This username has already been taken. Choose another username", http.StatusConflict)
+		return
+	}
+
 	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(user.Password), bcrypt.DefaultCost)
 	if err != nil {
 		http.Error(w, "Error hashing password", http.StatusInternalServerError)
@@ -100,6 +107,8 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 	db.Create(&user)
 	json.NewEncoder(w).Encode(user)
 }
+
+
 
 func UpdateUser(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
@@ -162,6 +171,24 @@ func LoginUser(w http.ResponseWriter, r *http.Request) {
 	}
 
 	json.NewEncoder(w).Encode(user)
+}
+
+func getUserData(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+    session, _ := store.Get(r, "session-name")
+
+    authenticated := session.Values["authenticated"]
+    username := session.Values["username"]
+    userID := session.Values["userID"]
+
+    // Return the session values in the response
+    data := map[string]interface{}{
+        "authenticated": authenticated,
+        "username":      username,
+        "userID":        userID,
+    }
+
+    json.NewEncoder(w).Encode(data)
 }
 
 func HashPassword(password string) (string, error) {

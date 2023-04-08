@@ -3,7 +3,7 @@
     <mat-card>
       <div class="container">
         <div class="title">
-          <h1>Add New Clothing Item</h1>
+          <h1 class="text-center">Add New Clothing Item</h1>
         </div>
         <form enctype="multipart/form-data">
           <!-- UPLOAD IMAGE -->
@@ -16,27 +16,18 @@
           </mat-form-field>
     
           <!-- SELECT CATEGORY (USING CHIPS) -->
-          <mat-chip-listbox class="category" aria-label="category selection">
-            <mat-chip-option>Top</mat-chip-option>
-            <mat-chip-option>Bottom</mat-chip-option>
-            <mat-chip-option>One-piece</mat-chip-option>
-            <mat-chip-option>Shoes</mat-chip-option>
-            <mat-chip-option>Accesory</mat-chip-option>
-          </mat-chip-listbox>
-
-          <!-- SELECT CATEGORY-->
-          <mat-form-field class="input" appearance="fill">
-            <mat-label>Category</mat-label>
-            <mat-select #categories id="categories">
-              <mat-option value="top">Top</mat-option>
-              <mat-option value="bottom">Bottom</mat-option>
-              <mat-option value="one-piece">One-piece</mat-option>
-              <mat-option value="shoes">Shoes</mat-option>
-              <mat-option value="accessory">Accessory</mat-option>
-            </mat-select>
-          </mat-form-field>
+          <div class="chips">
+            <mat-chip-listbox class="category" class="input" aria-label="category selection" #categories id="categories">
+              <mat-chip-option value="top">Top</mat-chip-option>
+              <mat-chip-option value="bottom">Bottom</mat-chip-option>
+              <mat-chip-option value="one-piece">One-piece</mat-chip-option>
+              <mat-chip-option value="shoes">Shoes</mat-chip-option>
+              <mat-chip-option value="accessory">Accesory</mat-chip-option>
+            </mat-chip-listbox>
+          </div>
+          
     
-          <!-- SELECT TAGS -->
+          <!-- SELECT TAGS
           <mat-form-field class="input" appearance="fill">
             <mat-label>Clothing tags</mat-label>
             <mat-chip-grid #chipGrid aria-label="Fruit selection">
@@ -57,10 +48,19 @@
               </mat-option>
             </mat-autocomplete>
           </mat-form-field>
-    
+          -->
+
           <!-- SUBMIT -->
-          <button mat-flat-button color="primary" (click)="onSubmit(name.value, categories.value, $event)" id="add-button">Add Item</button>
-    
+          <div class="text-center">
+            <button mat-flat-button (click)="onSubmit(name.value, categories.value, $event)" id="add-button" 
+            style="
+            background-color: #F5F5F5;
+            border-radius: 10px;
+            padding: 15px;
+            "
+            >ADD ITEM</button>
+          </div>
+          
         </form>
         
       </div>

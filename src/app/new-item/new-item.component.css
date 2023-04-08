@@ -15,9 +15,12 @@ mat-card {
 
 }
 
-.title {
-    margin-left: 120px;
-    margin-right: auto;
+h1 {
+    margin-bottom: 30px;
+}
+
+app-upload-image {
+    color: #4350AE;
 }
 
 .category {
@@ -25,7 +28,24 @@ mat-card {
 }
 
 .input {
-    /*width: 50%;*/
     display: block;
+}
+
+button {
+    margin-top: 30px;
+    background-color: blue;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.chips {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+mat-chip-option {
+    background-color: #E9EBF9;
 }
 

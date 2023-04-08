@@ -5,18 +5,21 @@ import (
 	"log"
 	"net/http"
 
+
 	"github.com/gorilla/mux"
 	"github.com/rs/cors"
 )
 
 func initializeRouter() {
+	corsOptions := cors.Options{
+		AllowedOrigins:   []string{"http://localhost:4200"},
+		AllowedMethods:   []string{"GET", "POST", "PUT", "DELETE"},
+		AllowedHeaders:   []string{"Authorization", "Content-Type"},
+		AllowCredentials: true,
+	}
+	corsHandler := cors.New(corsOptions).Handler
+
 	r := mux.NewRouter()
-
-	allowedOrigins := []string{"http://localhost:4200"}
-	corsHandler := cors.New(cors.Options{
-		AllowedOrigins: allowedOrigins,
-	}).Handler(r)
-
 	r.HandleFunc("/users", GetUsers).Methods("GET")
 	r.HandleFunc("/users/{id}", GetUser).Methods("GET")
 	r.HandleFunc("/users", CreateUser).Methods("POST")
@@ -33,8 +36,17 @@ func initializeRouter() {
 	r.HandleFunc("/tag/{id}", DeleteTag).Methods("DELETE")
 	r.HandleFunc("/tag/{id}", UpdateTag).Methods("PUT")
 	r.HandleFunc("/authUser", getUserData).Methods("GET")
+	r.HandleFunc("/authUser", getUserData).Methods("GET")
+	r.HandleFunc("/item", GetItems).Methods("GET")
+	r.HandleFunc("/outfit", CreateOutfit).Methods("POST")
+	r.HandleFunc("/outfit/{id}", UpdateOutfit).Methods("PUT")
+	r.HandleFunc("/outfit/{id}", DeleteOutfit).Methods("DELETE")
+	r.HandleFunc("/outfit/{id}", GetOutfit).Methods("GET")
+	r.HandleFunc("/outfit", GetOutfits).Methods("GET")
+    r.HandleFunc("/users/{id}/items", GetUserItems).Methods("GET")
 
-	log.Fatal(http.ListenAndServe(":9000", corsHandler))
+
+	log.Fatal(http.ListenAndServe(":9000", corsHandler(r)))
 }
 
 func main() {

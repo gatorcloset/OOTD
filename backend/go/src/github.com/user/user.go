@@ -49,6 +49,20 @@ type ItemTag struct {
 	TagID  uint `json:"tag_ID"`
 }
 
+type Outfit struct {
+	gorm.Model
+	Tops          Item `gorm:"foreignKey:TopID"`
+	TopID         uint
+	Bottoms       Item `gorm:"foreignKey:BottomID"`
+	BottomID      uint
+	OnePieces     Item `gorm:"foreignKey:OnePieceID"`
+	OnePieceID    uint
+	Accessories   Item `gorm:"foreignKey:AccessoriesID"`
+	AccessoriesID uint
+	Shoes         Item `gorm:"foreignKey:ShoesID"`
+	ShoesID       uint
+}
+
 func InitialMigration() {
 	// Connect to database
 	var err error
@@ -67,6 +81,7 @@ func InitialMigration() {
 	db.AutoMigrate(&Item{})
 	db.AutoMigrate(&Tag{})
 	db.AutoMigrate(&ItemTag{})
+	db.AutoMigrate(&Outfit{})
 }
 
 func GetUsers(w http.ResponseWriter, r *http.Request) {
@@ -175,20 +190,20 @@ func LoginUser(w http.ResponseWriter, r *http.Request) {
 
 func getUserData(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-    session, _ := store.Get(r, "session-name")
+	session, _ := store.Get(r, "session-name")
 
-    authenticated := session.Values["authenticated"]
-    username := session.Values["username"]
-    userID := session.Values["userID"]
+	authenticated := session.Values["authenticated"]
+	username := session.Values["username"]
+	userID := session.Values["userID"]
 
-    // Return the session values in the response
-    data := map[string]interface{}{
-        "authenticated": authenticated,
-        "username":      username,
-        "userID":        userID,
-    }
+	// Return the session values in the response
+	data := map[string]interface{}{
+		"authenticated": authenticated,
+		"username":      username,
+		"userID":        userID,
+	}
 
-    json.NewEncoder(w).Encode(data)
+	json.NewEncoder(w).Encode(data)
 }
 
 func HashPassword(password string) (string, error) {
@@ -394,4 +409,84 @@ func CreateItemTag(w http.ResponseWriter, r *http.Request) {
 
 	// Return the created item tag as JSON
 	json.NewEncoder(w).Encode(itemTag)
+}
+
+func CreateOutfit(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	var items []Item
+	json.NewDecoder(r.Body).Decode(&items)
+
+	// Create new outfit and assign items
+	outfit := Outfit{}
+
+	if len(items) > 0 {
+		outfit.Tops = items[0]
+	}
+	if len(items) > 1 {
+		outfit.Bottoms = items[1]
+	}
+	if len(items) > 2 {
+		outfit.OnePieces = items[2]
+	}
+	if len(items) > 3 {
+		outfit.Accessories = items[3]
+	}
+	if len(items) > 4 {
+		outfit.Shoes = items[4]
+	}
+
+	db.Create(&outfit)
+	json.NewEncoder(w).Encode(outfit)
+}
+
+func UpdateOutfit(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	params := mux.Vars(r)
+	var outfit Outfit
+	db.Preload("Tops").Preload("Bottoms").Preload("OnePieces").Preload("Accessories").Preload("Shoes").First(&outfit, params["id"])
+	var items []Item
+	json.NewDecoder(r.Body).Decode(&items)
+
+	// Update outfit with new items
+	outfit.Tops = items[0]
+	outfit.Bottoms = items[1]
+	outfit.OnePieces = items[2]
+	outfit.Accessories = items[3]
+	outfit.Shoes = items[4]
+
+	// Save the updated outfit to the database
+	db.Save(&outfit)
+	json.NewEncoder(w).Encode(outfit)
+}
+
+func DeleteOutfit(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	params := mux.Vars(r)
+	var outfit Outfit
+	db.First(&outfit, params["id"])
+	db.Delete(&outfit, params["id"])
+	json.NewEncoder(w).Encode("The outfit has successfully been deleted.")
+}
+
+func GetOutfits(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	var outfits []Outfit
+	db.Preload("Tops").Preload("Bottoms").Preload("OnePieces").Preload("Accessories").Preload("Shoes").Find(&outfits)
+	json.NewEncoder(w).Encode(outfits)
+}
+
+func GetOutfit(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	params := mux.Vars(r)
+	var outfit Outfit
+	db.Preload("Tops").Preload("Bottoms").Preload("OnePieces").Preload("Accessories").Preload("Shoes").First(&outfit, params["id"])
+	json.NewEncoder(w).Encode(outfit)
+}
+
+func GetUserItems(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	params := mux.Vars(r)
+	var items []Item
+	db.Where("user_id = ?", params["id"]).Find(&items)
+	json.NewEncoder(w).Encode(items)
 }

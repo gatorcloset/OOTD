@@ -8,16 +8,19 @@ import { UserComponent } from './user/user.component';
 import { HomeComponent } from './home/home.component';
 import { NewItemComponent } from './new-item/new-item.component';
 import { CarouselComponent } from './carousel/carousel.component';
+import { AuthGuard } from './services/auth-guard.service';
+import { ItemsComponent } from './items/items.component';
 
 const routes: Routes = [
-  { path: 'closet', component: ClosetComponent },
+  { path: 'closet', component: ClosetComponent, canActivate: [AuthGuard] },
+  { path: 'closet/:name', component: ItemsComponent, canActivate: [AuthGuard] },
   { path: '', component: EntranceComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'user', component: UserComponent},
+  { path: 'user', component: UserComponent, canActivate: [AuthGuard] },
   { path: 'home', component: HomeComponent},
-  { path: 'add', component: NewItemComponent},
-  { path: 'builder', component: CarouselComponent}
+  { path: 'add', component: NewItemComponent, canActivate: [AuthGuard] },
+  { path: 'builder', component: CarouselComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

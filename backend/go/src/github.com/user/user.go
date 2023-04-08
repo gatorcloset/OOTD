@@ -49,6 +49,20 @@ type ItemTag struct {
 	TagID  uint `json:"tag_ID"`
 }
 
+type Outfit struct {
+	gorm.Model
+	Tops          Item `gorm:"foreignKey:TopID"`
+	TopID         uint
+	Bottoms       Item `gorm:"foreignKey:BottomID"`
+	BottomID      uint
+	OnePieces     Item `gorm:"foreignKey:OnePieceID"`
+	OnePieceID    uint
+	Accessories   Item `gorm:"foreignKey:AccessoriesID"`
+	AccessoriesID uint
+	Shoes         Item `gorm:"foreignKey:ShoesID"`
+	ShoesID       uint
+}
+
 func InitialMigration() {
 	// Connect to database
 	var err error
@@ -67,6 +81,7 @@ func InitialMigration() {
 	db.AutoMigrate(&Item{})
 	db.AutoMigrate(&Tag{})
 	db.AutoMigrate(&ItemTag{})
+	db.AutoMigrate(&Outfit{})
 }
 
 func GetUsers(w http.ResponseWriter, r *http.Request) {
@@ -108,8 +123,6 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(user)
 }
 
-
-
 func UpdateUser(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	params := mux.Vars(r)
@@ -131,7 +144,6 @@ func DeleteUser(w http.ResponseWriter, r *http.Request) {
 
 func LoginUser(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("Access-Control-Allow-Credentials", "true")
 
 	var loginRequest struct {
 		Username string `json:"username"`
@@ -156,15 +168,13 @@ func LoginUser(w http.ResponseWriter, r *http.Request) {
 	}
 
 	session, err := store.Get(r, "session-name")
-    if err != nil {
-        http.Error(w, err.Error(), http.StatusInternalServerError)
-        return
-    }
-
-    // Set session values
-    session.Values["authenticated"] = true
-    session.Values["username"] = loginRequest.Username
-	session.Values["userID"] = user.ID
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	// Set session values
+	session.Values["authenticated"] = true
+	session.Values["username"] = loginRequest.Username
 
 	// Save the session
 	err = session.Save(r, w)
@@ -173,27 +183,25 @@ func LoginUser(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	fmt.Println("UserID:", session.Values["userID"])
-
 	json.NewEncoder(w).Encode(user)
 }
 
 func getUserData(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-    session, _ := store.Get(r, "session-name")
+	session, _ := store.Get(r, "session-name")
 
-    authenticated := session.Values["authenticated"]
-    username := session.Values["username"]
-    userID := session.Values["userID"]
+	authenticated := session.Values["authenticated"]
+	username := session.Values["username"]
+	userID := session.Values["userID"]
 
-    // Return the session values in the response
-    data := map[string]interface{}{
-        "authenticated": authenticated,
-        "username":      username,
-        "userID":        userID,
-    }
+	// Return the session values in the response
+	data := map[string]interface{}{
+		"authenticated": authenticated,
+		"username":      username,
+		"userID":        userID,
+	}
 
-    json.NewEncoder(w).Encode(data)
+	json.NewEncoder(w).Encode(data)
 }
 
 func HashPassword(password string) (string, error) {

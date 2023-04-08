@@ -33,6 +33,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { CarouselModule } from './carousel/carousel.module';
 import { CarouselComponent } from './carousel/carousel.component';
+import { AuthGuard } from './services/auth-guard.service';
+import { UserService } from './services/user.service';
 
 @NgModule({
   declarations: [
@@ -70,7 +72,7 @@ import { CarouselComponent } from './carousel/carousel.component';
     MaterialFileInputModule,
     CarouselModule
   ],
-  providers: [],
+  providers: [UserService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

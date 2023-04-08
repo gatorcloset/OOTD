@@ -465,3 +465,18 @@ func DeleteOutfit(w http.ResponseWriter, r *http.Request) {
 	db.Delete(&outfit, params["id"])
 	json.NewEncoder(w).Encode("The outfit has successfully been deleted.")
 }
+
+func GetOutfits(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	var outfits []Outfit
+	db.Preload("Tops").Preload("Bottoms").Preload("OnePieces").Preload("Accessories").Preload("Shoes").Find(&outfits)
+	json.NewEncoder(w).Encode(outfits)
+}
+
+func GetOutfit(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	params := mux.Vars(r)
+	var outfit Outfit
+	db.Preload("Tops").Preload("Bottoms").Preload("OnePieces").Preload("Accessories").Preload("Shoes").First(&outfit, params["id"])
+	json.NewEncoder(w).Encode(outfit)
+}

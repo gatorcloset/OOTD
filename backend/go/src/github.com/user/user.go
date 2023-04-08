@@ -52,7 +52,7 @@ type ItemTag struct {
 func InitialMigration() {
 	// Connect to database
 	var err error
-	db, err = gorm.Open(sqlite.Open("check.db"), &gorm.Config{})
+	db, err = gorm.Open(sqlite.Open("OOTD.db"), &gorm.Config{})
 
 	// if error display message
 	if err != nil {
@@ -131,6 +131,7 @@ func DeleteUser(w http.ResponseWriter, r *http.Request) {
 
 func LoginUser(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Access-Control-Allow-Credentials", "true")
 
 	var loginRequest struct {
 		Username string `json:"username"`
@@ -155,13 +156,15 @@ func LoginUser(w http.ResponseWriter, r *http.Request) {
 	}
 
 	session, err := store.Get(r, "session-name")
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
-	// Set session values
-	session.Values["authenticated"] = true
-	session.Values["username"] = loginRequest.Username
+    if err != nil {
+        http.Error(w, err.Error(), http.StatusInternalServerError)
+        return
+    }
+
+    // Set session values
+    session.Values["authenticated"] = true
+    session.Values["username"] = loginRequest.Username
+	session.Values["userID"] = user.ID
 
 	// Save the session
 	err = session.Save(r, w)
@@ -169,6 +172,8 @@ func LoginUser(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
+
+	fmt.Println("UserID:", session.Values["userID"])
 
 	json.NewEncoder(w).Encode(user)
 }

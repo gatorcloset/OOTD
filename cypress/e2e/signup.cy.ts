@@ -15,12 +15,10 @@ describe('template spec', () => {
 
   it ('fill out form and enter', function() {
     const { firstname, lastname, username, password} = this['currentUser'];
-    cy.get('input[id=firstname]').type(firstname)
-    cy.get('input[id=lastname]').type(lastname)
-    cy.get('input[id=email]').type('mleetaing@gmail.com')
-    cy.get('input[id=username]').type(username)
-    cy.get('input[id=password]').type(password)
-    cy.get('.login-button').first().click('center')
-
+    cy.get('input[id=firstname]').type('new')
+    cy.get('input[id=lastname]').type('user')
+    cy.get('input[id=username]').type('newuser')
+    cy.get('input[id=password]').type('password')
+    cy.get('.login-signup-page-button').first().click('center')
   })
 })

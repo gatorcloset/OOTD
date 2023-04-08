@@ -22,34 +22,32 @@
 
         <mat-form-field class="inputField" appearance="fill">
             <mat-label for="firstname">First Name</mat-label>
-            <input id="firstname" type="text" #firstname matInput>
+            <input id="firstname" type="text" #firstname [formControl]="first" matInput>
+            <mat-error id="firstError" #firstError *ngIf="first.invalid">{{firstErrorMessage()}}</mat-error>
         </mat-form-field>
 
-        <mat-form-field class="inputField" appearance="fill">
+        <mat-form-field class="inputField add-space" appearance="fill">
             <mat-label for="lastname">Last Name</mat-label>
-            <input id="lastname" type="text" #lastname matInput>
+            <input id="lastname" type="text" #lastname [formControl]="last" matInput>
+            <mat-error id="lastError" #lastError *ngIf="last.invalid">{{lastErrorMessage()}}</mat-error>
         </mat-form-field>
 
-        <!--
-        <mat-form-field class="inputField" appearance="fill">
-            <mat-label for="email">Email</mat-label>
-            <input id="email" type="email" #email matInput>
-        </mat-form-field>
-        -->
-
-        <mat-form-field class="inputField" appearance="fill">
+        <mat-form-field class="inputField add-space" appearance="fill">
             <mat-label for="username">Username</mat-label>
-            <input id="username" type="text" #username matInput>
+            <input id="username" type="text" #username [formControl]="usernameControl" matInput>
+            <mat-error id="userError" #userError *ngIf="usernameControl.invalid">{{userErrorMessage()}}</mat-error>
         </mat-form-field>
 
-        <mat-form-field class="inputField" appearance="fill">
+        <mat-form-field class="inputField add-space" appearance="fill">
             <mat-label for="password">Password</mat-label>
-            <input id="password" type="password" #password matInput>
+            <input id="password" type="password" #password name="password" [formControl]="passwordControl" matInput>
+            <mat-error id="userError" #userError *ngIf="passwordControl.invalid">{{passErrorMessage()}}</mat-error>
         </mat-form-field>
 
-        <mat-form-field class="inputField" appearance="fill">
+        <mat-form-field class="inputField add-space" appearance="fill">
             <mat-label for="confirm">Confirm Password</mat-label>
-            <input id="confirm" type="password" #password matInput>
+            <input id="confirm" type="password" #password name="confirmPassword" [formControl]="confirmPassword" matInput>
+            <mat-error id="confError" #confError *ngIf="confirmPassword.invalid">{{confirmErrorMessage()}}</mat-error>
         </mat-form-field>
 
         <div class="text-center">
@@ -59,7 +57,10 @@
                     background-color: rgb(75,89,190);
                     margin-top: 5%;
                     margin-bottom: 10%;"
-                    [routerLink]="['/user']" (click)="createUser(firstname.value, lastname.value, username.value, password.value)">SIGN UP
+                    [routerLink]="['/user']" (click)="createUser(firstname.value, lastname.value, username.value, password.value)"
+                    [disabled]="formValid"
+                    [ngClass]="{'disabled': formValid}"
+            >SIGN UP
             </button>
         </div>
 

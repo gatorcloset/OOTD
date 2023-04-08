@@ -408,3 +408,60 @@ func CreateItemTag(w http.ResponseWriter, r *http.Request) {
 	// Return the created item tag as JSON
 	json.NewEncoder(w).Encode(itemTag)
 }
+
+func CreateOutfit(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	var items []Item
+	json.NewDecoder(r.Body).Decode(&items)
+
+	// Create new outfit and assign items
+	outfit := Outfit{}
+
+	if len(items) > 0 {
+		outfit.Tops = items[0]
+	}
+	if len(items) > 1 {
+		outfit.Bottoms = items[1]
+	}
+	if len(items) > 2 {
+		outfit.OnePieces = items[2]
+	}
+	if len(items) > 3 {
+		outfit.Accessories = items[3]
+	}
+	if len(items) > 4 {
+		outfit.Shoes = items[4]
+	}
+
+	db.Create(&outfit)
+	json.NewEncoder(w).Encode(outfit)
+}
+
+func UpdateOutfit(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	params := mux.Vars(r)
+	var outfit Outfit
+	db.Preload("Tops").Preload("Bottoms").Preload("OnePieces").Preload("Accessories").Preload("Shoes").First(&outfit, params["id"])
+	var items []Item
+	json.NewDecoder(r.Body).Decode(&items)
+
+	// Update outfit with new items
+	outfit.Tops = items[0]
+	outfit.Bottoms = items[1]
+	outfit.OnePieces = items[2]
+	outfit.Accessories = items[3]
+	outfit.Shoes = items[4]
+
+	// Save the updated outfit to the database
+	db.Save(&outfit)
+	json.NewEncoder(w).Encode(outfit)
+}
+
+func DeleteOutfit(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	params := mux.Vars(r)
+	var outfit Outfit
+	db.First(&outfit, params["id"])
+	db.Delete(&outfit, params["id"])
+	json.NewEncoder(w).Encode("The outfit has successfully been deleted.")
+}

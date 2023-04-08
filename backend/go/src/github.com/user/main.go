@@ -35,6 +35,11 @@ func initializeRouter() {
 	r.HandleFunc("/tag/{id}", DeleteTag).Methods("DELETE")
 	r.HandleFunc("/tag/{id}", UpdateTag).Methods("PUT")
 	r.HandleFunc("/authUser", getUserData).Methods("GET")
+    r.HandleFunc("/authUser", getUserData).Methods("GET")
+    r.HandleFunc("/item", GetItems).Methods("GET")
+    r.HandleFunc("/outfit", CreateOutfit).Methods("POST")
+    r.HandleFunc("/outfit/{id}", UpdateOutfit).Methods("PUT")
+    r.HandleFunc("/outfit", DeleteOutfit).Methods("DELETE")
 
 	log.Fatal(http.ListenAndServe(":9000", corsHandler(r)))
 }

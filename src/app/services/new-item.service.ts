@@ -1,12 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
-export interface ItemTest {
-  Name: string;
-  Category: string;
-  ImagePath: string;
-}
+import { Item } from '../mock-data/item';
 
 @Injectable({
   providedIn: 'root'
@@ -26,11 +21,12 @@ export class NewItemService {
     // console.log(value);
   }
 
-  createItem(): Observable<ItemTest> {
+  createItem(): Observable<Item> {
     console.log(this.formData.get('name'));
     console.log(this.formData.get('category'));
     console.log(this.formData.get('image'));
-    return this.http.post<ItemTest>(this.url, this.formData);
+    console.log(this.formData.get('id'));
+    return this.http.post<Item>(this.url, this.formData);
   }
 
 }

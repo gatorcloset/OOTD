@@ -18,18 +18,32 @@ export class ItemsComponent {
   // Creates an instance of the ItemService and CategoryService
   constructor(private itemService: ItemService, private activatedRoute: ActivatedRoute) {}
 
-  getItems(): void {
-    // Populates the items array
-    this.items = this.itemService.getItems(); 
+  getItems() {
+    return new Promise(resolve => {
+      this.itemService.getItems().subscribe(
+        res => {
+          this.items = res;
+          console.log(res);
+          resolve(res);
+        },
+        err => {
+          console.log(err);
+          resolve(err);
+        }
+      )
+    })
+    
   }
 
-  ngOnInit(): void {
+  async ngOnInit() {
     // Retrieves array of all mock items
-    this.getItems();
+    const res = await this.getItems();
   
     // Retrieves the name element of the router
     this.selectedCategory = this.activatedRoute.snapshot.paramMap.get('name')!;
+    console.log(this.selectedCategory);
     // Sets the array of selected items = to the original items array, but filtered
-    this.selectedItems = this.itemService.getItems().filter(x => x.category.toLowerCase() === this.selectedCategory);
+    this.selectedItems = this.items.filter(x => x.category.toLowerCase() === this.selectedCategory);
+    console.log(this.selectedItems);
   }
 }

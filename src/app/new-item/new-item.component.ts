@@ -8,6 +8,9 @@ import {map, startWith} from 'rxjs/operators';
 import { Tag } from '../mock-data/tag';
 import { NewItemService } from '../services/new-item.service';
 import { TagService } from '../services/tag.service';
+import { UserService } from '../services/user.service';
+import { User } from '../mock-data/user';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -25,7 +28,7 @@ export class NewItemComponent {
 
   @ViewChild('tagInput', {static: true}) tagInput!: ElementRef<HTMLInputElement>;
 
-  constructor(private tagService: TagService, private newItem: NewItemService) {
+  constructor(private tagService: TagService, private newItemService: NewItemService, private userService: UserService, private router: Router) {
     this.filteredTags = this.tagCtrl.valueChanges.pipe(
       startWith(null),
       map((tag: string | null) => (tag ? this._filter(tag).map(tag => tag.name) : this.allTags.map(tag => tag.name)),
@@ -77,12 +80,17 @@ export class NewItemComponent {
   onSubmit(name: string, category: string, event: Event) {
     event.preventDefault();
     // Populate FormData object based on input values
-    this.newItem.set('name', name);
-    this.newItem.set('category', category);
+    this.newItemService.set('name', name);
+    this.newItemService.set('category', category);
+    this.newItemService.set('id', this.userService.authUser?.ID);
+    console.log(this.newItemService.formData.get('id'));
 
     // Call POST function
-    this.newItem.createItem().subscribe(
-      res => console.log(res),
+    this.newItemService.createItem().subscribe(
+      res => {
+        console.log(res)
+        this.router.navigateByUrl(`/closet/${category}`)
+      },
       error => console.error(error)
     )
   }

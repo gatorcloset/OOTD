@@ -17,6 +17,7 @@ import (
 	"github.com/gorilla/sessions"
 	_ "github.com/mattn/go-sqlite3"
 	"golang.org/x/crypto/bcrypt"
+	"strconv"
 )
 
 var db *gorm.DB
@@ -257,7 +258,8 @@ func CreateItem(w http.ResponseWriter, r *http.Request) {
 	fileName := uuid.New().String() + filepath.Ext(handler.Filename)
 
 	// Save the image file to a local directory
-	imagePath := "images/" + fileName
+	// imagePath := "images/" + fileName
+	imagePath := "../../../../../src/assets/item-images/" + fileName
 	dst, err := os.Create(imagePath)
 	if err != nil {
 		http.Error(w, "error saving image file", http.StatusInternalServerError)
@@ -270,8 +272,16 @@ func CreateItem(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// Get the value of "id" from the form
+	idStr := r.FormValue("id")
+	// Convert the "id" value from string to uint
+	id, err := strconv.ParseUint(idStr, 10, 32)
+	if err != nil {
+		// Handle the error
+	}
+
 	// Create a new item object and save it to the database
-	item := Item{Name: r.FormValue("name"), Category: r.FormValue("category"), ImagePath: imagePath}
+	item := Item{UserID: uint(id), Name: r.FormValue("name"), Category: r.FormValue("category"), ImagePath: imagePath[19:]}
 	result := db.Create(&item)
 	if result.Error != nil {
 		http.Error(w, "error creating item", http.StatusInternalServerError)

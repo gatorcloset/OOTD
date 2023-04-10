@@ -1,8 +1,6 @@
-import { Tag } from "./tag";
-
 export interface Item {
-    image: string;
+    userID?: number;
     name: string;
     category: string;
-    // tags: Tag[];
+    image: string;
 }

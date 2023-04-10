@@ -1,15 +1,23 @@
 import { Injectable } from '@angular/core';
 import { Item } from '../mock-data/item';
-import { ITEMS } from '../mock-data/mock-items';
+import { UserService } from './user.service';
+import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ItemService {
+  private apiURL = 'http://localhost:9000/';
 
-  constructor() { }
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  }
 
-  getItems(): Item[] {
-    return ITEMS;
+  constructor(private userService: UserService, private http: HttpClient) { }
+
+  getItems(): Observable<Item[]> {
+    const url = `${this.apiURL}/users/${this.userService.authUser?.ID}/items`;
+    return this.http.get<Item[]>(url, this.httpOptions);
   }
 }

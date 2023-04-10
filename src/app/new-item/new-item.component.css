@@ -1,8 +1,51 @@
-.container {
-    margin: 50px;
+.body-container {
+    background-color: #F6F8FF;
+    padding-bottom: 100vh;
+    padding-top: 100px;
+}
+
+mat-card {
+    background-color: white;
+    margin-left: 450px;
+    margin-right: 450px;
+    margin-top: 0px;
+    padding: 40px;
+    border-radius: 30px;
+    box-shadow: -2px 2px 30px #E9EBF3;
+
+}
+
+h1 {
+    margin-bottom: 30px;
+}
+
+app-upload-image {
+    color: #4350AE;
+}
+
+.category {
+    padding-bottom: 15px;
 }
 
 .input {
-    width: 50%;
     display: block;
 }
+
+button {
+    margin-top: 30px;
+    background-color: blue;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.chips {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+mat-chip-option {
+    background-color: #E9EBF9;
+}
+

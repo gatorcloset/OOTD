@@ -1,3 +1,9 @@
 .container {
     margin: 50px;
 }
+
+body {
+    background-color: #F6F8FF;
+    margin-top: 0px;
+    padding-top: 20px;
+}

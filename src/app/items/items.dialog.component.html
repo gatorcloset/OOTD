@@ -1,0 +1,58 @@
+<mat-card>
+    <div class="">
+      <div class="title">
+        <h1 class="text-center">Edit Clothing Item</h1>
+      </div>
+      <mat-dialog-content>
+      <form enctype="multipart/form-data">
+        <!-- UPLOAD IMAGE -->
+        <div style="display: flex; justify-content: center; padding-bottom: 20px;">
+            <img *ngIf="imageUrl" [src]="imageUrl" alt="Selected image" style="width: 30%;"> <!-- Displays uploaded image -->
+        </div>
+        
+        <mat-form-field class="input" id="upload">
+            <mat-label>Select image</mat-label>
+            <ngx-mat-file-input name="image" placeholder="Select image" (change)="onChangeFile($event)" type="file"></ngx-mat-file-input>
+            <mat-icon matSuffix>image</mat-icon>
+        </mat-form-field>
+  
+        <!-- INPUT NAME -->
+        <mat-form-field class="input" appearance="fill">
+          <mat-label>Name</mat-label>
+          <input #name id="name" matInput [(ngModel)]="item.name" name="name">
+        </mat-form-field>
+  
+        <!-- SELECT CATEGORY (USING CHIPS) -->
+        <div class="chips">
+          <mat-chip-listbox class="category" class="input" aria-label="category selection" #categories id="categories" [(ngModel)]="item.category" name="categories">
+            <mat-chip-option value="tops">Top</mat-chip-option>
+            <mat-chip-option value="bottoms">Bottom</mat-chip-option>
+            <mat-chip-option value="one-pieces">One-piece</mat-chip-option>
+            <mat-chip-option value="shoes">Shoes</mat-chip-option>
+            <mat-chip-option value="accessories">Accessory</mat-chip-option>
+          </mat-chip-listbox>
+        </div>
+
+        <!-- SUBMIT -->
+        <div class="text-center">
+          <button mat-flat-button (click)="onSave(item.ID, name.value, categories.value, $event)" id="add-button" 
+          style="
+          background-color: #F5F5F5;
+          border-radius: 10px;
+          padding: 15px;
+          "
+          >SAVE CHANGES</button>
+          <button mat-flat-button id="add-button" 
+          style="
+          background-color: #F5F5F5;
+          border-radius: 10px;
+          padding: 15px;
+          "
+          >DELETE</button>
+        </div>
+        
+      </form>
+    </mat-dialog-content>
+      
+    </div>
+</mat-card>

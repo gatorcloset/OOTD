@@ -36,6 +36,12 @@ export class NewItemService {
     console.log(this.formData.get('id'));
     return this.http.put<Item>(`${this.url}/${itemID}`, this.formData);
   }
+
+  
+  deleteItem(itemID: number): Observable<Item> {
+    return this.http.delete<Item>(`${this.url}/${itemID}`);
+  }
+  
   
 
 }

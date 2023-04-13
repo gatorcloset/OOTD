@@ -27,6 +27,7 @@ import { HomeComponent } from './home/home.component';
 import { NewItemComponent } from './new-item/new-item.component';
 import { MatChipsModule } from '@angular/material/chips';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { UploadImageComponent } from './upload-image/upload-image.component';
 import { MatSelectModule } from '@angular/material/select';
@@ -35,6 +36,8 @@ import { CarouselModule } from './carousel/carousel.module';
 import { CarouselComponent } from './carousel/carousel.component';
 import { AuthGuard } from './services/auth-guard.service';
 import { UserService } from './services/user.service';
+import {MatDialogModule} from '@angular/material/dialog';
+import { ItemsDialogComponent } from './items/items.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +51,8 @@ import { UserService } from './services/user.service';
     UserComponent,
     HomeComponent,
     NewItemComponent,
-    UploadImageComponent
+    UploadImageComponent,
+    ItemsDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -67,10 +71,12 @@ import { UserService } from './services/user.service';
     HttpClientModule,
     MatChipsModule,
     ReactiveFormsModule,
+    FormsModule,
     MatAutocompleteModule,
     MatSelectModule,
     MaterialFileInputModule,
-    CarouselModule
+    CarouselModule,
+    MatDialogModule,
   ],
   providers: [UserService, AuthGuard],
   bootstrap: [AppComponent]

@@ -29,4 +29,13 @@ export class NewItemService {
     return this.http.post<Item>(this.url, this.formData);
   }
 
+  updateItem(itemID: number): Observable<Item> {
+    console.log(this.formData.get('name'));
+    console.log(this.formData.get('category'));
+    console.log(this.formData.get('image'));
+    console.log(this.formData.get('id'));
+    return this.http.put<Item>(`${this.url}/${itemID}`, this.formData);
+  }
+  
+
 }

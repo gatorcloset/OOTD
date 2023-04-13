@@ -319,12 +319,77 @@ func GetItems(w http.ResponseWriter, r *http.Request) {
 }
 
 func UpdateItem(w http.ResponseWriter, r *http.Request) {
+	// Parse the multipart form data
+	if err := r.ParseMultipartForm(32 << 20); err != nil {
+		http.Error(w, "error parsing multipart form data", http.StatusBadRequest)
+		return
+	}
+
+	// Retrieve the image file from the form data
+	file, handler, err := r.FormFile("image")
+	if err != nil && err != http.ErrMissingFile {
+		// Error occurred while retrieving image file
+        http.Error(w, "error retrieving image file", http.StatusBadRequest)
+        return
+	}
+
+	// Get the value of "id" from the form
+	idStr := r.FormValue("id")
+	// Convert the "id" value from string to uint
+	id, err := strconv.ParseUint(idStr, 10, 32)
+	if err != nil {
+		http.Error(w, "error parsing item ID", http.StatusBadRequest)
+		return
+	}
+
+	// Find the existing item in the database
+	item := Item{}
+	if err := db.First(&item, uint(id)).Error; err != nil {
+		http.Error(w, "item not found", http.StatusNotFound)
+		return
+	}
+
+	// Update the item's fields
+	item.Name = r.FormValue("name")
+	if category := r.FormValue("category"); category != "undefined" {
+		item.Category = category
+	}
+
+	// If a new image file is uploaded, update the image file
+	if file != nil && err != http.ErrMissingFile {
+		// Generate a unique file name for the image
+		fileName := uuid.New().String() + filepath.Ext(handler.Filename)
+
+		// Save the new image file to a local directory
+		// imagePath := "images/" + fileName
+		imagePath := "../../../../../src/assets/item-images/" + fileName
+		dst, err := os.Create(imagePath)
+		if err != nil {
+			http.Error(w, "error saving image file", http.StatusInternalServerError)
+			return
+		}
+		defer dst.Close()
+
+		if _, err := io.Copy(dst, file); err != nil {
+			http.Error(w, "error saving image file", http.StatusInternalServerError)
+			return
+		}
+
+		// Update the item's image path
+		item.ImagePath = imagePath[19:]
+		
+		file.Close()
+	}
+
+	// Update the item in the database
+	result := db.Save(&item)
+	if result.Error != nil {
+		http.Error(w, "error updating item", http.StatusInternalServerError)
+		return
+	}
+
+	// Return the updated item as JSON
 	w.Header().Set("Content-Type", "application/json")
-	params := mux.Vars(r)
-	var item Item
-	db.First(&item, params["id"])
-	json.NewDecoder(r.Body).Decode(&item)
-	db.Save(&item)
 	json.NewEncoder(w).Encode(item)
 }
 

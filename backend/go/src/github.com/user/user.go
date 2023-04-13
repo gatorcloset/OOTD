@@ -569,6 +569,6 @@ func GetAllItemsCategory(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	params := mux.Vars(r)
 	var items []Item
-	db.Where("user_id = ? AND category = ?", params["id"], params["category"]).Find(&items)
+	db.Where("user_id = ? AND category = ?", params["id"], params["name"]).Find(&items)
 	json.NewEncoder(w).Encode(items)
 }

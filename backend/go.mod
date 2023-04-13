@@ -5,7 +5,7 @@ go 1.20
 require (
 	github.com/gorilla/mux v1.8.0
 	github.com/mattn/go-sqlite3 v1.14.16
-	github.com/rs/cors v1.8.3
+	github.com/rs/cors v1.9.0
 	github.com/stretchr/testify v1.8.2
 	gorm.io/driver/sqlite v1.4.4
 	gorm.io/gorm v1.24.5

@@ -45,7 +45,7 @@ func initializeRouter() {
 	r.HandleFunc("/outfit/{id}", GetOutfit).Methods("GET")
 	r.HandleFunc("/outfit", GetOutfits).Methods("GET")
 	r.HandleFunc("/users/{id}/items", GetUserItems).Methods("GET")
-	r.HandleFunc("/users/{id}/category/{name}", GetAllItemsCategory).Methods("GET")
+	r.HandleFunc("/users/{id}/category/{name:string}", GetAllItemsCategory).Methods("GET")
 
 	log.Fatal(http.ListenAndServe(":9000", corsHandler(r)))
 }

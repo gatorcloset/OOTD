@@ -28,6 +28,7 @@ func initializeRouter() {
 	r.HandleFunc("/logout", Logout).Methods("POST")
 	r.HandleFunc("/item", CreateItem).Methods("POST")
 	r.HandleFunc("/item/{id}", UpdateItem).Methods("PUT")
+	r.HandleFunc("/item/{id}", DeleteItem).Methods("DELETE")
 	r.HandleFunc("/tag", CreateTag).Methods("POST")
 	r.HandleFunc("/item_tag", CreateItemTag).Methods("POST")
 	r.HandleFunc("/item/{id}", GetItem).Methods("GET")

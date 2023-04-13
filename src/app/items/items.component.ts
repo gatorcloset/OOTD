@@ -102,7 +102,7 @@ export class ItemsDialogComponent {
     
   }
 
-  onSave(itemID: number, name: string, category: string, event: Event) {
+  onSave(itemID: number, name: string, category: string) {
     category = category || this.item.category;
 
     // Populate FormData object based on input values
@@ -113,12 +113,20 @@ export class ItemsDialogComponent {
     // Call PUT function, using the itemID as a parameter
     this.newItemService.updateItem(itemID).subscribe(
       res => {
-        console.log(res)
+        console.log(res);
         this.onNoClick();
-        this.router.navigate(['/closet', category]).then(() => {
-          this.cdr.detectChanges();
-        })
         // this.router.navigateByUrl(`/closet/${category}`) => does not work :(
+        this.router.navigateByUrl('/closet')
+      },
+      err => console.log(err)
+    )
+  }
+
+  onDelete(itemID: number) {
+    this.newItemService.deleteItem(itemID).subscribe(
+      res => {
+        console.log(res);
+        this.onNoClick();
         this.router.navigateByUrl('/closet')
       },
       err => console.log(err)

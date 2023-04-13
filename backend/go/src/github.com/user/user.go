@@ -12,12 +12,13 @@ import (
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 
+	"strconv"
+
 	"github.com/google/uuid"
 	"github.com/gorilla/mux"
 	"github.com/gorilla/sessions"
 	_ "github.com/mattn/go-sqlite3"
 	"golang.org/x/crypto/bcrypt"
-	"strconv"
 )
 
 var db *gorm.DB
@@ -123,8 +124,6 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 	db.Create(&user)
 	json.NewEncoder(w).Encode(user)
 }
-
-
 
 func UpdateUser(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
@@ -329,8 +328,8 @@ func UpdateItem(w http.ResponseWriter, r *http.Request) {
 	file, handler, err := r.FormFile("image")
 	if err != nil && err != http.ErrMissingFile {
 		// Error occurred while retrieving image file
-        http.Error(w, "error retrieving image file", http.StatusBadRequest)
-        return
+		http.Error(w, "error retrieving image file", http.StatusBadRequest)
+		return
 	}
 
 	// Get the value of "id" from the form
@@ -377,7 +376,7 @@ func UpdateItem(w http.ResponseWriter, r *http.Request) {
 
 		// Update the item's image path
 		item.ImagePath = imagePath[19:]
-		
+
 		file.Close()
 	}
 
@@ -563,5 +562,13 @@ func GetUserItems(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	var items []Item
 	db.Where("user_id = ?", params["id"]).Find(&items)
+	json.NewEncoder(w).Encode(items)
+}
+
+func GetAllItemsCategory(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	params := mux.Vars(r)
+	var items []Item
+	db.Where("user_id = ? AND category = ?", params["id"]).Find(&items)
 	json.NewEncoder(w).Encode(items)
 }

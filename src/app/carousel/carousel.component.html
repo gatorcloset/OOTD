@@ -77,18 +77,18 @@
         </div>
     </div>
     
-    <!-- FOOTWEAR -->
+    <!-- SHOES -->
     <div *ngIf="shoes && shoes.length > 0" class="carousel-container">
         <img *ngFor="let shoe of shoes; let i=index"
             [src]="shoe.image"
-            [ngClass]="{'image-active': selectedIndex === i}"
+            [ngClass]="{'image-active': shoesIndex === i}"
             class="slide"
         >
     
         <div *ngIf="indicators" class="carousel-dot-container">
             <span *ngFor="let for of shoes; let i=index" 
                 class="dot"
-                [ngClass]="{'active': selectedIndex === i}"
+                [ngClass]="{'active': shoesIndex === i}"
                 (click)="selectImage(i)"
             >
             </span>
@@ -114,6 +114,6 @@
             
         </div>
     </div>
-    <button mat-button class="primary" (click)="saveOutfit(selectedIndex, selectedIndex, selectedIndex)">Save Changes</button>
+    <button mat-button class="primary" (click)="saveOutfit(topsIndex, bottomsIndex, shoesIndex)">Save Changes</button>
 </div>
 

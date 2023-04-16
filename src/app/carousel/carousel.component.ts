@@ -34,7 +34,7 @@ export class CarouselComponent implements OnInit{
   selectedIndex = 0;
   topsIndex = 0;
   bottomsIndex = 0;
-  footwearIndex = 0;
+  shoesIndex = 0;
 
   constructor(private carouselService: CarouselService) { }
 
@@ -166,18 +166,18 @@ export class CarouselComponent implements OnInit{
   }
 
   shoesPrevClick(): void {
-    if(this.selectedIndex === 0) {
-      this.selectedIndex = this.shoes.length - 1;
+    if(this.shoesIndex === 0) {
+      this.shoesIndex = this.shoes.length - 1;
     } else {
-      this.selectedIndex--;
+      this.shoesIndex--;
     }
   }
 
   shoesNextClick(): void {
-    if(this.selectedIndex === this.shoes.length-1) {
-      this.selectedIndex = 0;
+    if(this.shoesIndex === this.shoes.length-1) {
+      this.shoesIndex = 0;
     } else {
-      this.selectedIndex++;
+      this.shoesIndex++;
     }
   }
 }

@@ -6,20 +6,24 @@
       <mat-dialog-content>
       <form enctype="multipart/form-data">
         <!-- UPLOAD IMAGE -->
-        <div style="display: flex; justify-content: center; padding-bottom: 20px;">
-            <img *ngIf="imageUrl" [src]="imageUrl" alt="Selected image" style="width: 30%;"> <!-- Displays uploaded image -->
+        <div style="display: flex; justify-content: center; padding-bottom: 20px;" id="image">
+            <img *ngIf="imageUrl" [src]="imageUrl" alt="Selected image" style="width: 30%;">
         </div>
         
+        <input type="file" class="upload" id="upload" class="input" (change)="onChangeFile($event)">
+
+        <!-- UPLOAD ELEMENT FROM LIBRARY
         <mat-form-field class="input" id="upload">
             <mat-label>Select image</mat-label>
             <ngx-mat-file-input name="image" placeholder="Select image" (change)="onChangeFile($event)" type="file"></ngx-mat-file-input>
             <mat-icon matSuffix>image</mat-icon>
         </mat-form-field>
+        -->
   
         <!-- INPUT NAME -->
-        <mat-form-field class="input" appearance="fill">
+        <mat-form-field class="input" id="name" appearance="fill">
           <mat-label>Name</mat-label>
-          <input #name id="name" matInput [(ngModel)]="item.name" name="name">
+          <input #name id="name" class="name" matInput [(ngModel)]="item.name" name="name">
         </mat-form-field>
   
         <!-- SELECT CATEGORY (USING CHIPS) -->
@@ -35,14 +39,14 @@
 
         <!-- SUBMIT -->
         <div class="text-center">
-          <button mat-flat-button (click)="onSave(item.ID, name.value, categories.value)" id="add-button" 
+          <button mat-flat-button (click)="onSave(item.ID, name.value, categories.value)" id="save-button" 
           style="
           background-color: #F5F5F5;
           border-radius: 10px;
           padding: 15px;
           "
           >SAVE CHANGES</button>
-          <button mat-flat-button id="add-button" (click)="onDelete(item.ID)"
+          <button mat-flat-button id="add-button" (click)="onDelete(item.ID)" id="delete-button"
           style="
           background-color: #F5F5F5;
           border-radius: 10px;

@@ -8,7 +8,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class ItemService {
-  private apiURL = 'http://localhost:9000/';
+  private apiURL = 'http://localhost:9000';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })

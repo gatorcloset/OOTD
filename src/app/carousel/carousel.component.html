@@ -2,7 +2,7 @@
 <div class="builder-container">
     <div *ngIf="tops && tops.length > 0" class="carousel-container">
         <img *ngFor="let top of tops; let i=index"
-            [src]="top.imageSrc" [alt]="top.imageAlt"
+            [src]="top.image"
             [ngClass]="{'image-active': selectedIndex === i}"
             class="slide"
         >
@@ -17,7 +17,7 @@
         </div>
     
         <div *ngIf="controls" class="btn-carousel btn-prev" id="tops-prev-btn">
-            <button class="left-btn"
+            <button class="left-btn custom-btn"
                 (click)="topsPrevClick()"
             >
                 ◀
@@ -27,7 +27,7 @@
         </div>
     
         <div *ngIf="controls" class="btn-carousel btn-next" id="tops-next-btn">
-            <button class="right-btn"
+            <button class="right-btn custom-btn"
                 (click)="topsNextClick()"
             >
                 ▶
@@ -37,10 +37,9 @@
         </div>
     </div>
     
-    
     <div *ngIf="bottoms && bottoms.length > 0" class="carousel-container">
         <img *ngFor="let bottom of bottoms; let i=index"
-            [src]="bottom.imageSrc" [alt]="bottom.imageAlt"
+            [src]="bottom.image"
             [ngClass]="{'image-active': selectedIndex === i}"
             class="slide"
         >
@@ -55,7 +54,7 @@
         </div>
     
         <div *ngIf="controls" class="btn-carousel btn-prev" id="bottoms-prev-btn">
-            <button class="left-btn"
+            <button class="left-btn custom-btn"
                 (click)="bottomsPrevClick()"
             >
                 ◀
@@ -65,7 +64,7 @@
         </div>
     
         <div *ngIf="controls" class="btn-carousel btn-next" id="bottoms-next-btn">
-            <button class="right-btn"
+            <button class="right-btn custom-btn"
                 (click)="bottomsNextClick()"
             >
                 ▶
@@ -78,7 +77,7 @@
     
     <div *ngIf="shoes && shoes.length > 0" class="carousel-container">
         <img *ngFor="let shoe of shoes; let i=index"
-            [src]="shoe.imageSrc" [alt]="shoe.imageAlt"
+            [src]="shoe.image"
             [ngClass]="{'image-active': selectedIndex === i}"
             class="slide"
         >
@@ -93,7 +92,7 @@
         </div>
     
         <div *ngIf="controls" class="btn-carousel btn-prev" id="shoes-prev-btn">
-            <button class="left-btn"
+            <button class="left-btn custom-btn"
                 (click)="shoesPrevClick()"
             >
                 ◀
@@ -103,7 +102,7 @@
         </div>
     
         <div *ngIf="controls" class="btn-carousel btn-next" id="shoes-next-btn">
-            <button class="right-btn"
+            <button class="right-btn custom-btn"
                 (click)="shoesNextClick()"
             >
                 ▶
@@ -112,5 +111,6 @@
             
         </div>
     </div>
+    <button mat-button class="primary" (click)="saveOutfit(selectedIndex, selectedIndex, selectedIndex)">Save Changes</button>
 </div>
 

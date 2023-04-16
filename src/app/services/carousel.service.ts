@@ -27,5 +27,10 @@ export class CarouselService {
     return this.http.post<Outfit>(url, outfit);
   }
 
+  getOutfits(): Observable<Outfit[]> {
+    const url = `${this.apiURL}/outfit`;
+    return this.http.get<Outfit[]>(url);
+  }
+
 
 }

@@ -106,9 +106,6 @@ export class CarouselComponent implements OnInit{
     }
     */
 
-    //outfit.push(this.onePieces[top]);
-    //outfit.push(this.accessories[top]);
-
     if (shoes >= 0 && shoes < this.shoes.length) {
       outfit.push(this.shoes[shoes]);
     }

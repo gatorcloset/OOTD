@@ -150,18 +150,18 @@ export class CarouselComponent implements OnInit{
   }
 
   bottomsPrevClick(): void {
-    if(this.selectedIndex === 0) {
-      this.selectedIndex = this.bottoms.length - 1;
+    if(this.bottomsIndex === 0) {
+      this.bottomsIndex = this.bottoms.length - 1;
     } else {
-      this.selectedIndex--;
+      this.bottomsIndex--;
     }
   }
 
   bottomsNextClick(): void {
-    if(this.selectedIndex === this.bottoms.length-1) {
-      this.selectedIndex = 0;
+    if(this.bottomsIndex === this.bottoms.length-1) {
+      this.bottomsIndex = 0;
     } else {
-      this.selectedIndex++;
+      this.bottomsIndex++;
     }
   }
 

@@ -43,14 +43,14 @@
     <div *ngIf="bottoms && bottoms.length > 0" class="carousel-container">
         <img *ngFor="let bottom of bottoms; let i=index"
             [src]="bottom.image"
-            [ngClass]="{'image-active': selectedIndex === i}"
+            [ngClass]="{'image-active': bottomsIndex === i}"
             class="slide"
         >
     
         <div *ngIf="indicators" class="carousel-dot-container">
             <span *ngFor="let for of bottoms; let i=index" 
                 class="dot"
-                [ngClass]="{'active': selectedIndex === i}"
+                [ngClass]="{'active': bottomsIndex === i}"
                 (click)="selectImage(i)"
             >
             </span>

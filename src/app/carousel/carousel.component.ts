@@ -32,6 +32,9 @@ export class CarouselComponent implements OnInit{
 
 
   selectedIndex = 0;
+  topsIndex = 0;
+  bottomsIndex = 0;
+  footwearIndex = 0;
 
   constructor(private carouselService: CarouselService) { }
 
@@ -131,18 +134,18 @@ export class CarouselComponent implements OnInit{
   }
 
   topsPrevClick(): void {
-    if(this.selectedIndex === 0) {
-      this.selectedIndex = this.tops.length - 1;
+    if(this.topsIndex === 0) {
+      this.topsIndex = this.tops.length - 1;
     } else {
-      this.selectedIndex--;
+      this.topsIndex--;
     }
   }
 
   topsNextClick(): void {
-    if(this.selectedIndex === this.tops.length-1) {
-      this.selectedIndex = 0;
+    if(this.topsIndex === this.tops.length-1) {
+      this.topsIndex = 0;
     } else {
-      this.selectedIndex++;
+      this.topsIndex++;
     }
   }
 

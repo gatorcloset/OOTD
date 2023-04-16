@@ -1,16 +1,18 @@
 
 <div class="builder-container">
+
+    <!-- TOPS -->
     <div *ngIf="tops && tops.length > 0" class="carousel-container">
         <img *ngFor="let top of tops; let i=index"
             [src]="top.image"
-            [ngClass]="{'image-active': selectedIndex === i}"
+            [ngClass]="{'image-active': topsIndex === i}"
             class="slide"
         >
     
         <div *ngIf="indicators" class="carousel-dot-container">
             <span *ngFor="let for of tops; let i=index" 
                 class="dot"
-                [ngClass]="{'active': selectedIndex === i}"
+                [ngClass]="{'active': topsIndex === i}"
                 (click)="selectImage(i)"
             >
             </span>
@@ -37,6 +39,7 @@
         </div>
     </div>
     
+    <!-- BOTTOMS -->
     <div *ngIf="bottoms && bottoms.length > 0" class="carousel-container">
         <img *ngFor="let bottom of bottoms; let i=index"
             [src]="bottom.image"
@@ -74,7 +77,7 @@
         </div>
     </div>
     
-    
+    <!-- FOOTWEAR -->
     <div *ngIf="shoes && shoes.length > 0" class="carousel-container">
         <img *ngFor="let shoe of shoes; let i=index"
             [src]="shoe.image"

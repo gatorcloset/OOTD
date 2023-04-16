@@ -1,15 +1,15 @@
 <img *ngIf="imageUrl" [src]="imageUrl" alt="Selected image" > <!-- Displays uploaded image -->
 
-
+<!--
 <mat-form-field class="input" id="upload">
     <mat-label>Select image</mat-label>
     <ngx-mat-file-input name="image" placeholder="Select image" (change)="onChangeFile($event)" type="file"></ngx-mat-file-input>
     <mat-icon matSuffix>image</mat-icon>
 </mat-form-field>
-
-<!--
-<input type="file" id="upload" class="input" (change)="onChangeFile($event)">
 -->
+
+<input type="file" class="upload" id="upload" class="input" (change)="onChangeFile($event)">
+
 
 
 

@@ -18,6 +18,7 @@ export class AppComponent {
     return this.router.url.includes('builder');
   }
 
+  /*
   //sample images for outfit builder
   tops = [
     {
@@ -87,4 +88,5 @@ export class AppComponent {
       imageAlt: 'pink-skirt',
     }
   ]
+  */
 }

@@ -35,6 +35,7 @@ export class CarouselComponent implements OnInit{
   topsIndex = 0;
   bottomsIndex = 0;
   shoesIndex = 0;
+  accessoriesIndex = 0;
 
   constructor(private carouselService: CarouselService) { }
 
@@ -86,7 +87,7 @@ export class CarouselComponent implements OnInit{
   
   }
 
-  saveOutfit(top: number, bottom: number, shoes: number) {
+  saveOutfit(top: number, bottom: number, shoes: number, accessory: number) {
     // Create an array to store the items in the outfit
     const outfit: Item[] = [];
 
@@ -103,11 +104,11 @@ export class CarouselComponent implements OnInit{
     if (onePiece >= 0 && onePiece < this.onePieces.length) {
       outfit.push(this.onePieces[onePiece]);
     }
+    */
 
     if (accessory >= 0 && accessory < this.accessories.length) {
       outfit.push(this.accessories[accessory]);
     }
-    */
 
     if (shoes >= 0 && shoes < this.shoes.length) {
       outfit.push(this.shoes[shoes]);
@@ -178,6 +179,22 @@ export class CarouselComponent implements OnInit{
       this.shoesIndex = 0;
     } else {
       this.shoesIndex++;
+    }
+  }
+
+  accessoriesPrevClick(): void {
+    if(this.accessoriesIndex === 0) {
+      this.accessoriesIndex = this.accessories.length - 1;
+    } else {
+      this.accessoriesIndex--;
+    }
+  }
+
+  accessoriesNextClick(): void {
+    if(this.accessoriesIndex === this.accessories.length-1) {
+      this.accessoriesIndex = 0;
+    } else {
+      this.accessoriesIndex++;
     }
   }
 }

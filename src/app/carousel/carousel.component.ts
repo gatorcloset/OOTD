@@ -32,6 +32,10 @@ export class CarouselComponent implements OnInit{
 
 
   selectedIndex = 0;
+  topsIndex = 0;
+  bottomsIndex = 0;
+  shoesIndex = 0;
+  accessoriesIndex = 0;
 
   constructor(private carouselService: CarouselService) { }
 
@@ -83,7 +87,7 @@ export class CarouselComponent implements OnInit{
   
   }
 
-  saveOutfit(top: number, bottom: number, shoes: number) {
+  saveOutfit(top: number, bottom: number, shoes: number, accessory: number) {
     // Create an array to store the items in the outfit
     const outfit: Item[] = [];
 
@@ -100,11 +104,11 @@ export class CarouselComponent implements OnInit{
     if (onePiece >= 0 && onePiece < this.onePieces.length) {
       outfit.push(this.onePieces[onePiece]);
     }
+    */
 
     if (accessory >= 0 && accessory < this.accessories.length) {
       outfit.push(this.accessories[accessory]);
     }
-    */
 
     if (shoes >= 0 && shoes < this.shoes.length) {
       outfit.push(this.shoes[shoes]);
@@ -131,50 +135,66 @@ export class CarouselComponent implements OnInit{
   }
 
   topsPrevClick(): void {
-    if(this.selectedIndex === 0) {
-      this.selectedIndex = this.tops.length - 1;
+    if(this.topsIndex === 0) {
+      this.topsIndex = this.tops.length - 1;
     } else {
-      this.selectedIndex--;
+      this.topsIndex--;
     }
   }
 
   topsNextClick(): void {
-    if(this.selectedIndex === this.tops.length-1) {
-      this.selectedIndex = 0;
+    if(this.topsIndex === this.tops.length-1) {
+      this.topsIndex = 0;
     } else {
-      this.selectedIndex++;
+      this.topsIndex++;
     }
   }
 
   bottomsPrevClick(): void {
-    if(this.selectedIndex === 0) {
-      this.selectedIndex = this.bottoms.length - 1;
+    if(this.bottomsIndex === 0) {
+      this.bottomsIndex = this.bottoms.length - 1;
     } else {
-      this.selectedIndex--;
+      this.bottomsIndex--;
     }
   }
 
   bottomsNextClick(): void {
-    if(this.selectedIndex === this.bottoms.length-1) {
-      this.selectedIndex = 0;
+    if(this.bottomsIndex === this.bottoms.length-1) {
+      this.bottomsIndex = 0;
     } else {
-      this.selectedIndex++;
+      this.bottomsIndex++;
     }
   }
 
   shoesPrevClick(): void {
-    if(this.selectedIndex === 0) {
-      this.selectedIndex = this.shoes.length - 1;
+    if(this.shoesIndex === 0) {
+      this.shoesIndex = this.shoes.length - 1;
     } else {
-      this.selectedIndex--;
+      this.shoesIndex--;
     }
   }
 
   shoesNextClick(): void {
-    if(this.selectedIndex === this.shoes.length-1) {
-      this.selectedIndex = 0;
+    if(this.shoesIndex === this.shoes.length-1) {
+      this.shoesIndex = 0;
     } else {
-      this.selectedIndex++;
+      this.shoesIndex++;
+    }
+  }
+
+  accessoriesPrevClick(): void {
+    if(this.accessoriesIndex === 0) {
+      this.accessoriesIndex = this.accessories.length - 1;
+    } else {
+      this.accessoriesIndex--;
+    }
+  }
+
+  accessoriesNextClick(): void {
+    if(this.accessoriesIndex === this.accessories.length-1) {
+      this.accessoriesIndex = 0;
+    } else {
+      this.accessoriesIndex++;
     }
   }
 }

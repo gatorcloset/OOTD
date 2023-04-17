@@ -10,10 +10,12 @@ import { NewItemComponent } from './new-item/new-item.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { AuthGuard } from './services/auth-guard.service';
 import { ItemsComponent } from './items/items.component';
+import { OutfitsComponent } from './outfits/outfits.component';
 
 const routes: Routes = [
   { path: 'closet', component: ClosetComponent, canActivate: [AuthGuard] },
   { path: 'closet/:name', component: ItemsComponent, canActivate: [AuthGuard] },
+  { path: 'closet/outfits', component: OutfitsComponent},
   { path: '', component: EntranceComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },

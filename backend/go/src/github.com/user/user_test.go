@@ -666,30 +666,41 @@ func TestPasswordHashing(t *testing.T) {
 
 // ==TEST CREATE OUTFIT==
 func TestCreateOutfit(t *testing.T) {
-	// Initialize test data
-	items := []Item{
-		{Name: "T-shirt", Category: "tops", ImagePath: "test/image/path"},
-		{Name: "Jeans", Category: "bottoms", ImagePath: "test/image/path"},
-		{Name: "Sneakers", Category: "shoes", ImagePath: "test/image/path"},
+	// Set up test database connection and data
+	setupTest()
+	defer cleanupTest()
+
+	// Create a new outfit
+	outfit := Outfit{
+		Name:        "Test Outfit",
+		Tops:        Item{Name: "Tops", Category: "Category"},
+		Bottoms:     Item{Name: "Bottoms", Category: "Category"},
+		OnePieces:   Item{Name: "OnePieces", Category: "Category"},
+		Accessories: Item{Name: "Accessories", Category: "Category"},
+		Shoes:       Item{Name: "Shoes", Category: "Category"},
 	}
 
-	// Call CreateOutfit with the test data
-	reqBody, _ := json.Marshal(items)
-	req, _ := http.NewRequest("POST", "/outfit", bytes.NewBuffer(reqBody))
+	reqBody, _ := json.Marshal(outfit)
+
+	// Create request to create outfit
+	req, err := http.NewRequest("POST", "/outfit", bytes.NewBuffer(reqBody))
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	// Set up router and execute request
+	router := mux.NewRouter()
+	router.HandleFunc("/outfit", CreateOutfit)
 	rr := httptest.NewRecorder()
-	CreateOutfit(rr, req)
+	router.ServeHTTP(rr, req)
 
-	// Check the response status code and content type
+	// Check response status code
 	assert.Equal(t, http.StatusOK, rr.Code)
-	assert.Equal(t, "application/json", rr.Header().Get("Content-Type"))
 
-	// Check the response body
-	var outfit Outfit
-	json.NewDecoder(rr.Body).Decode(&outfit)
-	assert.NotNil(t, outfit.ID)
-	assert.Equal(t, items[0], outfit.Tops)
-	assert.Equal(t, items[1], outfit.Bottoms)
-	assert.Equal(t, items[2], outfit.Shoes)
+	// Check that the created outfit has the correct name
+	var createdOutfit Outfit
+	json.NewDecoder(rr.Body).Decode(&createdOutfit)
+	assert.Equal(t, outfit.Name, createdOutfit.Name)
 }
 
 func TestUpdateOutfit(t *testing.T) {

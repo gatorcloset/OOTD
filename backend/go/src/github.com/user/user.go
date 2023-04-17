@@ -53,7 +53,7 @@ type ItemTag struct {
 
 type Outfit struct {
 	gorm.Model
-	name		  string
+	Name		  string `json:"Name"`
 	Tops          Item `gorm:"foreignKey:TopID"`
 	TopID         uint
 	Bottoms       Item `gorm:"foreignKey:BottomID"`

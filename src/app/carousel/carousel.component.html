@@ -1,23 +1,63 @@
 
 <div class="builder-container">
+
+    <!-- ACCESSORIES -->
+    <div *ngIf="accessories && accessories.length > 0" class="carousel-container">
+        <img *ngFor="let accessory of accessories; let i=index"
+            [src]="accessory.image"
+            [ngClass]="{'image-active': accessoriesIndex === i}"
+            class="slide"
+        >
+    
+        <div *ngIf="indicators" class="carousel-dot-container">
+            <span *ngFor="let for of accessories; let i=index" 
+                class="dot"
+                [ngClass]="{'active': accessoriesIndex === i}"
+                (click)="selectImage(i)"
+            >
+            </span>
+        </div>
+    
+        <div *ngIf="controls" class="btn-carousel btn-prev" id="accessories-prev-btn">
+            <button class="left-btn custom-btn"
+                (click)="accessoriesPrevClick()"
+            >
+                ◀
+                
+            </button>
+            
+        </div>
+    
+        <div *ngIf="controls" class="btn-carousel btn-next" id="accessories-next-btn">
+            <button class="right-btn custom-btn"
+                (click)="accessoriesNextClick()"
+            >
+                ▶
+                
+            </button>
+            
+        </div>
+    </div>
+
+    <!-- TOPS -->
     <div *ngIf="tops && tops.length > 0" class="carousel-container">
         <img *ngFor="let top of tops; let i=index"
-            [src]="top.imageSrc" [alt]="top.imageAlt"
-            [ngClass]="{'image-active': selectedIndex === i}"
+            [src]="top.image"
+            [ngClass]="{'image-active': topsIndex === i}"
             class="slide"
         >
     
         <div *ngIf="indicators" class="carousel-dot-container">
             <span *ngFor="let for of tops; let i=index" 
                 class="dot"
-                [ngClass]="{'active': selectedIndex === i}"
+                [ngClass]="{'active': topsIndex === i}"
                 (click)="selectImage(i)"
             >
             </span>
         </div>
     
         <div *ngIf="controls" class="btn-carousel btn-prev" id="tops-prev-btn">
-            <button class="left-btn"
+            <button class="left-btn custom-btn"
                 (click)="topsPrevClick()"
             >
                 ◀
@@ -27,7 +67,7 @@
         </div>
     
         <div *ngIf="controls" class="btn-carousel btn-next" id="tops-next-btn">
-            <button class="right-btn"
+            <button class="right-btn custom-btn"
                 (click)="topsNextClick()"
             >
                 ▶
@@ -37,25 +77,25 @@
         </div>
     </div>
     
-    
+    <!-- BOTTOMS -->
     <div *ngIf="bottoms && bottoms.length > 0" class="carousel-container">
         <img *ngFor="let bottom of bottoms; let i=index"
-            [src]="bottom.imageSrc" [alt]="bottom.imageAlt"
-            [ngClass]="{'image-active': selectedIndex === i}"
+            [src]="bottom.image"
+            [ngClass]="{'image-active': bottomsIndex === i}"
             class="slide"
         >
     
         <div *ngIf="indicators" class="carousel-dot-container">
             <span *ngFor="let for of bottoms; let i=index" 
                 class="dot"
-                [ngClass]="{'active': selectedIndex === i}"
+                [ngClass]="{'active': bottomsIndex === i}"
                 (click)="selectImage(i)"
             >
             </span>
         </div>
     
         <div *ngIf="controls" class="btn-carousel btn-prev" id="bottoms-prev-btn">
-            <button class="left-btn"
+            <button class="left-btn custom-btn"
                 (click)="bottomsPrevClick()"
             >
                 ◀
@@ -65,7 +105,7 @@
         </div>
     
         <div *ngIf="controls" class="btn-carousel btn-next" id="bottoms-next-btn">
-            <button class="right-btn"
+            <button class="right-btn custom-btn"
                 (click)="bottomsNextClick()"
             >
                 ▶
@@ -75,25 +115,25 @@
         </div>
     </div>
     
-    
+    <!-- SHOES -->
     <div *ngIf="shoes && shoes.length > 0" class="carousel-container">
         <img *ngFor="let shoe of shoes; let i=index"
-            [src]="shoe.imageSrc" [alt]="shoe.imageAlt"
-            [ngClass]="{'image-active': selectedIndex === i}"
+            [src]="shoe.image"
+            [ngClass]="{'image-active': shoesIndex === i}"
             class="slide"
         >
     
         <div *ngIf="indicators" class="carousel-dot-container">
             <span *ngFor="let for of shoes; let i=index" 
                 class="dot"
-                [ngClass]="{'active': selectedIndex === i}"
+                [ngClass]="{'active': shoesIndex === i}"
                 (click)="selectImage(i)"
             >
             </span>
         </div>
     
         <div *ngIf="controls" class="btn-carousel btn-prev" id="shoes-prev-btn">
-            <button class="left-btn"
+            <button class="left-btn custom-btn"
                 (click)="shoesPrevClick()"
             >
                 ◀
@@ -103,7 +143,7 @@
         </div>
     
         <div *ngIf="controls" class="btn-carousel btn-next" id="shoes-next-btn">
-            <button class="right-btn"
+            <button class="right-btn custom-btn"
                 (click)="shoesNextClick()"
             >
                 ▶
@@ -112,5 +152,12 @@
             
         </div>
     </div>
+
+    <!-- SAVE OUTFIT -->
+    <div class="save">
+        <button mat-button class="primary" id="save-outfit" (click)="saveOutfit(topsIndex, bottomsIndex, shoesIndex, accessoriesIndex)">Save Changes</button>
+    </div>
+    
 </div>
+
 

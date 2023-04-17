@@ -31,8 +31,8 @@ describe('template spec', () => {
   })
 
   it('removes error message for correct username or password and send POST request', () => {
-    cy.get('#user').type('blah')
-    cy.get('#pass').type('blah')
+    cy.get('#user').type('michelle')
+    cy.get('#pass').type('michelle')
     cy.get('#login').click('center')
   })
 

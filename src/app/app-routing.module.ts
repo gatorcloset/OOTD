@@ -16,7 +16,7 @@ import { OutfitsComponent } from './outfits/outfits.component';
 const routes: Routes = [
   { path: 'closet', component: ClosetComponent, canActivate: [AuthGuard] },
   { path: 'closet/:name', component: ItemsComponent, canActivate: [AuthGuard] },
-  { path: 'closet/outfits', component: OutfitsComponent, canActivate: [AuthGuard]},
+  { path: 'outfits', component: OutfitsComponent, canActivate: [AuthGuard]},
   { path: '', component: EntranceComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },

@@ -1,5 +1,8 @@
 
 <div class="builder-container">
+    <!-- INPUT NAME -->
+    <input #name id="name" matInput>
+
     <div *ngIf="tops && tops.length > 0" class="carousel-container">
         <img *ngFor="let top of tops; let i=index"
             [src]="top.image"
@@ -111,6 +114,6 @@
             
         </div>
     </div>
-    <button mat-button class="primary" (click)="saveOutfit(selectedIndex, selectedIndex, selectedIndex)">Save Changes</button>
+    <button mat-button class="primary" (click)="saveOutfit(name.value, selectedIndex, selectedIndex, selectedIndex)">Save Changes</button>
 </div>
 

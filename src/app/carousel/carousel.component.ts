@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CarouselService } from '../services/carousel.service';
 import { Item } from '../mock-data/item';
+import { Outfit } from '../mock-data/outfit';
 
 interface carouselImage {
   imageSrc: string;
@@ -83,34 +84,20 @@ export class CarouselComponent implements OnInit{
   
   }
 
-  saveOutfit(top: number, bottom: number, shoes: number) {
-    // Create an array to store the items in the outfit
-    const outfit: Item[] = [];
+  getOutfits() {
+    this.carouselService.getOutfits().subscribe(
+      res => console.log(res),
+      err => console.log(err)
+    )
+  }
 
-    // Retrieve items from respective arrays based on indices
-    if (top >= 0 && top < this.tops.length) {
-      outfit.push(this.tops[top]);
+  saveOutfit(name: string, top: number, bottom: number, shoes: number) {
+    const outfit: Outfit = {
+      Name: name,
+      Tops: this.tops[top],
+      Bottoms: this.bottoms[top],
+      Shoes: this.shoes[top]
     }
-
-    if (bottom >= 0 && bottom < this.bottoms.length) {
-      outfit.push(this.bottoms[bottom]);
-    }
-
-    /*
-    if (onePiece >= 0 && onePiece < this.onePieces.length) {
-      outfit.push(this.onePieces[onePiece]);
-    }
-
-    if (accessory >= 0 && accessory < this.accessories.length) {
-      outfit.push(this.accessories[accessory]);
-    }
-    */
-
-    if (shoes >= 0 && shoes < this.shoes.length) {
-      outfit.push(this.shoes[shoes]);
-    }
-
-    console.log(outfit);
 
     this.carouselService.saveOutfit(outfit).subscribe(
       res => {
@@ -119,6 +106,7 @@ export class CarouselComponent implements OnInit{
       },
       err => console.log(err)
     )
+
   }
 
   ngOnInit():void {

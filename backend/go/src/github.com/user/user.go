@@ -53,6 +53,7 @@ type ItemTag struct {
 
 type Outfit struct {
 	gorm.Model
+	name		  string
 	Tops          Item `gorm:"foreignKey:TopID"`
 	TopID         uint
 	Bottoms       Item `gorm:"foreignKey:BottomID"`
@@ -485,7 +486,8 @@ func CreateItemTag(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(itemTag)
 }
 
-func CreateOutfit(w http.ResponseWriter, r *http.Request) {
+// old create outfit code
+/*func CreateOutfit(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	var items []Item
 	json.NewDecoder(r.Body).Decode(&items)
@@ -510,6 +512,23 @@ func CreateOutfit(w http.ResponseWriter, r *http.Request) {
 	db.Create(&outfit)
 	json.NewEncoder(w).Encode(outfit)
 }
+*/
+
+func CreateOutfit(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+
+	var newOutfit Outfit
+	err := json.NewDecoder(r.Body).Decode(&newOutfit)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	db.Create(&newOutfit)
+
+	json.NewEncoder(w).Encode(newOutfit)
+}
+
 
 func UpdateOutfit(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")

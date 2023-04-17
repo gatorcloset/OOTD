@@ -401,12 +401,12 @@ func TestCreateItem(t *testing.T) {
 	setupTest()
 	defer cleanupTest()
 
-	// Create a new tag
+	// Create a new item
 	item := Item{Name: "Name", Category: "Category"}
 
 	reqBody, _ := json.Marshal(item)
 
-	//Create request to create tag
+	//Create request to create item
 	req, err := http.NewRequest("POST", "/item", bytes.NewBuffer(reqBody))
 	if err != nil {
 		t.Fatal(err)
@@ -662,4 +662,404 @@ func TestPasswordHashing(t *testing.T) {
 
 	// Delete the test user
 	db.Delete(&createdUser)
+}
+
+// ==TEST CREATE OUTFIT==
+func TestCreateOutfit(t *testing.T) {
+	// Initialize test data
+	items := []Item{
+		{Name: "T-shirt", Category: "tops", ImagePath: "test/image/path"},
+		{Name: "Jeans", Category: "bottoms", ImagePath: "test/image/path"},
+		{Name: "Sneakers", Category: "shoes", ImagePath: "test/image/path"},
+	}
+
+	// Call CreateOutfit with the test data
+	reqBody, _ := json.Marshal(items)
+	req, _ := http.NewRequest("POST", "/outfit", bytes.NewBuffer(reqBody))
+	rr := httptest.NewRecorder()
+	CreateOutfit(rr, req)
+
+	// Check the response status code and content type
+	assert.Equal(t, http.StatusOK, rr.Code)
+	assert.Equal(t, "application/json", rr.Header().Get("Content-Type"))
+
+	// Check the response body
+	var outfit Outfit
+	json.NewDecoder(rr.Body).Decode(&outfit)
+	assert.NotNil(t, outfit.ID)
+	assert.Equal(t, items[0], outfit.Tops)
+	assert.Equal(t, items[1], outfit.Bottoms)
+	assert.Equal(t, items[2], outfit.Shoes)
+}
+
+func TestUpdateOutfit(t *testing.T) {
+	setupTest()
+	defer cleanupTest()
+	// Create a new outfit to update
+	outfit := Outfit{
+		Tops: Item{
+			Name:      "Test Top",
+			Category:  "tops",
+			ImagePath: "test_top.jpg",
+		},
+		Bottoms: Item{
+			Name:      "Test Bottom",
+			Category:  "bottoms",
+			ImagePath: "test_bottom.jpg",
+		},
+		OnePieces: Item{
+			Name:      "Test One Piece",
+			Category:  "one-pieces",
+			ImagePath: "test_one_piece.jpg",
+		},
+		Accessories: Item{
+			Name:      "Test Accessory",
+			Category:  "accessories",
+			ImagePath: "test_accessory.jpg",
+		},
+		Shoes: Item{
+			Name:      "Test Shoes",
+			Category:  "shoes",
+			ImagePath: "test_shoes.jpg",
+		},
+	}
+	//log.Printf("outfit: %+v", outfit)
+	db.Create(&outfit)
+
+	// Create new items to update
+	newTops := Item{
+		Name:      "T-Shirt",
+		Category:  "tops",
+		ImagePath: "test_top.jpg",
+	}
+
+	newBottoms := Item{
+		Name:      "Jeans",
+		Category:  "bottoms",
+		ImagePath: "test_bottom.jpg",
+	}
+
+	newShoes := Item{
+		Name:      "Sneakers",
+		Category:  "shoes",
+		ImagePath: "test_shoes.jpg",
+	}
+	newAccessories := Item{
+		Name:      "Necklace",
+		Category:  "accessories",
+		ImagePath: "test_accessories.jpg",
+	}
+	newOnePiece := Item{
+		Name:      "Jumpsuit",
+		Category:  "one-pieces",
+		ImagePath: "test_one_piece.jpg",
+	}
+
+	// Create a new request to update the outfit
+	newItems := []Item{newTops, newBottoms, newShoes, newAccessories, newOnePiece}
+
+	// Encode the new items as JSON and create a new request with the JSON data
+	jsonItems, _ := json.Marshal(newItems)
+	req, _ := http.NewRequest("PUT", "/outfit/"+strconv.Itoa(int(outfit.ID)), bytes.NewBuffer(jsonItems))
+	req.Header.Set("Content-Type", "application/json")
+
+	// Create a new ResponseRecorder to capture the response from the handler
+	rr := httptest.NewRecorder()
+
+	// Call the UpdateOutfit handler function and pass in the new request and ResponseRecorder
+	handler := http.HandlerFunc(UpdateOutfit)
+	handler.ServeHTTP(rr, req)
+
+	// Check that the response status code is 200 OK
+	assert.Equal(t, http.StatusOK, rr.Code)
+
+	// Check that the updated outfit is returned as JSON in the response body
+	var updatedOutfit Outfit
+	err := json.NewDecoder(rr.Body).Decode(&updatedOutfit)
+	assert.Nil(t, err)
+	assert.Equal(t, newTops.Name, updatedOutfit.Tops.Name)
+	assert.Equal(t, newBottoms.Name, updatedOutfit.Bottoms.Name)
+	assert.Equal(t, newShoes.Name, updatedOutfit.Shoes.Name)
+	assert.Equal(t, newAccessories.Name, updatedOutfit.Accessories.Name)
+	assert.Equal(t, newOnePiece.Name, updatedOutfit.OnePieces.Name)
+
+	// Check that the outfit was updated in the database
+	var outfitFromDB Outfit
+	db.Preload("Tops").Preload("Bottoms").Preload("Shoes").Preload("Accessories").Preload("OnePieces").First(&outfitFromDB, outfit.ID)
+	assert.Equal(t, newTops.Name, outfitFromDB.Tops.Name)
+	assert.Equal(t, newBottoms.Name, outfitFromDB.Bottoms.Name)
+	assert.Equal(t, newShoes.Name, outfitFromDB.Shoes.Name)
+	assert.Equal(t, newAccessories.Name, outfitFromDB.Accessories.Name)
+	assert.Equal(t, newOnePiece.Name, outfitFromDB.OnePieces.Name)
+
+	// Clean up by deleting the outfit from the database
+	db.Delete(&outfitFromDB)
+}
+
+func TestDeleteOutfit(t *testing.T) {
+	// Set up test database connection and data
+	setupTest()
+	defer cleanupTest()
+	outfit := Outfit{
+		Tops: Item{
+			Name:      "Test Top",
+			Category:  "tops",
+			ImagePath: "test_top.jpg",
+		},
+		Bottoms: Item{
+			Name:      "Test Bottom",
+			Category:  "bottoms",
+			ImagePath: "test_bottom.jpg",
+		},
+		OnePieces: Item{
+			Name:      "Test One Piece",
+			Category:  "one-pieces",
+			ImagePath: "test_one_piece.jpg",
+		},
+		Accessories: Item{
+			Name:      "Test Accessory",
+			Category:  "accessories",
+			ImagePath: "test_accessory.jpg",
+		},
+		Shoes: Item{
+			Name:      "Test Shoes",
+			Category:  "shoes",
+			ImagePath: "test_shoes.jpg",
+		},
+	}
+
+	db.Create(&outfit)
+
+	// Create a new request to delete the user
+	req, err := http.NewRequest("DELETE", "/outfit/"+strconv.Itoa(int(outfit.ID)), nil)
+	if err != nil {
+		t.Fatalf("failed to create request: %v", err)
+	}
+
+	// Create a new response recorder
+	rr := httptest.NewRecorder()
+
+	// Call the DeleteUser function with the request and response recorder
+	handler := http.HandlerFunc(DeleteItem)
+	handler.ServeHTTP(rr, req)
+
+	// Assert that the response status code is OK
+	assert.Equal(t, http.StatusOK, rr.Code, "handler returned wrong status code")
+
+	// Assert that the response body is correct
+	assert.Equal(t, "\"This item has successfully been deleted.\"\n", rr.Body.String(), "handler returned unexpected body")
+}
+
+type expectedOutfit struct {
+	gorm.Model
+	Tops          Item `gorm:"foreignKey:TopID"`
+	TopID         uint
+	Bottoms       Item `gorm:"foreignKey:BottomID"`
+	BottomID      uint
+	OnePieces     Item `gorm:"foreignKey:OnePieceID"`
+	OnePieceID    uint
+	Accessories   Item `gorm:"foreignKey:AccessoriesID"`
+	AccessoriesID uint
+	Shoes         Item `gorm:"foreignKey:ShoesID"`
+	ShoesID       uint
+}
+
+func TestGetOutfit(t *testing.T) {
+	setupTest()
+	defer cleanupTest()
+
+	// Create a new item
+	outfit := Outfit{
+		Tops: Item{
+			Name:      "Test Top",
+			Category:  "tops",
+			ImagePath: "test_top.jpg",
+		},
+		Bottoms: Item{
+			Name:      "Test Bottom",
+			Category:  "bottoms",
+			ImagePath: "test_bottom.jpg",
+		},
+		OnePieces: Item{
+			Name:      "Test One Piece",
+			Category:  "one-pieces",
+			ImagePath: "test_one_piece.jpg",
+		},
+		Accessories: Item{
+			Name:      "Test Accessory",
+			Category:  "accessories",
+			ImagePath: "test_accessory.jpg",
+		},
+		Shoes: Item{
+			Name:      "Test Shoes",
+			Category:  "shoes",
+			ImagePath: "test_shoes.jpg",
+		},
+	}
+	db.Create(&outfit)
+
+	// Create a new request with a URL that includes the user ID parameter
+	req, err := http.NewRequest("GET", "/outfit/"+strconv.Itoa(int(outfit.ID)), nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	// Create a new ResponseRecorder (which satisfies http.ResponseWriter) to record the response
+	rr := httptest.NewRecorder()
+
+	// Call the GetItem function with the request and response recorder
+	handler := http.HandlerFunc(GetItem)
+	handler.ServeHTTP(rr, req)
+
+	// Check the response status code
+	if status := rr.Code; status != http.StatusOK {
+		t.Errorf("handler returned wrong status code: got %v want %v",
+			status, http.StatusOK)
+	}
+
+	// Check the response Content-Type header
+	if ctype := rr.Header().Get("Content-Type"); ctype != "application/json" {
+		t.Errorf("handler returned wrong content type: got %v want %v",
+			ctype, "application/json")
+	}
+
+	// Check the response body (JSON-encoded user object)
+	var responseTag expectedItem
+	if err := json.Unmarshal(rr.Body.Bytes(), &responseTag); err != nil {
+		t.Errorf("failed to unmarshal response body: %v", err)
+	}
+
+	expected := expectedOutfit{
+		Tops: Item{
+			Name:      "Test Top",
+			Category:  "tops",
+			ImagePath: "test_top.jpg",
+		},
+		Bottoms: Item{
+			Name:      "Test Bottom",
+			Category:  "bottoms",
+			ImagePath: "test_bottom.jpg",
+		},
+		OnePieces: Item{
+			Name:      "Test One Piece",
+			Category:  "one-pieces",
+			ImagePath: "test_one_piece.jpg",
+		},
+		Accessories: Item{
+			Name:      "Test Accessory",
+			Category:  "accessories",
+			ImagePath: "test_accessory.jpg",
+		},
+		Shoes: Item{
+			Name:      "Test Shoes",
+			Category:  "shoes",
+			ImagePath: "test_shoes.jpg",
+		},
+	}
+	expectedJson, _ := json.Marshal(expected)
+	actualJson, _ := json.Marshal(expected)
+	if string(actualJson) != string(expectedJson) {
+		t.Errorf("handler returned unexpected body: got %v want %v",
+			string(actualJson), string(expectedJson))
+	}
+
+	// Delete the item from the database
+	db.Delete(&outfit)
+}
+
+func TestGetOutfits(t *testing.T) {
+	setupTest()
+	defer cleanupTest()
+
+	// Create some test outfits
+	outfits := []Outfit{
+		{
+			Tops: Item{
+				Name:      "Test Top 1",
+				Category:  "tops",
+				ImagePath: "test_top_1.jpg",
+			},
+			Bottoms: Item{
+				Name:      "Test Bottom 1",
+				Category:  "bottoms",
+				ImagePath: "test_bottom_1.jpg",
+			},
+			OnePieces: Item{
+				Name:      "Test One Piece 1",
+				Category:  "one-pieces",
+				ImagePath: "test_one_piece_1.jpg",
+			},
+			Accessories: Item{
+				Name:      "Test Accessory 1",
+				Category:  "accessories",
+				ImagePath: "test_accessory_1.jpg",
+			},
+			Shoes: Item{
+				Name:      "Test Shoes 1",
+				Category:  "shoes",
+				ImagePath: "test_shoes_1.jpg",
+			},
+		},
+		{
+			Tops: Item{
+				Name:      "Test Top 2",
+				Category:  "tops",
+				ImagePath: "test_top_2.jpg",
+			},
+			Bottoms: Item{
+				Name:      "Test Bottom 2",
+				Category:  "bottoms",
+				ImagePath: "test_bottom_2.jpg",
+			},
+			OnePieces: Item{
+				Name:      "Test One Piece 2",
+				Category:  "one-pieces",
+				ImagePath: "test_one_piece_2.jpg",
+			},
+			Accessories: Item{
+				Name:      "Test Accessory 2",
+				Category:  "accessories",
+				ImagePath: "test_accessory_2.jpg",
+			},
+			Shoes: Item{
+				Name:      "Test Shoes 2",
+				Category:  "shoes",
+				ImagePath: "test_shoes_2.jpg",
+			},
+		},
+	}
+
+	// Add the test outfits to the database
+	for i := range outfits {
+		db.Create(&outfits[i])
+	}
+
+	// Create a new request
+	req, err := http.NewRequest("GET", "/outfit", nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	// Create a new ResponseRecorder (which satisfies http.ResponseWriter) to record the response
+	rr := httptest.NewRecorder()
+
+	// Call the GetOutfits function with the request and response recorder
+	handler := http.HandlerFunc(GetOutfits)
+	handler.ServeHTTP(rr, req)
+
+	// Check the response status code
+	if status := rr.Code; status != http.StatusOK {
+		t.Errorf("handler returned wrong status code: got %v want %v", status, http.StatusOK)
+	}
+
+	// Check the response Content-Type header
+	if ctype := rr.Header().Get("Content-Type"); ctype != "application/json" {
+		t.Errorf("handler returned wrong content type: got %v want %v", ctype, "application/json")
+	}
+
+	// Check the response body (JSON-encoded list of outfit objects)
+	var responseOutfits []Outfit
+	if err := json.Unmarshal(rr.Body.Bytes(), &responseOutfits); err != nil {
+		t.Errorf("failed to unmarshal response body: %v", err)
+	}
 }

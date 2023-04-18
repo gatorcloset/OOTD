@@ -11,14 +11,28 @@ Before you get started, make sure you have the following tools installed:
 
 ** These versions are the optimal version types to install. Depracated versions may not behave as expected.
 
-## Installation
+## General Installation
 To install and run the project locally, follow these steps:
 
 1. Clone the repository locally using the following command 
 ```
 git clone https://github.com/gatorcloset/OOTD.git
 ```
-2. Install go mod dependencies by performing the
+
+## Backend Installation
+2. Navigating to the backend directory (by performing the cd command) like so:
+```
+cd backend
+cd go
+cd src
+cd github.com
+```
+3. Install Go dependencies by running the following command:
+```
+go mod download
+```
+
+** If certain packages are not being installed properly, run "go get -u ____", where ___ is the package name
 
 ## Further help
 

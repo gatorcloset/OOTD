@@ -22,14 +22,14 @@ The unit tests for the backend can be found [here](https://github.com/gatorclose
 
 These tests were used to verify the functionality of outfit building, the premise of OOTD. We also conducted tests to determine if we are able to retrieve all of a user's clothing items and all of the user's items in a certain category. The tests perform the following on each of the tables:
 
-Checks that database can be accessed and requests can be made via [http://localhost:9000]
-Checks that new outfits can be created (POST functionality)
-Checks that a single outfit can be retrieved (GET functionality)
-Checks that all outfits can be retrieved (GET functionality)
-Checks that outfits are able to be updated (single/multiple items and name of outfit) (PUT functionality)
-Checks that outfits are able to be softly deleted (DELETE functionality)
-Checks that we are able to retrieve all of a user's items by user id
-Checks that we are able to retrieve all of a user's items under a certain category by user id
+- Checks that database can be accessed and requests can be made via [http://localhost:9000]
+- Checks that new outfits can be created (POST functionality)
+- Checks that a single outfit can be retrieved (GET functionality)
+- Checks that all outfits can be retrieved (GET functionality)
+- Checks that outfits are able to be updated (single/multiple items and name of outfit) (PUT functionality)
+- Checks that outfits are able to be softly deleted (DELETE functionality)
+- Checks that we are able to retrieve all of a user's items by user id
+- Checks that we are able to retrieve all of a user's items under a certain category by user id
 
 # Detailed Backend Documentation
 Find our detailed backend documentation here -> https://github.com/gatorcloset/OOTD/blob/main/Sprint3BackendDocumentation.md

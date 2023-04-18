@@ -96,7 +96,7 @@ export class CarouselComponent implements OnInit{
     )
   }
 
-  saveOutfit(name: string, top: number, bottom: number, shoes: number, accessory: number) {
+  createOutfit(name: string, top: number, bottom: number, shoes: number, accessory: number) {
     const outfit: Outfit = {
       Name: name,
       Tops: this.tops[top],
@@ -105,7 +105,7 @@ export class CarouselComponent implements OnInit{
       Accessories: this.accessories[accessory]
     }
 
-    this.carouselService.saveOutfit(outfit).subscribe(
+    this.carouselService.createOutfit(outfit).subscribe(
       res => {
         console.log(res)
         this.router.navigateByUrl('/outfits');

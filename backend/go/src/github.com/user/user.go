@@ -531,30 +531,74 @@ func CreateOutfit(w http.ResponseWriter, r *http.Request) {
 
 func UpdateOutfit(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	params := mux.Vars(r)
-	var updatedOutfit Outfit
-	db.Preload("Tops").Preload("Bottoms").Preload("OnePieces").Preload("Accessories").Preload("Shoes").First(&updatedOutfit, params["id"])
-	var items []Item
-	json.NewDecoder(r.Body).Decode(&items)
 
-	// Update outfit with new items
-	for i := 0; i < len(items); i++ {
-		if items[i].Category == "tops" {
-			updatedOutfit.Tops = items[i]
-		} else if items[i].Category == "bottoms" {
-			updatedOutfit.Bottoms = items[i]
-		} else if items[i].Category == "one-pieces" {
-			updatedOutfit.OnePieces = items[i]
-		} else if items[i].Category == "accessories" {
-			updatedOutfit.Accessories = items[i]
-		} else if items[i].Category == "shoes" {
-			updatedOutfit.Shoes = items[i]
-		}
+	params := mux.Vars(r)
+	var existingOutfit Outfit
+	var updatedOutfit Outfit
+	db.Preload("Tops").Preload("Bottoms").Preload("OnePieces").Preload("Accessories").Preload("Shoes").First(&existingOutfit, params["id"])
+
+	if existingOutfit.ID == 0 {
+		http.Error(w, "Outfit not found", http.StatusNotFound)
+		return
 	}
 
-	// Save the updated outfit to the database
-	db.Save(&updatedOutfit)
-	json.NewEncoder(w).Encode(updatedOutfit)
+	err := json.NewDecoder(r.Body).Decode(&updatedOutfit)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	if updatedOutfit.Name != "" {
+		existingOutfit.Name = updatedOutfit.Name
+	}
+	if updatedOutfit.TopID != 0 {
+		var top Item
+		if err := db.First(&top, updatedOutfit.TopID).Error; err != nil {
+			http.Error(w, "Top item not found", http.StatusNotFound)
+			return
+		}
+		existingOutfit.Tops = top
+		existingOutfit.TopID = top.ID
+	}
+	if updatedOutfit.BottomID != 0 {
+		var bottom Item
+		if err := db.First(&bottom, updatedOutfit.BottomID).Error; err != nil {
+			http.Error(w, "Bottom item not found", http.StatusNotFound)
+			return
+		}
+		existingOutfit.Bottoms = bottom
+		existingOutfit.BottomID = bottom.ID
+	}
+	if updatedOutfit.OnePieceID != 0 {
+		var onePiece Item
+		if err := db.First(&onePiece, updatedOutfit.OnePieceID).Error; err != nil {
+			http.Error(w, "One piece item not found", http.StatusNotFound)
+			return
+		}
+		existingOutfit.OnePieces = onePiece
+		existingOutfit.OnePieceID = onePiece.ID
+	}
+	if updatedOutfit.AccessoriesID != 0 {
+		var accessory Item
+		if err := db.First(&accessory, updatedOutfit.AccessoriesID).Error; err != nil {
+			http.Error(w, "Accessory item not found", http.StatusNotFound)
+			return
+		}
+		existingOutfit.Accessories = accessory
+		existingOutfit.AccessoriesID = accessory.ID
+	}
+	if updatedOutfit.ShoesID != 0 {
+		var shoes Item
+		if err := db.First(&shoes, updatedOutfit.ShoesID).Error; err != nil {
+			http.Error(w, "Shoes item not found", http.StatusNotFound)
+			return
+		}
+		existingOutfit.Shoes = shoes
+		existingOutfit.ShoesID = shoes.ID
+	}
+
+	db.Save(&existingOutfit)
+	json.NewEncoder(w).Encode(existingOutfit)
 }
 
 func DeleteOutfit(w http.ResponseWriter, r *http.Request) {

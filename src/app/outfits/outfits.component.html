@@ -3,7 +3,7 @@
     <mat-grid-list cols="4" rowHeight="400">
         <ng-container *ngFor="let outfit of allOutfits">
         <mat-grid-tile class="tile">
-            <mat-card class="card">
+            <mat-card class="card" (click)="openDialog(outfit)">
                 <div class="clothes-container">
                     <div class="row">
                         <span class="top">

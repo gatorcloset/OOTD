@@ -80,7 +80,7 @@ input:hover, .save-btn:active {
     justify-content: center;
 }
 
-//dots
+/* dots */
 .carousel-dot-container {
     position: absolute;
     right: 0;
@@ -109,7 +109,7 @@ input:hover, .save-btn:active {
     opacity: 1;
 }
 
-// image sliding animation
+/* image sliding animation */
 .slide {
     animation-name: slide;
     animation-duration: 0.5s;

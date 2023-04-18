@@ -39,6 +39,7 @@ import { UserService } from './services/user.service';
 import {MatDialogModule} from '@angular/material/dialog';
 import { ItemsDialogComponent } from './items/items.component';
 import { OutfitsComponent } from './outfits/outfits.component';
+import { OutfitsDialogComponent } from './outfits/outfits.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { OutfitsComponent } from './outfits/outfits.component';
     NewItemComponent,
     UploadImageComponent,
     ItemsDialogComponent,
-    OutfitsComponent
+    OutfitsComponent,
+    OutfitsDialogComponent
   ],
   imports: [
     BrowserModule,

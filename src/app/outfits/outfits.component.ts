@@ -71,6 +71,14 @@ export class OutfitsDialogComponent {
     this.dialogRef.close();
   }
 
+  swapArray(itemToMove: Item, array: Item[]) {
+    const currentIndex = array.indexOf(itemToMove);
+    if (currentIndex !== -1) {
+      array.splice(currentIndex, 1); // Remove the item from the current index
+      array.unshift(itemToMove); // Insert the item at the beginning of the array
+    }
+  }
+
   getItemByCategory() {
     this.carouselService.getItemByCategory('tops').subscribe(
       res => {

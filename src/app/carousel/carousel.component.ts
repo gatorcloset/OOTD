@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CarouselService } from '../services/carousel.service';
 import { Item } from '../mock-data/item';
+import { Outfit } from '../mock-data/outfit';
+import { Router } from '@angular/router';
 
 interface carouselImage {
   imageSrc: string;
@@ -37,7 +39,7 @@ export class CarouselComponent implements OnInit{
   shoesIndex = 0;
   accessoriesIndex = 0;
 
-  constructor(private carouselService: CarouselService) { }
+  constructor(private carouselService: CarouselService, private router: Router) { }
 
   getItemByCategory() {
     this.carouselService.getItemByCategory('tops').subscribe(
@@ -87,42 +89,30 @@ export class CarouselComponent implements OnInit{
   
   }
 
-  saveOutfit(top: number, bottom: number, shoes: number, accessory: number) {
-    // Create an array to store the items in the outfit
-    const outfit: Item[] = [];
+  getOutfits() {
+    this.carouselService.getOutfits().subscribe(
+      res => console.log(res),
+      err => console.log(err)
+    )
+  }
 
-    // Retrieve items from respective arrays based on indices
-    if (top >= 0 && top < this.tops.length) {
-      outfit.push(this.tops[top]);
+  saveOutfit(name: string, top: number, bottom: number, shoes: number, accessory: number) {
+    const outfit: Outfit = {
+      Name: name,
+      Tops: this.tops[top],
+      Bottoms: this.bottoms[bottom],
+      Shoes: this.shoes[shoes],
+      Accessories: this.accessories[accessory]
     }
-
-    if (bottom >= 0 && bottom < this.bottoms.length) {
-      outfit.push(this.bottoms[bottom]);
-    }
-
-    /*
-    if (onePiece >= 0 && onePiece < this.onePieces.length) {
-      outfit.push(this.onePieces[onePiece]);
-    }
-    */
-
-    if (accessory >= 0 && accessory < this.accessories.length) {
-      outfit.push(this.accessories[accessory]);
-    }
-
-    if (shoes >= 0 && shoes < this.shoes.length) {
-      outfit.push(this.shoes[shoes]);
-    }
-
-    console.log(outfit);
 
     this.carouselService.saveOutfit(outfit).subscribe(
       res => {
-        console.log("this is the result");
         console.log(res)
+        this.router.navigateByUrl('/outfits');
       },
       err => console.log(err)
     )
+
   }
 
   ngOnInit():void {

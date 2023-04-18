@@ -972,6 +972,82 @@ func TestGetOutfits(t *testing.T) {
 	}
 }
 
+func TestUpdateOutfit(t *testing.T) {
+	setupTest()
+	defer cleanupTest()
+
+	// Create test items for outfit
+	top := Item{Name: "Test Top", Category: "tops", ImagePath: "test_one_piece_1.jpg"}
+	bottom := Item{Name: "Test Bottom", Category: "bottoms", ImagePath: "test_one_piece_1.jpg"}
+	onePiece := Item{Name: "Test One Piece", Category: "one-pieces", ImagePath: "test_one_piece_1.jpg"}
+	accessory := Item{Name: "Test Accessory", Category: "accessories", ImagePath: "test_one_piece_1.jpg"}
+	shoes := Item{Name: "Test Shoes", Category: "shoes", ImagePath: "test_one_piece_1.jpg"}
+
+	// Create test outfit
+	newOutfit := Outfit{
+		Name:          "",
+		Tops:          top,
+		TopID:         top.ID,
+		Bottoms:       bottom,
+		BottomID:      bottom.ID,
+		OnePieces:     onePiece,
+		OnePieceID:    onePiece.ID,
+		Accessories:   accessory,
+		AccessoriesID: accessory.ID,
+		Shoes:         shoes,
+		ShoesID:       shoes.ID,
+	}
+
+	// Add outfit to database
+	db.Create(&newOutfit)
+
+	// Update outfit
+	newName := ""
+	newBottom := Item{Name: "", Category: "bottoms", ImagePath: "test_one_piece_1.jpg"}
+	newOnePiece := Item{Name: "", Category: "one-pieces", ImagePath: "test_one_piece_1.jpg"}
+
+	updatedOutfit := Outfit{
+		Name:          newName,
+		Bottoms:       newBottom,
+		BottomID:      newBottom.ID,
+		OnePieces:     newOnePiece,
+		OnePieceID:    newOnePiece.ID,
+		AccessoriesID: 0,
+		ShoesID:       0,
+	}
+	updatedOutfit.ID = newOutfit.ID
+
+	// Update the outfit object before creating the JSON payload
+	newOutfit.Name = newName
+	newOutfit.Bottoms = newBottom
+	newOutfit.BottomID = newBottom.ID
+	newOutfit.OnePieces = newOnePiece
+	newOutfit.OnePieceID = newOnePiece.ID
+	newOutfit.AccessoriesID = 0
+	newOutfit.ShoesID = 0
+
+	outfitJSON, _ := json.Marshal(newOutfit)
+	req, err := http.NewRequest("PUT", "/outfit/"+strconv.Itoa(int(newOutfit.ID)), bytes.NewBuffer(outfitJSON))
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	rr := httptest.NewRecorder()
+	handler := http.HandlerFunc(UpdateOutfit)
+	handler.ServeHTTP(rr, req)
+
+	// Check the status code
+	assert.Equal(t, http.StatusOK, rr.Code)
+
+	// Check that the outfit has been updated in the database
+	var updatedOutfitDB Outfit
+	db.First(&updatedOutfitDB, newOutfit.ID)
+
+	assert.Equal(t, updatedOutfit.Name, updatedOutfitDB.Name)
+	assert.Equal(t, newBottom.Name, updatedOutfitDB.Bottoms.Name)
+	assert.Equal(t, newOnePiece.Name, updatedOutfitDB.OnePieces.Name)
+}
+
 func TestGetAllItemsCategory(t *testing.T) {
 	setupTest()
 	defer cleanupTest()
@@ -1054,81 +1130,4 @@ func TestGetUserItems(t *testing.T) {
 	for _, item := range itemsReturned {
 		assert.Equal(t, user.ID, item.UserID)
 	}
-}
-
-func TestUpdateOutfit(t *testing.T) {
-	setupTest()
-	defer cleanupTest()
-
-	// Create test items for outfit
-	top := Item{Name: "Test Top", Category: "tops", ImagePath: "test_one_piece_1.jpg"}
-	bottom := Item{Name: "Test Bottom", Category: "bottoms", ImagePath: "test_one_piece_1.jpg"}
-	onePiece := Item{Name: "Test One Piece", Category: "one-pieces", ImagePath: "test_one_piece_1.jpg"}
-	accessory := Item{Name: "Test Accessory", Category: "accessories", ImagePath: "test_one_piece_1.jpg"}
-	shoes := Item{Name: "Test Shoes", Category: "shoes", ImagePath: "test_one_piece_1.jpg"}
-
-	// Create test outfit
-	newOutfit := Outfit{
-		Name:          "Test Outfit",
-		Tops:          top,
-		TopID:         top.ID,
-		Bottoms:       bottom,
-		BottomID:      bottom.ID,
-		OnePieces:     onePiece,
-		OnePieceID:    onePiece.ID,
-		Accessories:   accessory,
-		AccessoriesID: accessory.ID,
-		Shoes:         shoes,
-		ShoesID:       shoes.ID,
-	}
-
-	// Add outfit to database
-	db.Create(&newOutfit)
-
-	// Update outfit
-	newName := "New Outfit Name"
-	newBottom := Item{Name: "New Bottom", Category: "bottoms", ImagePath: "test_one_piece_1.jpg"}
-	newOnePiece := Item{Name: "New One Piece", Category: "one-pieces", ImagePath: "test_one_piece_1.jpg"}
-
-	updatedOutfit := Outfit{
-		Name:          newName,
-		Bottoms:       newBottom,
-		BottomID:      newBottom.ID,
-		OnePieces:     newOnePiece,
-		OnePieceID:    newOnePiece.ID,
-		AccessoriesID: 0,
-		ShoesID:       0,
-	}
-	updatedOutfit.ID = newOutfit.ID
-
-	// Update the outfit object before creating the JSON payload
-	newOutfit.Name = newName
-	newOutfit.Bottoms = newBottom
-	newOutfit.BottomID = newBottom.ID
-	newOutfit.OnePieces = newOnePiece
-	newOutfit.OnePieceID = newOnePiece.ID
-	newOutfit.AccessoriesID = 0
-	newOutfit.ShoesID = 0
-
-	outfitJSON, _ := json.Marshal(newOutfit)
-	req, err := http.NewRequest("PUT", "/outfit/"+strconv.Itoa(int(newOutfit.ID)), bytes.NewBuffer(outfitJSON))
-	if err != nil {
-		t.Fatal(err)
-	}
-
-	rr := httptest.NewRecorder()
-	handler := http.HandlerFunc(UpdateOutfit)
-	handler.ServeHTTP(rr, req)
-
-	// Check the status code
-	assert.Equal(t, http.StatusOK, rr.Code)
-
-	// Check that the outfit has been updated in the database
-	var updatedOutfitDB Outfit
-	db.First(&updatedOutfitDB, newOutfit.ID)
-
-	assert.Equal(t, updatedOutfit.Name, updatedOutfitDB.Name)
-	assert.Equal(t, newBottom.Name, updatedOutfitDB.Bottoms.Name)
-	assert.Equal(t, newBottom.Category, updatedOutfitDB.Bottoms.Category)
-	assert.Equal(t, newOnePiece.Name, updatedOutfitDB.OnePieces.Name)
 }

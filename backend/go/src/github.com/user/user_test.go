@@ -3,6 +3,7 @@ package main
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"strconv"
@@ -703,110 +704,6 @@ func TestCreateOutfit(t *testing.T) {
 	assert.Equal(t, outfit.Name, createdOutfit.Name)
 }
 
-func TestUpdateOutfit(t *testing.T) {
-	setupTest()
-	defer cleanupTest()
-	// Create a new outfit to update
-	outfit := Outfit{
-		Tops: Item{
-			Name:      "Test Top",
-			Category:  "tops",
-			ImagePath: "test_top.jpg",
-		},
-		Bottoms: Item{
-			Name:      "Test Bottom",
-			Category:  "bottoms",
-			ImagePath: "test_bottom.jpg",
-		},
-		OnePieces: Item{
-			Name:      "Test One Piece",
-			Category:  "one-pieces",
-			ImagePath: "test_one_piece.jpg",
-		},
-		Accessories: Item{
-			Name:      "Test Accessory",
-			Category:  "accessories",
-			ImagePath: "test_accessory.jpg",
-		},
-		Shoes: Item{
-			Name:      "Test Shoes",
-			Category:  "shoes",
-			ImagePath: "test_shoes.jpg",
-		},
-	}
-	//log.Printf("outfit: %+v", outfit)
-	db.Create(&outfit)
-
-	// Create new items to update
-	newTops := Item{
-		Name:      "T-Shirt",
-		Category:  "tops",
-		ImagePath: "test_top.jpg",
-	}
-
-	newBottoms := Item{
-		Name:      "Jeans",
-		Category:  "bottoms",
-		ImagePath: "test_bottom.jpg",
-	}
-
-	newShoes := Item{
-		Name:      "Sneakers",
-		Category:  "shoes",
-		ImagePath: "test_shoes.jpg",
-	}
-	newAccessories := Item{
-		Name:      "Necklace",
-		Category:  "accessories",
-		ImagePath: "test_accessories.jpg",
-	}
-	newOnePiece := Item{
-		Name:      "Jumpsuit",
-		Category:  "one-pieces",
-		ImagePath: "test_one_piece.jpg",
-	}
-
-	// Create a new request to update the outfit
-	newItems := []Item{newTops, newBottoms, newShoes, newAccessories, newOnePiece}
-
-	// Encode the new items as JSON and create a new request with the JSON data
-	jsonItems, _ := json.Marshal(newItems)
-	req, _ := http.NewRequest("PUT", "/outfit/"+strconv.Itoa(int(outfit.ID)), bytes.NewBuffer(jsonItems))
-	req.Header.Set("Content-Type", "application/json")
-
-	// Create a new ResponseRecorder to capture the response from the handler
-	rr := httptest.NewRecorder()
-
-	// Call the UpdateOutfit handler function and pass in the new request and ResponseRecorder
-	handler := http.HandlerFunc(UpdateOutfit)
-	handler.ServeHTTP(rr, req)
-
-	// Check that the response status code is 200 OK
-	assert.Equal(t, http.StatusOK, rr.Code)
-
-	// Check that the updated outfit is returned as JSON in the response body
-	var updatedOutfit Outfit
-	err := json.NewDecoder(rr.Body).Decode(&updatedOutfit)
-	assert.Nil(t, err)
-	assert.Equal(t, newTops.Name, updatedOutfit.Tops.Name)
-	assert.Equal(t, newBottoms.Name, updatedOutfit.Bottoms.Name)
-	assert.Equal(t, newShoes.Name, updatedOutfit.Shoes.Name)
-	assert.Equal(t, newAccessories.Name, updatedOutfit.Accessories.Name)
-	assert.Equal(t, newOnePiece.Name, updatedOutfit.OnePieces.Name)
-
-	// Check that the outfit was updated in the database
-	var outfitFromDB Outfit
-	db.Preload("Tops").Preload("Bottoms").Preload("Shoes").Preload("Accessories").Preload("OnePieces").First(&outfitFromDB, outfit.ID)
-	assert.Equal(t, newTops.Name, outfitFromDB.Tops.Name)
-	assert.Equal(t, newBottoms.Name, outfitFromDB.Bottoms.Name)
-	assert.Equal(t, newShoes.Name, outfitFromDB.Shoes.Name)
-	assert.Equal(t, newAccessories.Name, outfitFromDB.Accessories.Name)
-	assert.Equal(t, newOnePiece.Name, outfitFromDB.OnePieces.Name)
-
-	// Clean up by deleting the outfit from the database
-	db.Delete(&outfitFromDB)
-}
-
 func TestDeleteOutfit(t *testing.T) {
 	// Set up test database connection and data
 	setupTest()
@@ -1072,5 +969,107 @@ func TestGetOutfits(t *testing.T) {
 	var responseOutfits []Outfit
 	if err := json.Unmarshal(rr.Body.Bytes(), &responseOutfits); err != nil {
 		t.Errorf("failed to unmarshal response body: %v", err)
+	}
+}
+
+func TestUpdateOutfit(t *testing.T) {
+	setupTest()
+	defer cleanupTest()
+
+	// Create test items for outfit
+	top := Item{Name: "Test Top", Category: "tops", ImagePath: "test_one_piece_1.jpg"}
+	bottom := Item{Name: "Test Bottom", Category: "bottoms", ImagePath: "test_one_piece_1.jpg"}
+	onePiece := Item{Name: "Test One Piece", Category: "one-pieces", ImagePath: "test_one_piece_1.jpg"}
+	accessory := Item{Name: "Test Accessory", Category: "accessories", ImagePath: "test_one_piece_1.jpg"}
+	shoes := Item{Name: "Test Shoes", Category: "shoes", ImagePath: "test_one_piece_1.jpg"}
+
+	// Create test outfit
+	newOutfit := Outfit{
+		Name:          "Test Outfit",
+		Tops:          top,
+		TopID:         top.ID,
+		Bottoms:       bottom,
+		BottomID:      bottom.ID,
+		OnePieces:     onePiece,
+		OnePieceID:    onePiece.ID,
+		Accessories:   accessory,
+		AccessoriesID: accessory.ID,
+		Shoes:         shoes,
+		ShoesID:       shoes.ID,
+	}
+
+	// Add outfit to database
+	db.Create(&newOutfit)
+
+	// Update outfit
+	newName := "New Outfit Name"
+	newBottom := Item{Name: "New Bottom", Category: "bottoms", ImagePath: "test_one_piece_1.jpg"}
+	newOnePiece := Item{Name: "New One Piece", Category: "one-pieces", ImagePath: "test_one_piece_1.jpg"}
+
+	updatedOutfit := Outfit{
+		Name:          newName,
+		Bottoms:       newBottom,
+		BottomID:      newBottom.ID,
+		OnePieces:     newOnePiece,
+		OnePieceID:    newOnePiece.ID,
+		AccessoriesID: 0,
+		ShoesID:       0,
+	}
+	updatedOutfit.ID = newOutfit.ID
+
+	outfitJSON, _ := json.Marshal(updatedOutfit)
+	req, err := http.NewRequest("PUT", "/outfit/"+strconv.Itoa(int(newOutfit.ID)), bytes.NewBuffer(outfitJSON))
+	if err != nil {
+		t.Fatal(err)
+	}
+	rr := httptest.NewRecorder()
+	handler := http.HandlerFunc(UpdateOutfit)
+	handler.ServeHTTP(rr, req)
+
+	// Check the status code
+	assert.Equal(t, http.StatusOK, rr.Code)
+
+	// Check that the outfit has been updated in the database
+	var updatedOutfitDB Outfit
+	db.First(&updatedOutfitDB, newOutfit.ID)
+
+	assert.Equal(t, updatedOutfit.Name, updatedOutfitDB.Name)
+	assert.Equal(t, newBottom.Name, updatedOutfitDB.Bottoms.Name)
+	assert.Equal(t, newBottom.Category, updatedOutfitDB.Bottoms.Category)
+	assert.Equal(t, newOnePiece.Name, updatedOutfitDB.OnePieces.Name)
+}
+func TestGetAllItemsCategory(t *testing.T) {
+	setupTest()
+	defer cleanupTest()
+	// Set up test server and client
+	router := mux.NewRouter()
+	router.HandleFunc("/users/{id}/category/{name}", GetAllItemsCategory).Methods("GET")
+	ts := httptest.NewServer(router)
+	defer ts.Close()
+
+	// Make request to test server
+	//url := fmt.Sprintf("%s/%d/%s", ts.URL, 1, "tops")
+	url := fmt.Sprintf("%s/users/%d/category/%s", ts.URL, 1, "tops")
+	res, err := http.Get(url)
+	if err != nil {
+		t.Fatalf("Error making GET request: %v", err)
+	}
+	defer res.Body.Close()
+	fmt.Println(res.StatusCode)
+
+	// Check response code
+	assert.Equal(t, http.StatusOK, res.StatusCode)
+
+	// Decode response body
+	var items []Item
+	err = json.NewDecoder(res.Body).Decode(&items)
+	if err != nil {
+		t.Fatalf("Error decoding response body: %v", err)
+	}
+
+	// Check that returned items belong to the correct category and user
+	for _, item := range items {
+		assert.Equal(t, "tops", item.Category)
+		assert.Equal(t, uint(1), item.UserID)
 	}
 }

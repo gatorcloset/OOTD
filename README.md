@@ -19,7 +19,7 @@ To install and run the project locally, follow these steps:
 git clone https://github.com/gatorcloset/OOTD.git
 ```
 
-## Backend Installation
+### Backend Installation
 2. Navigating to the backend directory (by performing the cd command) like so:
 ```
 cd backend

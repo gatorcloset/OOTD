@@ -972,6 +972,90 @@ func TestGetOutfits(t *testing.T) {
 	}
 }
 
+func TestGetAllItemsCategory(t *testing.T) {
+	setupTest()
+	defer cleanupTest()
+	// Set up test server and client
+	router := mux.NewRouter()
+	router.HandleFunc("/users/{id}/category/{name}", GetAllItemsCategory).Methods("GET")
+	ts := httptest.NewServer(router)
+	defer ts.Close()
+
+	// Make request to test server
+	url := fmt.Sprintf("%s/users/%d/category/%s", ts.URL, 1, "tops")
+	res, err := http.Get(url)
+	if err != nil {
+		t.Fatalf("Error making GET request: %v", err)
+	}
+	defer res.Body.Close()
+	fmt.Println(res.StatusCode)
+
+	// Check response code
+	assert.Equal(t, http.StatusOK, res.StatusCode)
+
+	// Decode response body
+	var items []Item
+	err = json.NewDecoder(res.Body).Decode(&items)
+	if err != nil {
+		t.Fatalf("Error decoding response body: %v", err)
+	}
+
+	// Check that returned items belong to the correct category and user
+	for _, item := range items {
+		assert.Equal(t, "tops", item.Category)
+		assert.Equal(t, uint(1), item.UserID)
+	}
+}
+
+func TestGetUserItems(t *testing.T) {
+	setupTest()
+	defer cleanupTest()
+
+	// Set up test server and client
+	router := mux.NewRouter()
+	router.HandleFunc("/users/{id}/items", GetUserItems).Methods("GET")
+	ts := httptest.NewServer(router)
+	defer ts.Close()
+
+	// Add some items for the user to the test database
+	user := User{
+		First_Name: "test",
+		Last_Name:  "user",
+		Username:   "testuser",
+		Password:   "password",
+	}
+	db.Create(&user)
+	items := []Item{
+		{Name: "item1", Category: "books", UserID: user.ID},
+		{Name: "item2", Category: "clothes", UserID: user.ID},
+		{Name: "item3", Category: "books", UserID: user.ID},
+	}
+	db.Create(&items)
+
+	// Make request to test server
+	url := fmt.Sprintf("%s/users/%d/items", ts.URL, user.ID)
+	res, err := http.Get(url)
+	if err != nil {
+		t.Fatalf("Error making GET request: %v", err)
+	}
+	defer res.Body.Close()
+
+	// Check response code
+	assert.Equal(t, http.StatusOK, res.StatusCode)
+
+	// Decode response body
+	var itemsReturned []Item
+	err = json.NewDecoder(res.Body).Decode(&itemsReturned)
+	if err != nil {
+		t.Fatalf("Error decoding response body: %v", err)
+	}
+
+	// Check that returned items belong to the correct user
+	for _, item := range itemsReturned {
+		assert.Equal(t, user.ID, item.UserID)
+	}
+}
+
 func TestUpdateOutfit(t *testing.T) {
 	setupTest()
 	defer cleanupTest()
@@ -1017,11 +1101,21 @@ func TestUpdateOutfit(t *testing.T) {
 	}
 	updatedOutfit.ID = newOutfit.ID
 
-	outfitJSON, _ := json.Marshal(updatedOutfit)
+	// Update the outfit object before creating the JSON payload
+	newOutfit.Name = newName
+	newOutfit.Bottoms = newBottom
+	newOutfit.BottomID = newBottom.ID
+	newOutfit.OnePieces = newOnePiece
+	newOutfit.OnePieceID = newOnePiece.ID
+	newOutfit.AccessoriesID = 0
+	newOutfit.ShoesID = 0
+
+	outfitJSON, _ := json.Marshal(newOutfit)
 	req, err := http.NewRequest("PUT", "/outfit/"+strconv.Itoa(int(newOutfit.ID)), bytes.NewBuffer(outfitJSON))
 	if err != nil {
 		t.Fatal(err)
 	}
+
 	rr := httptest.NewRecorder()
 	handler := http.HandlerFunc(UpdateOutfit)
 	handler.ServeHTTP(rr, req)
@@ -1037,39 +1131,4 @@ func TestUpdateOutfit(t *testing.T) {
 	assert.Equal(t, newBottom.Name, updatedOutfitDB.Bottoms.Name)
 	assert.Equal(t, newBottom.Category, updatedOutfitDB.Bottoms.Category)
 	assert.Equal(t, newOnePiece.Name, updatedOutfitDB.OnePieces.Name)
-}
-func TestGetAllItemsCategory(t *testing.T) {
-	setupTest()
-	defer cleanupTest()
-	// Set up test server and client
-	router := mux.NewRouter()
-	router.HandleFunc("/users/{id}/category/{name}", GetAllItemsCategory).Methods("GET")
-	ts := httptest.NewServer(router)
-	defer ts.Close()
-
-	// Make request to test server
-	//url := fmt.Sprintf("%s/%d/%s", ts.URL, 1, "tops")
-	url := fmt.Sprintf("%s/users/%d/category/%s", ts.URL, 1, "tops")
-	res, err := http.Get(url)
-	if err != nil {
-		t.Fatalf("Error making GET request: %v", err)
-	}
-	defer res.Body.Close()
-	fmt.Println(res.StatusCode)
-
-	// Check response code
-	assert.Equal(t, http.StatusOK, res.StatusCode)
-
-	// Decode response body
-	var items []Item
-	err = json.NewDecoder(res.Body).Decode(&items)
-	if err != nil {
-		t.Fatalf("Error decoding response body: %v", err)
-	}
-
-	// Check that returned items belong to the correct category and user
-	for _, item := range items {
-		assert.Equal(t, "tops", item.Category)
-		assert.Equal(t, uint(1), item.UserID)
-	}
 }

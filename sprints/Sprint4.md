@@ -1,17 +1,16 @@
 # Completed Work
 
-[Sprint 4 Video Demo](https://youtu.be/v528_yKg0ns)
+[Sprint 4 Video Demo]()
 
 ## Frontend
 
 ## Backend
 - Database is fully functional and set up, and compatible with front end login page (includes first name, last name, username, and hashed password columns)
 - Database is also configured/organized for the purposes of our OOTD application
-  - The database contains tables for **users, images added by the user (items), all the tags related to images, and image specific tags**
-  - In the user table, we implemented password hashing. This can be seen when viewing our DB user table. The fields under the password category are securely stored as a series of random letters and numbers
-- Log in and logout functions have been created with **sessions** fully implemented (this allows user accounts to virtually be locked and restricts access to only that users account)
-- CRUD API for images, tags, and item_tags are fully functional **using GORM and Gorilla MUX router** and is running at localhost:9000
-  - Similar to last sprint, this can be seen by making requests through Postman. Through Postman, we are able to access existing users and log them in. Their information is returned and sent to the front end, such that users are able to view their closet and personal information when they log in.
+  - The database contains tables for **users, images added by the user (items), and outfits that a user creates**
+- Log in and logout functions have been created with **sessions** fully implemented (this allows user accounts to virtually be locked and restricts access to only that users account)-- we had some problems hooking up sessions between backend and frontend but these issues have been resolved
+- CRUD API for images and outfits are fully functional **using GORM and Gorilla MUX router** and is running at localhost:9000
+  - Similar to last sprint, this can be seen by making requests through Postman. Through Postman, we are able to access existing users and log them in. In addition we are able to create outfits using items (images) stored in the database. The ids of the items are saved and they are used to create the outfit. This way when users create an outfit, the outfit will be saved in the database and they will be able to access it later. 
 
 # Unit Tests
 
@@ -25,11 +24,12 @@ These tests were used to verify the functionality of outfit building, the premis
 
 Checks that database can be accessed and requests can be made via [http://localhost:9000]
 Checks that new outfits can be created (POST functionality)
-Checks that outfits can
-Checks that entries can be read (GET functionality for one user and entire list of users)
-Checks that tag and item information can be updated (UPDATE functionality)
-Checks that tags and items can be deleted (DELETE functionality)
-Checks that a user is present in the database, and the username and password entered on the front end match with entries stored in database
+Checks that a single outfit can be retrieved (GET functionality)
+Checks that all outfits can be retrieved (GET functionality)
+Checks that outfits are able to be updated (single/multiple items and name of outfit) (PUT functionality)
+Checks that outfits are able to be softly deleted (DELETE functionality)
+Checks that we are able to retrieve all of a user's items by user id
+Checks that we are able to retrieve all of a user's items under a certain category by user id
 
 # Detailed Backend Documentation
 Find our detailed backend documentation here -> https://github.com/gatorcloset/OOTD/blob/main/Sprint3BackendDocumentation.md

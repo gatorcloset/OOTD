@@ -2,13 +2,13 @@ import { Item } from "./item"
 
 export interface Outfit {
     Name: string;
-    Tops?: Item;
-    Bottoms?: Item;
+    Tops: Item;
+    Bottoms: Item;
     BottomID?: number;
     OnePieces?: Item;
     OnePieceID?: number;
-    Accessories?: Item;
+    Accessories: Item;
     AccessoriesID?: number;
-    Shoes?: Item;
+    Shoes: Item;
     ShoesID?: number;
 }

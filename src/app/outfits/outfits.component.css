@@ -1,0 +1,35 @@
+body {
+    background-color: #F6F8FF;
+}
+
+.tile {
+    background-color: #F6F8FF;
+}
+
+.card {
+    background-color: white;
+    width: 300px;
+    height: 375px;
+    border-radius: 20px;
+}
+
+.clothes-container {
+    width: 100%;
+    margin-left: 12%;
+    margin-top: 10%;
+}
+
+.row {
+    margin: 0px;
+}
+
+.clothing {
+    width: 35%;
+    border-radius: 10px;
+    margin: 3px;
+
+}
+
+mat-card:hover {
+    background-color: #f7f7f7;
+}

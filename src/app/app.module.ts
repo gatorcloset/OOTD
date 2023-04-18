@@ -38,6 +38,7 @@ import { AuthGuard } from './services/auth-guard.service';
 import { UserService } from './services/user.service';
 import {MatDialogModule} from '@angular/material/dialog';
 import { ItemsDialogComponent } from './items/items.component';
+import { OutfitsComponent } from './outfits/outfits.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { ItemsDialogComponent } from './items/items.component';
     HomeComponent,
     NewItemComponent,
     UploadImageComponent,
-    ItemsDialogComponent
+    ItemsDialogComponent,
+    OutfitsComponent
   ],
   imports: [
     BrowserModule,

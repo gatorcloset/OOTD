@@ -10,6 +10,7 @@ input {
     box-shadow: -2px 2px 10px #E9EBF3;
 }
 
+
 input, .save-btn {
     width: 18.5%;
     margin-left: 40%;
@@ -19,9 +20,10 @@ input, .save-btn {
     padding: 10px;
     border-radius: 10px;
     font-family: 'Montserrat';
-    font-weight: bold;
+    font-weight: normal;
     font-size: 15px;
 }
+
 
 .save-btn {
     padding: 10px;

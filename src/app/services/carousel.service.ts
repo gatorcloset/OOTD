@@ -22,7 +22,7 @@ export class CarouselService {
     return this.http.get<Item[]>(url, this.httpOptions);
   }
 
-  saveOutfit(outfit: Item[]): Observable<Outfit> {
+  saveOutfit(outfit: Outfit): Observable<Outfit> {
     const url = `${this.apiURL}/outfit`;
     return this.http.post<Outfit>(url, outfit);
   }

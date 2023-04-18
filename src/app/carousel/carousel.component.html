@@ -1,5 +1,8 @@
 
 <div class="builder-container">
+    <!-- INPUT NAME -->
+    <input #name id="name" matInput>
+
 
     <!-- ACCESSORIES -->
     <div *ngIf="accessories && accessories.length > 0" class="carousel-container">
@@ -155,7 +158,7 @@
 
     <!-- SAVE OUTFIT -->
     <div class="save">
-        <button mat-button class="primary" id="save-outfit" (click)="saveOutfit(topsIndex, bottomsIndex, shoesIndex, accessoriesIndex)">Save Changes</button>
+        <button mat-button class="primary" id="save-outfit" (click)="saveOutfit(name.value, topsIndex, bottomsIndex, shoesIndex, accessoriesIndex)">Save Changes</button>
     </div>
     
 </div>

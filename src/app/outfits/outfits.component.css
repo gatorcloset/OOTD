@@ -1,15 +1,16 @@
 body {
-    background-color: #F6F8FF;
+    margin: 50px;
+   /* background-color: #F6F8FF; */
 }
 
 .tile {
-    background-color: #F6F8FF;
+    /* background-color: #F6F8FF; */
 }
 
 .card {
     background-color: white;
     width: 300px;
-    height: 375px;
+    /* height: 375px; */
     border-radius: 20px;
 }
 
@@ -17,6 +18,7 @@ body {
     width: 100%;
     margin-left: 12%;
     margin-top: 10%;
+    margin-bottom: 7%;
 }
 
 .row {
@@ -32,4 +34,9 @@ body {
 
 mat-card:hover {
     background-color: #f7f7f7;
+}
+
+mat-card-content.padding {
+    padding-top: 15px;
+
 }

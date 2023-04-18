@@ -529,7 +529,6 @@ func CreateOutfit(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(newOutfit)
 }
 
-
 func UpdateOutfit(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	params := mux.Vars(r)
@@ -544,7 +543,7 @@ func UpdateOutfit(w http.ResponseWriter, r *http.Request) {
 			updatedOutfit.Tops = items[i]
 		} else if items[i].Category == "bottoms" {
 			updatedOutfit.Bottoms = items[i]
-		}else if items[i].Category == "one-pieces" {
+		} else if items[i].Category == "one-pieces" {
 			updatedOutfit.OnePieces = items[i]
 		} else if items[i].Category == "accessories" {
 			updatedOutfit.Accessories = items[i]

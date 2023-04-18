@@ -22,7 +22,7 @@ export class CarouselService {
     return this.http.get<Item[]>(url, this.httpOptions);
   }
 
-  saveOutfit(outfit: Outfit): Observable<Outfit> {
+  createOutfit(outfit: Outfit): Observable<Outfit> {
     const url = `${this.apiURL}/outfit`;
     return this.http.post<Outfit>(url, outfit);
   }
@@ -30,6 +30,17 @@ export class CarouselService {
   getOutfits(): Observable<Outfit[]> {
     const url = `${this.apiURL}/outfit`;
     return this.http.get<Outfit[]>(url);
+  }
+
+  updateOutfit(outfit: Outfit): Observable<Outfit> {
+    console.log(outfit);
+    const url = `${this.apiURL}/outfit/${outfit.ID}`;
+    return this.http.put<Outfit>(url, outfit);
+  }
+
+  deleteOutfit(outfit: Outfit): Observable<Outfit> {
+    const url = `${this.apiURL}/outfit/${outfit.ID}`;
+    return this.http.delete<Outfit>(url);
   }
 
 

@@ -1,8 +1,10 @@
+<body>
+    <div *ngIf="!noNavbar()">
+        <app-navbar></app-navbar>
+    </div>
+    <router-outlet></router-outlet>
+</body>
 
-<div *ngIf="!noNavbar()">
-    <app-navbar></app-navbar>
-</div>
-<router-outlet></router-outlet>
 
 <!--
 <div *ngIf="inBuilder()"> 

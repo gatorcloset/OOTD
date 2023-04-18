@@ -1,7 +1,17 @@
+body {
+    padding-bottom: 0px;
+    height: 100%;
+}
+
+html {
+    overflow-y: hidden;
+}
+
 .body-container {
     background-color: #F6F8FF;
-    padding-bottom: 100vh;
     padding-top: 100px;
+    overflow: hidden;
+    margin-bottom: 0px;
 }
 
 mat-card {

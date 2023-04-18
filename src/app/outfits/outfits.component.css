@@ -1,6 +1,15 @@
-body {
+html, body {
+    min-height: 100vh;
+}
+
+.container {
     margin: 50px;
-   /*background-color: #F6F8FF;*/
+}
+
+body {
+    margin-bottom: 0px;
+    min-height: 100vh;
+    padding-bottom: 70px;
 }
 
 .tile {

@@ -1,28 +1,31 @@
-<div class="container">
-    <h1>Your Closet</h1>
-    <mat-grid-list cols="4" rowHeight="400">
+<body>
+    <div class="container">
+        <h1>Your Closet</h1>
+        <mat-grid-list cols="4" rowHeight="400">
+    
+            <mat-grid-tile>
+                <mat-card class="example-card" [routerLink]="['/outfits']">
+                    <img mat-card-imag src="https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-image_large.png?format=jpg&quality=90&v=1530129081">
+                    <mat-divider></mat-divider>
+                    <mat-card-content class="top-padding">
+                      <mat-card-title>Outfits</mat-card-title>
+                    </mat-card-content>
+                </mat-card>
+            </mat-grid-tile>
+    
+            <mat-grid-tile *ngFor="let category of categories">
+                <mat-card class="example-card" [routerLink]="['/closet', category.name | lowercase]">
+                    <img mat-card-image src={{category.image}}>
+                    <mat-divider></mat-divider>
+                    <mat-card-content class="top-padding">
+                      <mat-card-title>{{category.name}}</mat-card-title>
+                    </mat-card-content>
+                </mat-card>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </div>
+</body>
 
-        <mat-grid-tile>
-            <mat-card class="example-card" [routerLink]="['/outfits']">
-                <img mat-card-imag src="https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-image_large.png?format=jpg&quality=90&v=1530129081">
-                <mat-divider></mat-divider>
-                <mat-card-content class="top-padding">
-                  <mat-card-title>Outfits</mat-card-title>
-                </mat-card-content>
-            </mat-card>
-        </mat-grid-tile>
-
-        <mat-grid-tile *ngFor="let category of categories">
-            <mat-card class="example-card" [routerLink]="['/closet', category.name | lowercase]">
-                <img mat-card-image src={{category.image}}>
-                <mat-divider></mat-divider>
-                <mat-card-content class="top-padding">
-                  <mat-card-title>{{category.name}}</mat-card-title>
-                </mat-card-content>
-            </mat-card>
-        </mat-grid-tile>
-    </mat-grid-list>
-</div>
 
 
 

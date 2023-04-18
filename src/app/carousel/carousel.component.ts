@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { CarouselService } from '../services/carousel.service';
 import { Item } from '../mock-data/item';
 import { Outfit } from '../mock-data/outfit';
+import { Router } from '@angular/router';
 
 interface carouselImage {
   imageSrc: string;
@@ -38,7 +39,7 @@ export class CarouselComponent implements OnInit{
   shoesIndex = 0;
   accessoriesIndex = 0;
 
-  constructor(private carouselService: CarouselService) { }
+  constructor(private carouselService: CarouselService, private router: Router) { }
 
   getItemByCategory() {
     this.carouselService.getItemByCategory('tops').subscribe(
@@ -106,8 +107,8 @@ export class CarouselComponent implements OnInit{
 
     this.carouselService.saveOutfit(outfit).subscribe(
       res => {
-        console.log("this is the result");
         console.log(res)
+        this.router.navigateByUrl('/outfits');
       },
       err => console.log(err)
     )

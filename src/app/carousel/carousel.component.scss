@@ -7,13 +7,13 @@ body {
 
 input {
     padding-left: 10px;
+    box-shadow: -2px 2px 10px #E9EBF3;
 }
 
-input, button {
+input, .save-btn {
     width: 18.5%;
     margin-left: 40%;
     margin-right: 4%;
-    padding: 0px;
     border: none;
     height: 30px;
     padding: 10px;
@@ -23,13 +23,27 @@ input, button {
     font-size: 15px;
 }
 
-button {
+.save-btn {
+    padding: 10px;
+    border-radius: 10px;
+    font-weight: bold;
     width: 20%;
+    margin-left: 40%;
+    margin-right: 4%;
+    border: none;
     background-color: white;
     height: 50px;
     font-family: 'Montserrat';
-    font-weight: bold;
     font-size: 15px;
+    box-shadow: -2px 2px 10px #d9dce8;
+}
+
+.save-btn:hover {
+    box-shadow: -2px 2px 2px #d9dce8;
+}
+
+input:hover, .save-btn:active {
+    box-shadow: -2px 2px 10px #c7cada;
 }
 
 .builder-container {
@@ -41,6 +55,7 @@ button {
     border-radius: 10px;
     padding-top: 1.5%;
     padding-bottom: 1.5%;
+    box-shadow: -2px 2px 10px #E9EBF3;
 }
 
 .carousel-container {
@@ -76,8 +91,8 @@ button {
 
 .dot {
     cursor: pointer;
-    height: 13px;
-    width: 13px;
+    height: 10px;
+    width: 10px;
     margin: 0 5px;
     background-color: #fff;
     border-radius: 50%;

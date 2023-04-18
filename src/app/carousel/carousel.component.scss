@@ -1,5 +1,46 @@
+body {
+    background-color: #F6F8FF;
+    padding-top: 30px;
+    padding-bottom: 50%;
+    height: 100%;
+}
+
+input {
+    padding-left: 10px;
+}
+
+input, button {
+    width: 18.5%;
+    margin-left: 40%;
+    margin-right: 4%;
+    padding: 0px;
+    border: none;
+    height: 30px;
+    padding: 10px;
+    border-radius: 10px;
+    font-family: 'Montserrat';
+    font-weight: bold;
+    font-size: 15px;
+}
+
+button {
+    width: 20%;
+    background-color: white;
+    height: 50px;
+    font-family: 'Montserrat';
+    font-weight: bold;
+    font-size: 15px;
+}
+
 .builder-container {
     margin: 10px 0px 10px 0px;
+    width: 20%;
+    background-color: white;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+    padding-top: 1.5%;
+    padding-bottom: 1.5%;
 }
 
 .carousel-container {

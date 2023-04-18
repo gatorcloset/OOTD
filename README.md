@@ -5,9 +5,9 @@ OOTD (Outfit Of The Day) is an application created to help users put together ou
 ## Prerequisites
 Before you get started, make sure you have the following tools installed:
 
-Go (version 1.20.3)
-Angular CLI (version 15.2.6)
-Node.js (version 18.15.0)
+- Go (version 1.20.3)
+- Angular CLI (version 15.2.6)
+- Node.js (version 18.15.0)
 
 ** These versions are the optimal version types to install. Depracated versions may not behave as expected.
 

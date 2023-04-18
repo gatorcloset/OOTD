@@ -20,20 +20,39 @@ git clone https://github.com/gatorcloset/OOTD.git
 ```
 
 ### Backend Installation
-2. Navigating to the backend directory (by performing the cd command) like so:
+2. Ensure Go is properly installed by running "go --version" in Terminal
+3. Navigating to the backend directory (by performing the cd command) like so:
 ```
 cd backend
 cd go
 cd src
 cd github.com
 ```
-3. Install Go dependencies by running the following command:
+4. Install Go dependencies by running the following command:
 ```
 go mod download
 ```
 
 ** If certain packages are not being installed properly, run "go get -u ____", where ___ is the package name
 
+### Frontend Installation
+5. Verify Node.js, Angular CLI and NPM are installed correctly by running "node -v", "ng -v", and "npm -v"
+6. Run the following command, to install all necessary dependencies:
+```
+npm install
+```
+7. Run the build command to construct the project:
+```
+ng build
+```
+8. Lastly, run this command to launch the project on http://localhost:4200
+```
+ng serve
+```
+9. Happy outfit building :)
+
 ## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- To get more help about Go use `go help` or go check out the [Go Installation Steps](https://go.dev/doc/install) page.
+

@@ -597,6 +597,7 @@ func UpdateOutfit(w http.ResponseWriter, r *http.Request) {
 		existingOutfit.ShoesID = shoes.ID
 	}
 
+	fmt.Println("Outfit has been updated successfully")
 	db.Save(&existingOutfit)
 	json.NewEncoder(w).Encode(existingOutfit)
 }

@@ -32,9 +32,8 @@ The endpoints created for this sprint include:
   "TopID": 1,
   "BottomID": 2,
   "ShoesID": 4
-}
-
-    ```
+  }
+```
     
     
   Sample Response Format:

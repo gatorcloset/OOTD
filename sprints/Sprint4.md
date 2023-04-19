@@ -29,6 +29,8 @@ Cypress unit test can be found [here](https://github.com/gatorcloset/OOTD/tree/m
 - All unit tests were revised to the updated application. Since we are now using guards, we had to make sure the user was authenticated on all unit tests before proceeding to the actual functionality testing. In addition to the previous unit tests, we added the following:
 - Tests ability to add a new clothing item
 - Tests ability to edit image, name, and category of clothing item
+- Tests ability to create a new outfit
+- Tests ability to edit outfit name and outfit clothing items
 
 ## Backend
 Unit tests are fully functional for every CRUD function used throughout the program

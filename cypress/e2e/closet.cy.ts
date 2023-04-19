@@ -12,9 +12,9 @@ describe('My Closet Page', () => {
     cy.get('#login').click('center')
   })
 
-  it('clicks on bottoms cateogry and navigates to closet/bottoms', () => {
+  it('clicks on outfits and navigates to closet/outfits', () => {
     cy.get('mat-grid-tile').first().click('center')
-    cy.url().should('include', '/closet/bottoms')
-    cy.url().should('eq', 'http://localhost:4200/closet/bottoms')
+    cy.url().should('include', '/outfits')
+    cy.url().should('eq', 'http://localhost:4200/outfits')
   })
 })

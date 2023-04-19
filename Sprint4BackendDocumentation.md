@@ -228,7 +228,7 @@ No additional parameters, data format is JSON
   "BottomID": 2,
   "ShoesID": 5
 }
-```
+  ```
   
     - Sample Response Format:
   ````

@@ -132,12 +132,12 @@ No additional parameters, data format is JSON
 ```
 ````
 
-- `DELETE /item{id}`
+- `DELETE /outfit{id}`
   Requires an id, data format is in JSON
     - Sample Request Format:
       - Nothing needed
     - Sample Response Format:
-    "The item has successfully been deleted."
+    "The item has outfit been deleted."
 
 ## Error Handling
 

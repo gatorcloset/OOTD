@@ -222,15 +222,13 @@ No additional parameters, data format is JSON
     - Sample Request Format:
    - Input is a request to JSON:
   ```
-  ````
     {
   "Name": "Pink Shoes Outfit",
   "TopID": 1,
   "BottomID": 2,
   "ShoesID": 5
 }
- ```
-  ````
+```
   
     - Sample Response Format:
   ````

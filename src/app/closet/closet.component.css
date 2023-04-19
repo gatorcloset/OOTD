@@ -15,8 +15,8 @@ mat-card {
 
 mat-card:hover {
     /*background-color: #f7f7f7;*/
-   background-color: rgb(233,235,249);
-    box-shadow: 0px 0px 0px #ffffff;
+    background-color: rgb(255, 255, 255);
+    box-shadow: -2px 2px 15px #d0d0d2;
 }
 
 body {

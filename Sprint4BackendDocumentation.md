@@ -26,15 +26,16 @@ The endpoints created for this sprint include:
 
  Sample Request Format:
   - Input is a request to JSON:
-    ```
+  ````
+  ```
     {
   "Name": "Pink Shoes Outfit",
   "TopID": 1,
   "BottomID": 2,
   "ShoesID": 4
   }
-```
-    
+ ```
+  ````
     
   Sample Response Format:
  ````

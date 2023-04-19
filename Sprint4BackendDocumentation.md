@@ -221,12 +221,17 @@ No additional parameters, data format is JSON
   Requires an id, data format is in JSON
     - Sample Request Format:
    - Input is a request to JSON:
+  ```
+  ````
     {
   "Name": "Pink Shoes Outfit",
   "TopID": 1,
   "BottomID": 2,
   "ShoesID": 5
 }
+ ```
+  ````
+  
     - Sample Response Format:
   ````
   ```
@@ -300,7 +305,7 @@ No additional parameters, data format is JSON
     - Sample Request Format:
       - Nothing needed
     - Sample Response Format:
-    "The item has outfit been deleted."
+    "The outfit been deleted."
 
 ## Error Handling
 

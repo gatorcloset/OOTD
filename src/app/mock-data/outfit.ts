@@ -2,6 +2,7 @@ import { Item } from "./item"
 
 export interface Outfit {
     ID?: number;
+    user_id?: number;
     Name: string;
     Tops: Item;
     TopID?: number;

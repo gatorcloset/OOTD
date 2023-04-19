@@ -53,6 +53,7 @@ type ItemTag struct {
 
 type Outfit struct {
 	gorm.Model
+	UserID        uint  `json:"user_id"`
 	Name		  string `json:"Name"`
 	Tops          Item `gorm:"foreignKey:TopID"`
 	TopID         uint

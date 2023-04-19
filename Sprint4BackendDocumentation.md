@@ -27,11 +27,11 @@ The endpoints created for this sprint include:
  Sample Request Format:
   - Input is a multipart form with the following information:
     - Name
-    - Tops 
-    - Bottoms
-    - OnePieces
-    - Accessories:
-    - Shoes
+    - Tops (Item object)
+    - Bottoms (Item object)
+    - OnePieces (Item object)
+    - Accessories (Item object)
+    - Shoes (Item object)
     
   Sample Response Format:
  ````

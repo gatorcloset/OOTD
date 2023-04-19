@@ -16,11 +16,11 @@ describe('Add new clothing item', function () {
 
     // Add item
     cy.get('#upload').within(() => {
-      cy.get('input[type="file"]').selectFile('cypress/fixtures/mock-shorts.jpg');
+      cy.get('input[type="file"]').selectFile('cypress/fixtures/mock-shorts.jpg')
     });
     cy.get('#name').type("Denim shorts")
-    cy.get('#categories').click();
-    cy.contains('Bottom').click();
+    cy.get('#categories').click()
+    cy.contains('Bottom').click()
     cy.get('#add-button').click('center')
 
   });

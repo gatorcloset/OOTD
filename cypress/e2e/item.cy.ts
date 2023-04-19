@@ -21,7 +21,7 @@ describe('Closet Item Page', () => {
       cy.get('#categories').contains('Bottom')
 
       // Close dialog
-      cy.get('body').click('left', {multiple: true});
+      cy.get('body').click('left', {multiple: true})
       
     });
   })

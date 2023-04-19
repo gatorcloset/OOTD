@@ -48,3 +48,9 @@ button {
 mat-chip-option {
     background-color: #E9EBF9;
 }
+
+.input {
+    margin-top: 20px;
+    color: #4350AE;
+    font-family: Roboto;
+}

@@ -14,7 +14,7 @@
             </mat-grid-tile>
     
             <mat-grid-tile *ngFor="let category of categories">
-                <mat-card class="example-card" [routerLink]="['/closet', category.name | lowercase]">
+                <mat-card class="example-card" id={{category.name}} [routerLink]="['/closet', category.name | lowercase]">
                     <img mat-card-image src={{category.image}}>
                     <mat-divider></mat-divider>
                     <mat-card-content class="top-padding">

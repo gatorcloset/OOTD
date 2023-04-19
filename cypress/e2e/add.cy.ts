@@ -1,4 +1,4 @@
-describe('Adding, edit, and delete new clothing item', function () {
+describe('Add new clothing item', function () {
   const username = 'michelle'
   const password = 'michelle'
 
@@ -16,7 +16,7 @@ describe('Adding, edit, and delete new clothing item', function () {
 
     // Add item
     cy.get('#upload').within(() => {
-      cy.get('#upload input[type="file"]').selectFile('cypress/fixtures/mock-shorts.jpg');
+      cy.get('input[type="file"]').selectFile('cypress/fixtures/mock-shorts.jpg');
     });
     cy.get('#name').type("Denim shorts")
     cy.get('#categories').click();

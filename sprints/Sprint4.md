@@ -3,6 +3,15 @@
 [Sprint 4 Video Demo]()
 
 ## Frontend
+- Added more login/signup validation:
+  - Sign up and log in buttons are disabled until all validation errors are handled
+  - Sign up page has validation relating to each field (improper name/username format, all fields must be filled out, etc.)
+- Implemented guards: Unauthenticated users can only access the entrance, login, and sign up pages
+- Authenticated users only see clothing items, outfits, and user details pertaining to their own personal user profile
+  - With the help of authentication and guards, all clothing items are now sourced from the database rather than hard-coded in
+- Added functionality to create, edit, and delete an outfit
+- Added functionality to edit and delete a clothing item
+- Final UI additions and adjustments were made to clean up the appearance of the application
 
 ## Backend
 - Database is fully functional and set up, and compatible with front end login page (includes first name, last name, username, and hashed password columns)
@@ -16,7 +25,10 @@
 
 
 ## Frontend
-
+Cypress unit test can be found [here](https://github.com/gatorcloset/OOTD/tree/main/cypress/e2e)
+- All unit tests were revised to the updated application. Since we are now using guards, we had to make sure the user was authenticated on all unit tests before proceeding to the actual functionality testing. In addition to the previous unit tests, we added the following:
+- Tests ability to add a new clothing item
+- Tests ability to edit image, name, and category of clothing item
 
 ## Backend
 Unit tests are fully functional for every CRUD function used throughout the program

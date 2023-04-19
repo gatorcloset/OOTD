@@ -305,7 +305,7 @@ No additional parameters, data format is JSON
     - Sample Request Format:
       - Nothing needed
     - Sample Response Format:
-    "The outfit been deleted."
+    "The outfit been deleted"
 
 ## Error Handling
 

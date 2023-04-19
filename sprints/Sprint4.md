@@ -13,6 +13,7 @@
   - Similar to last sprint, this can be seen by making requests through Postman. Through Postman, we are able to access existing users and log them in. In addition we are able to create outfits using items (images) stored in the database. The ids of the items are saved and they are used to create the outfit. This way when users create an outfit, the outfit will be saved in the database and they will be able to access it later. 
 
 # Unit Tests
+-Unit tests are fully functional for every CRUD function used throughout the program
 
 ## Frontend
 

@@ -647,6 +647,7 @@ func GetUserOutfits(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	params := mux.Vars(r)
 	var outfits []Outfit
-	db.Where("user_id = ?", params["id"]).Find(&outfits)
+	db.Preload("Tops").Preload("Bottoms").Preload("OnePieces").Preload("Accessories").Preload("Shoes").Where("user_id = ?", params["id"]).Find(&outfits)
+	// db.Where("user_id = ?", params["id"]).Find(&outfits)
 	json.NewEncoder(w).Encode(outfits)
 }

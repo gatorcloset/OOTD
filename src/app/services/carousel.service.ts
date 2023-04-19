@@ -28,7 +28,7 @@ export class CarouselService {
   }
 
   getOutfits(): Observable<Outfit[]> {
-    const url = `${this.apiURL}/outfit`;
+    const url = `${this.apiURL}/users/${this.userService.authUser?.ID}/outfits`;
     return this.http.get<Outfit[]>(url);
   }
 

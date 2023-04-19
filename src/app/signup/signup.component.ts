@@ -17,7 +17,7 @@ export class SignupComponent {
   last = new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z]+')]);
   usernameControl = new FormControl('', [Validators.required, Validators.pattern('\\S+')]);
   passwordControl = new FormControl('', [Validators.required]);
-  confirmPassword = new FormControl('', [Validators.required]);
+  // confirmPassword = new FormControl('', [Validators.required]);
   signUpError: string = "";
 
   constructor(private userService: UserService, private router: Router) { 
@@ -25,11 +25,11 @@ export class SignupComponent {
     this.passwordControl.valueChanges.subscribe(() => this.updateFormValidity());
     this.first.valueChanges.subscribe(() => this.updateFormValidity());
     this.last.valueChanges.subscribe(() => this.updateFormValidity());
-    this.confirmPassword.valueChanges.subscribe(() => this.updateFormValidity());
+    // this.confirmPassword.valueChanges.subscribe(() => this.updateFormValidity());
   }
 
   updateFormValidity() {
-    this.formValid = this.usernameControl.invalid || this.passwordControl.invalid || this.first.invalid || this.last.invalid || this.confirmPassword.invalid;
+    this.formValid = this.usernameControl.invalid || this.passwordControl.invalid || this.first.invalid || this.last.invalid;
   }
 
   firstErrorMessage() {
@@ -74,6 +74,7 @@ export class SignupComponent {
     return '';
   }
 
+  /*
   confirmErrorMessage() {
     if (this.confirmPassword.hasError('required')) {
       return 'You must confirm your password';
@@ -90,6 +91,7 @@ export class SignupComponent {
 
     return '';
   }
+  */
 
   createUser(firstname: string, lastname: string, username: string, password: string) {
     this.updateFormValidity();

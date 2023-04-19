@@ -1,6 +1,7 @@
 # Completed Work
 
-[Sprint 4 Video Demo]()
+[Sprint 4 Video Demo](https://youtu.be/hRwf60Tphgw)
+[OOTD App Demo and API Description](https://youtu.be/94gZMuznigU)
 
 ## Frontend
 - Added more login/signup validation:

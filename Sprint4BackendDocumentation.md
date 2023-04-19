@@ -25,26 +25,83 @@ The endpoints created for this sprint include:
 - `POST /outfit` 
 
  Sample Request Format:
-  - Input is a multipart form with the following information:
-    - Name
-    - Tops (Item object)
-    - Bottoms (Item object)
-    - OnePieces (Item object)
-    - Accessories (Item object)
-    - Shoes (Item object)
+  - Input is a request to JSON:
+    ```
+    {
+  "Name": "Pink Shoes Outfit",
+  "TopID": 1,
+  "BottomID": 2,
+  "ShoesID": 4
+}
+
+    ```
+    
     
   Sample Response Format:
  ````
   ```
    {
-   "ID" : 9,
-   "CreatedAt" : "2023-03-29T12:47:36.074678-04:00"
-   "DeletedAt" : null,
-   "user_id" : 0,
-   "name" : "\"name\"",
-   "category" : "\"category\"",
-   "image" : "images/6fbc7ac-60eb-4c8f-81c3-425e2fe37ce4.jpg" 
-   }
+    "ID": 2,
+    "CreatedAt": "2023-04-17T21:33:58.218509-04:00",
+    "UpdatedAt": "2023-04-17T21:46:41.734317-04:00",
+    "DeletedAt": null,
+    "Name": "Pink Shoes Outfit",
+    "Tops": {
+        "ID": 1,
+        "CreatedAt": "2023-04-17T21:29:21.646798-04:00",
+        "UpdatedAt": "2023-04-17T21:29:21.646798-04:00",
+        "DeletedAt": null,
+        "user_id": 1,
+        "name": "black tank top",
+        "category": "tops",
+        "image": "assets/item-images/72dcbe2e-89c2-4d56-a613-37f87d5e3673.jpeg"
+    },
+    "TopID": 1,
+    "Bottoms": {
+        "ID": 2,
+        "CreatedAt": "2023-04-17T21:32:35.909144-04:00",
+        "UpdatedAt": "2023-04-17T21:32:35.909144-04:00",
+        "DeletedAt": null,
+        "user_id": 2,
+        "name": "cargo pants",
+        "category": "bottoms",
+        "image": "assets/item-images/3df45954-7108-4214-a0c7-318876bb83e4.jpeg"
+    },
+    "BottomID": 2,
+    "OnePieces": {
+        "ID": 0,
+        "CreatedAt": "0001-01-01T00:00:00Z",
+        "UpdatedAt": "0001-01-01T00:00:00Z",
+        "DeletedAt": null,
+        "user_id": 0,
+        "name": "",
+        "category": "",
+        "image": ""
+    },
+    "OnePieceID": 0,
+    "Accessories": {
+        "ID": 0,
+        "CreatedAt": "0001-01-01T00:00:00Z",
+        "UpdatedAt": "0001-01-01T00:00:00Z",
+        "DeletedAt": null,
+        "user_id": 0,
+        "name": "",
+        "category": "",
+        "image": ""
+    },
+    "AccessoriesID": 0,
+    "Shoes": {
+        "ID": 4,
+        "CreatedAt": "2023-04-17T21:39:05.439145-04:00",
+        "UpdatedAt": "2023-04-17T21:39:05.439145-04:00",
+        "DeletedAt": null,
+        "user_id": 4,
+        "name": "pink jordans",
+        "category": "shoes",
+        "image": "assets/item-images/84442d2a-b3b3-4cd7-85b0-b01ae1d0381f.jpeg"
+    },
+    "ShoesID": 4
+}
    ```
   ````
   
@@ -95,40 +152,146 @@ No additional parameters, data format is JSON
  ````
   ```
     {
-   "ID" : 9,
-   "CreatedAt" : "2023-03-27T12:47:10.074678-04:00"
-   "DeletedAt" : null,
-   "user_id" : 0,
-   "name" : "\"name\"",
-   "category" : "\"category\"",
-   "image" : "images/6abd7ac-60eb-4c8f-81c3-425e2fe37ce4.jpg" 
-   }
+    "ID": 0,
+    "CreatedAt": "0001-01-01T00:00:00Z",
+    "UpdatedAt": "0001-01-01T00:00:00Z",
+    "DeletedAt": null,
+    "user_id": 0,
+    "Name": "",
+    "Tops": {
+        "ID": 0,
+        "CreatedAt": "0001-01-01T00:00:00Z",
+        "UpdatedAt": "0001-01-01T00:00:00Z",
+        "DeletedAt": null,
+        "user_id": 0,
+        "name": "",
+        "category": "",
+        "image": ""
+    },
+    "TopID": 0,
+    "Bottoms": {
+        "ID": 0,
+        "CreatedAt": "0001-01-01T00:00:00Z",
+        "UpdatedAt": "0001-01-01T00:00:00Z",
+        "DeletedAt": null,
+        "user_id": 0,
+        "name": "",
+        "category": "",
+        "image": ""
+    },
+    "BottomID": 0,
+    "OnePieces": {
+        "ID": 0,
+        "CreatedAt": "0001-01-01T00:00:00Z",
+        "UpdatedAt": "0001-01-01T00:00:00Z",
+        "DeletedAt": null,
+        "user_id": 0,
+        "name": "",
+        "category": "",
+        "image": ""
+    },
+    "OnePieceID": 0,
+    "Accessories": {
+        "ID": 0,
+        "CreatedAt": "0001-01-01T00:00:00Z",
+        "UpdatedAt": "0001-01-01T00:00:00Z",
+        "DeletedAt": null,
+        "user_id": 0,
+        "name": "",
+        "category": "",
+        "image": ""
+    },
+    "AccessoriesID": 0,
+    "Shoes": {
+        "ID": 0,
+        "CreatedAt": "0001-01-01T00:00:00Z",
+        "UpdatedAt": "0001-01-01T00:00:00Z",
+        "DeletedAt": null,
+        "user_id": 0,
+        "name": "",
+        "category": "",
+        "image": ""
+    },
+    "ShoesID": 0
+}
 ```
 ````
 
 - `PUT /outfit{id}`
   Requires an id, data format is in JSON
     - Sample Request Format:
-   - Input is an updated multipart form with at least one change to the following information:
-    - Name
-    - Tops 
-    - Bottoms
-    - OnePieces
-    - Accessories:
-    - Shoes
-
+   - Input is a request to JSON:
+    {
+  "Name": "Pink Shoes Outfit",
+  "TopID": 1,
+  "BottomID": 2,
+  "ShoesID": 5
+}
     - Sample Response Format:
   ````
   ```
     {
-   "ID" : 9,
-   "CreatedAt" : "2023-03-27T12:47:10.074678-04:00"
-   "DeletedAt" : null,
-   "user_id" : 0,
-   "name" : "\"name\"",
-   "category" : "\"category\"",
-   "image" : "images/6abd7ac-60eb-4c8f-81c3-425e2fe37ce41111111.jpg" 
-   }  
+    "ID": 2,
+    "CreatedAt": "2023-04-17T21:33:58.218509-04:00",
+    "UpdatedAt": "2023-04-17T21:46:41.734317-04:00",
+    "DeletedAt": null,
+    "Name": "Pink Shoes Outfit",
+    "Tops": {
+        "ID": 1,
+        "CreatedAt": "2023-04-17T21:29:21.646798-04:00",
+        "UpdatedAt": "2023-04-17T21:29:21.646798-04:00",
+        "DeletedAt": null,
+        "user_id": 1,
+        "name": "black tank top",
+        "category": "tops",
+        "image": "assets/item-images/72dcbe2e-89c2-4d56-a613-37f87d5e3673.jpeg"
+    },
+    "TopID": 1,
+    "Bottoms": {
+        "ID": 2,
+        "CreatedAt": "2023-04-17T21:32:35.909144-04:00",
+        "UpdatedAt": "2023-04-17T21:32:35.909144-04:00",
+        "DeletedAt": null,
+        "user_id": 2,
+        "name": "cargo pants",
+        "category": "bottoms",
+        "image": "assets/item-images/3df45954-7108-4214-a0c7-318876bb83e4.jpeg"
+    },
+    "BottomID": 2,
+    "OnePieces": {
+        "ID": 0,
+        "CreatedAt": "0001-01-01T00:00:00Z",
+        "UpdatedAt": "0001-01-01T00:00:00Z",
+        "DeletedAt": null,
+        "user_id": 0,
+        "name": "",
+        "category": "",
+        "image": ""
+    },
+    "OnePieceID": 0,
+    "Accessories": {
+        "ID": 0,
+        "CreatedAt": "0001-01-01T00:00:00Z",
+        "UpdatedAt": "0001-01-01T00:00:00Z",
+        "DeletedAt": null,
+        "user_id": 0,
+        "name": "",
+        "category": "",
+        "image": ""
+    },
+    "AccessoriesID": 0,
+    "Shoes": {
+        "ID": 5,
+        "CreatedAt": "2023-04-17T21:39:05.439145-04:00",
+        "UpdatedAt": "2023-04-17T21:39:05.439145-04:00",
+        "DeletedAt": null,
+        "user_id": 4,
+        "name": "pink jordans",
+        "category": "shoes",
+        "image": "assets/item-images/84442d2a-b3b3-4cd7-85b0-b01ae1d0381f.jpeg"
+    },
+    "ShoesID": 5
+}
 ```
 ````
 

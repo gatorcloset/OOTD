@@ -87,7 +87,7 @@ No additional parameters, data format is JSON
    ```
   ````
   
-  - `GET /item{id}`
+  - `GET /outfit{id}`
   Requires an id, data format is in JSON
     - Sample Request Format:
       - Nothing needed

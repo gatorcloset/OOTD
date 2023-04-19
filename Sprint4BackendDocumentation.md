@@ -227,7 +227,7 @@ No additional parameters, data format is JSON
   "TopID": 1,
   "BottomID": 2,
   "ShoesID": 5
-}
+    }
   ```
   
     - Sample Response Format:
@@ -293,7 +293,7 @@ No additional parameters, data format is JSON
         "image": "assets/item-images/84442d2a-b3b3-4cd7-85b0-b01ae1d0381f.jpeg"
     },
     "ShoesID": 5
-}
+  }
 ```
 
 - `DELETE /outfit{id}`

@@ -48,7 +48,7 @@ The endpoints created for this sprint include:
    ```
   ````
   
-- `GET /items`
+- `GET /outfits`
 No additional parameters, data format is JSON
   - Sample Request Format:
     - Nothing needed
@@ -106,13 +106,16 @@ No additional parameters, data format is JSON
 ```
 ````
 
-- `PUT /item{id}`
+- `PUT /outfit{id}`
   Requires an id, data format is in JSON
     - Sample Request Format:
    - Input is an updated multipart form with at least one change to the following information:
-    - name
-    - category
-    - image file
+    - Name
+    - Tops 
+    - Bottoms
+    - OnePieces
+    - Accessories:
+    - Shoes
 
     - Sample Response Format:
   ````

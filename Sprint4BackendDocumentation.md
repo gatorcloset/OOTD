@@ -112,35 +112,135 @@ No additional parameters, data format is JSON
   - Sample Response Format (Item list is truncated for the purposes of this demonstration):
   ````
   ```
-   {
-   "ID" : 9,
-   "CreatedAt" : "2023-03-27T12:47:10.074678-04:00"
-   "DeletedAt" : null,
-   "user_id" : 0,
-   "name" : "\"name\"",
-   "category" : "\"category\"",
-   "image" : "images/6abd7ac-60eb-4c8f-81c3-425e2fe37ce4.jpg" 
-   }
+  
+  {
+    "ID": 0,
+    "CreatedAt": "0001-01-01T00:00:00Z",
+    "UpdatedAt": "0001-01-01T00:00:00Z",
+    "DeletedAt": null,
+    "user_id": 0,
+    "Name": "New Outfit",
+    "Tops": {
+        "ID": 1,
+        "CreatedAt": "0001-01-01T00:00:00Z",
+        "UpdatedAt": "0001-01-01T00:00:00Z",
+        "DeletedAt": null,
+        "user_id": 0,
+        "name": "",
+        "category": "",
+        "image": ""
+    },
+    "TopID": 0,
+    "Bottoms": {
+        "ID": 2,
+        "CreatedAt": "0001-01-01T00:00:00Z",
+        "UpdatedAt": "0001-01-01T00:00:00Z",
+        "DeletedAt": null,
+        "user_id": 0,
+        "name": "",
+        "category": "",
+        "image": ""
+    },
+    "BottomID": 0,
+    "OnePieces": {
+        "ID": 0,
+        "CreatedAt": "0001-01-01T00:00:00Z",
+        "UpdatedAt": "0001-01-01T00:00:00Z",
+        "DeletedAt": null,
+        "user_id": 0,
+        "name": "",
+        "category": "",
+        "image": ""
+    },
+    "OnePieceID": 0,
+    "Accessories": {
+        "ID": 0,
+        "CreatedAt": "0001-01-01T00:00:00Z",
+        "UpdatedAt": "0001-01-01T00:00:00Z",
+        "DeletedAt": null,
+        "user_id": 0,
+        "name": "",
+        "category": "",
+        "image": ""
+    },
+    "AccessoriesID": 0,
+    "Shoes": {
+        "ID": 0,
+        "CreatedAt": "0001-01-01T00:00:00Z",
+        "UpdatedAt": "0001-01-01T00:00:00Z",
+        "DeletedAt": null,
+        "user_id": 0,
+        "name": "",
+        "category": "",
+        "image": ""
+    },
+    "ShoesID": 4
+}
+
+{
+    "ID": 3,
+    "CreatedAt": "0001-01-01T00:00:00Z",
+    "UpdatedAt": "0001-01-01T00:00:00Z",
+    "DeletedAt": null,
+    "user_id": 0,
+    "Name": "",
+    "Tops": {
+        "ID": 1,
+        "CreatedAt": "0001-01-01T00:00:00Z",
+        "UpdatedAt": "0001-01-01T00:00:00Z",
+        "DeletedAt": null,
+        "user_id": 0,
+        "name": "",
+        "category": "",
+        "image": ""
+    },
+    "TopID": 0,
+    "Bottoms": {
+        "ID": 5,
+        "CreatedAt": "0001-01-01T00:00:00Z",
+        "UpdatedAt": "0001-01-01T00:00:00Z",
+        "DeletedAt": null,
+        "user_id": 0,
+        "name": "",
+        "category": "",
+        "image": ""
+    },
+    "BottomID": 0,
+    "OnePieces": {
+        "ID": 0,
+        "CreatedAt": "0001-01-01T00:00:00Z",
+        "UpdatedAt": "0001-01-01T00:00:00Z",
+        "DeletedAt": null,
+        "user_id": 0,
+        "name": "",
+        "category": "",
+        "image": ""
+    },
+    "OnePieceID": 0,
+    "Accessories": {
+        "ID": 0,
+        "CreatedAt": "0001-01-01T00:00:00Z",
+        "UpdatedAt": "0001-01-01T00:00:00Z",
+        "DeletedAt": null,
+        "user_id": 0,
+        "name": "",
+        "category": "",
+        "image": ""
+    },
+    "AccessoriesID": 0,
+    "Shoes": {
+        "ID": 0,
+        "CreatedAt": "0001-01-01T00:00:00Z",
+        "UpdatedAt": "0001-01-01T00:00:00Z",
+        "DeletedAt": null,
+        "user_id": 0,
+        "name": "",
+        "category": "",
+        "image": ""
+    },
+    "ShoesID": 3
+}
    
-    {
-   "ID" : 10,
-   "CreatedAt" : "2023-03-29T12:47:35.074678-04:00"
-   "DeletedAt" : null,
-   "user_id" : 0,
-   "name" : "\"name\"",
-   "category" : "\"category\"",
-   "image" : "images/6fbc7ac-60eb-4c8f-81c3-425e2fwkjee37ce4.jpg" 
-   }
-   
-    {
-   "ID" : 11,
-   "CreatedAt" : "2023-03-29T12:47:36.074678-04:00"
-   "DeletedAt" : null,
-   "user_id" : 0,
-   "name" : "\"name\"",
-   "category" : "\"category\"",
-   "image" : "images/6fbac-60eb-4c8f-81djec3-425e2fe37ce4.jpg" 
-   }
    ```
   ````
   

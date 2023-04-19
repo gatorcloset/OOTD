@@ -20,7 +20,135 @@ The endpoints created for this sprint include:
 
 ## Request and Response Formats
 
+The endpoints created for this sprint include:
 
+- POST /login - authenticates a user and creates a session
+- POST /logout - logs out a user and clears session information
+- POST /item - create an item
+- GET /item - retrieve a list of all items
+- GET /item/{id} - retrieve information for a specific item
+- PUT /item/{id} - update an existing item
+- DELETE /item/{id} - delete an existing item
+- POST /tag - create a tag
+- GET /tag - retrieve a list of all tags
+- GET /tag/{id} - retrieve information for a specific tag
+- PUT /tag/{id} - update an existing tag
+- DELETE /tag/{id} - delete an existing tag
+
+## Request and Response Formats
+
+**For outfit table (which stores collections of items as outfits)**
+
+- `POST /item` 
+
+ Sample Request Format:
+  - Input is a multipart form with the following information:
+    - name
+    - category
+    - image file
+    
+  Sample Response Format:
+ ````
+  ```
+   {
+   "ID" : 9,
+   "CreatedAt" : "2023-03-29T12:47:36.074678-04:00"
+   "DeletedAt" : null,
+   "user_id" : 0,
+   "name" : "\"name\"",
+   "category" : "\"category\"",
+   "image" : "images/6fbc7ac-60eb-4c8f-81c3-425e2fe37ce4.jpg" 
+   }
+   ```
+  ````
+  
+- `GET /items`
+No additional parameters, data format is JSON
+  - Sample Request Format:
+    - Nothing needed
+  - Sample Response Format (Item list is truncated for the purposes of this demonstration):
+  ````
+  ```
+   {
+   "ID" : 9,
+   "CreatedAt" : "2023-03-27T12:47:10.074678-04:00"
+   "DeletedAt" : null,
+   "user_id" : 0,
+   "name" : "\"name\"",
+   "category" : "\"category\"",
+   "image" : "images/6abd7ac-60eb-4c8f-81c3-425e2fe37ce4.jpg" 
+   }
+   
+    {
+   "ID" : 10,
+   "CreatedAt" : "2023-03-29T12:47:35.074678-04:00"
+   "DeletedAt" : null,
+   "user_id" : 0,
+   "name" : "\"name\"",
+   "category" : "\"category\"",
+   "image" : "images/6fbc7ac-60eb-4c8f-81c3-425e2fwkjee37ce4.jpg" 
+   }
+   
+    {
+   "ID" : 11,
+   "CreatedAt" : "2023-03-29T12:47:36.074678-04:00"
+   "DeletedAt" : null,
+   "user_id" : 0,
+   "name" : "\"name\"",
+   "category" : "\"category\"",
+   "image" : "images/6fbac-60eb-4c8f-81djec3-425e2fe37ce4.jpg" 
+   }
+   ```
+  ````
+  
+  - `GET /item{id}`
+  Requires an id, data format is in JSON
+    - Sample Request Format:
+      - Nothing needed
+    - Sample Response Format:
+ ````
+  ```
+    {
+   "ID" : 9,
+   "CreatedAt" : "2023-03-27T12:47:10.074678-04:00"
+   "DeletedAt" : null,
+   "user_id" : 0,
+   "name" : "\"name\"",
+   "category" : "\"category\"",
+   "image" : "images/6abd7ac-60eb-4c8f-81c3-425e2fe37ce4.jpg" 
+   }
+```
+````
+
+- `PUT /item{id}`
+  Requires an id, data format is in JSON
+    - Sample Request Format:
+   - Input is an updated multipart form with at least one change to the following information:
+    - name
+    - category
+    - image file
+
+    - Sample Response Format:
+  ````
+  ```
+    {
+   "ID" : 9,
+   "CreatedAt" : "2023-03-27T12:47:10.074678-04:00"
+   "DeletedAt" : null,
+   "user_id" : 0,
+   "name" : "\"name\"",
+   "category" : "\"category\"",
+   "image" : "images/6abd7ac-60eb-4c8f-81c3-425e2fe37ce41111111.jpg" 
+   }  
+```
+````
+
+- `DELETE /item{id}`
+  Requires an id, data format is in JSON
+    - Sample Request Format:
+      - Nothing needed
+    - Sample Response Format:
+    "The item has successfully been deleted."
 
 ## Error Handling
 

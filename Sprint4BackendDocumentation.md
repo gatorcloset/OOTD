@@ -48,7 +48,7 @@ The endpoints created for this sprint include:
    ```
   ````
   
-- `GET /outfits`
+- `GET /outfit`
 No additional parameters, data format is JSON
   - Sample Request Format:
     - Nothing needed

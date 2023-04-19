@@ -231,7 +231,6 @@ No additional parameters, data format is JSON
   ```
   
     - Sample Response Format:
-  ````
   ```
     {
     "ID": 2,
@@ -296,7 +295,6 @@ No additional parameters, data format is JSON
     "ShoesID": 5
 }
 ```
-````
 
 - `DELETE /outfit{id}`
   Requires an id, data format is in JSON

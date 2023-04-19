@@ -6,11 +6,12 @@
           <h1 class="text-center">Add New Clothing Item</h1>
         </div>
         <form enctype="multipart/form-data">
+
           <!-- UPLOAD IMAGE -->
-          <app-upload-image id="upload"></app-upload-image>
-    
+          <app-upload-image id="upload"> </app-upload-image>
+
           <!-- INPUT NAME -->
-          <mat-form-field class="input" appearance="fill">
+          <mat-form-field class="input" appearance="fill" id="name-container">
             <mat-label>Name</mat-label>
             <input #name id="name" matInput>
           </mat-form-field>

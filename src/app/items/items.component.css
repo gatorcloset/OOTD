@@ -3,7 +3,8 @@
 }
 
 .example-card {
-    max-width: 300px;
+    /* max-width: 300px; */
+    max-width: 75%;
 }
 
 mat-card-content.top-padding {

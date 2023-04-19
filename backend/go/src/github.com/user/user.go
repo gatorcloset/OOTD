@@ -641,3 +641,11 @@ func GetAllItemsCategory(w http.ResponseWriter, r *http.Request) {
 	db.Where("user_id = ? AND category = ?", params["id"], params["name"]).Find(&items)
 	json.NewEncoder(w).Encode(items)
 }
+
+func GetUserOutfits(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	params := mux.Vars(r)
+	var outfits []Outfit
+	db.Where("user_id = ?", params["id"]).Find(&outfits)
+	json.NewEncoder(w).Encode(outfits)
+}

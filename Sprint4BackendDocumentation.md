@@ -294,7 +294,7 @@ No additional parameters, data format is JSON
     },
     "ShoesID": 5
   }
-```
+  ```
 
 - `DELETE /outfit{id}`
   Requires an id, data format is in JSON

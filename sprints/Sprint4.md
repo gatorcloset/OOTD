@@ -30,8 +30,8 @@ These tests were used to verify the functionality of outfit building, the premis
 - Checks that all outfits can be retrieved using GetOutfits (GET functionality)
 - Checks that outfits are able to be updated using UpdateOutfit (single/multiple items and name of outfit) (PUT functionality)
 - Checks that outfits are able to be softly deleted using DeleteOutfit (DELETE functionality)
-- Checks that we are able to retrieve all of a user's items by user id
-- Checks that we are able to retrieve all of a user's items under a certain category by user id
+- Checks that we are able to retrieve all of a user's items by user id using GetAllUserItems (GET functionality)
+- Checks that we are able to retrieve all of a user's items under a certain category by user id using GetAllItemsCategory (GET functionality)
 
 # Detailed Backend Documentation
 Find our detailed backend documentation here -> https://github.com/gatorcloset/OOTD/blob/main/Sprint4BackendDocumentation.md

@@ -1,6 +1,6 @@
 describe('Edit and delete clothing item', () => {
-  const username = 'michelle'
-  const password = 'michelle'
+  const username = 'aneesha'
+  const password = 'aneesha'
 
   beforeEach(() => {
     cy.viewport(1372, 768)

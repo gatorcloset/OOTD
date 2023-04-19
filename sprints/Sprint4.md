@@ -28,7 +28,7 @@ These tests were used to verify the functionality of outfit building, the premis
 - Checks that new outfits can be created using Create Outfit (POST functionality)
 - Checks that a single outfit can be retrieved using GetOutfit (GET functionality)
 - Checks that all outfits can be retrieved using GetOutfits (GET functionality)
-- Checks that outfits are able to be updated (single/multiple items and name of outfit) (PUT functionality)
+- Checks that outfits are able to be updated using UpdateOutfit (single/multiple items and name of outfit) (PUT functionality)
 - Checks that outfits are able to be softly deleted (DELETE functionality)
 - Checks that we are able to retrieve all of a user's items by user id
 - Checks that we are able to retrieve all of a user's items under a certain category by user id

@@ -12,15 +12,12 @@ body {
     padding-bottom: 70px;
 }
 
-.tile {
-    /*background-color: #F6F8FF;*/
-}
-
 .card {
-    background-color: white;
+    background-color: rgb(251, 251, 251);
     width: 300px;
     /*height: 375px;*/
     border-radius: 20px;
+    box-shadow: -2px 2px 10px #d0d0d2;
 }
 
 .clothes-container {
@@ -43,6 +40,8 @@ body {
 
 mat-card:hover {
     background-color: #f7f7f7;
+    background-color: white;
+    box-shadow: -2px 2px 15px #d0d0d2;
 }
 
 mat-card-content.padding {

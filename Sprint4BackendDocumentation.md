@@ -22,7 +22,7 @@ The endpoints created for this sprint include:
 
 **For outfit table (which stores collections of items as outfits)**
 
-- `POST /item` 
+- `POST /outfit` 
 
  Sample Request Format:
   - Input is a multipart form with the following information:

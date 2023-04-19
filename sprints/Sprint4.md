@@ -26,7 +26,7 @@ These tests were used to verify the functionality of outfit building, the premis
 
 - Checks that database can be accessed and requests can be made via [http://localhost:9000]
 - Checks that new outfits can be created using Create Outfit (POST functionality)
-- Checks that a single outfit can be retrieved (GET functionality)
+- Checks that a single outfit can be retrieved using GetOutfit (GET functionality)
 - Checks that all outfits can be retrieved (GET functionality)
 - Checks that outfits are able to be updated (single/multiple items and name of outfit) (PUT functionality)
 - Checks that outfits are able to be softly deleted (DELETE functionality)

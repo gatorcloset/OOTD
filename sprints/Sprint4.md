@@ -32,4 +32,4 @@ These tests were used to verify the functionality of outfit building, the premis
 - Checks that we are able to retrieve all of a user's items under a certain category by user id
 
 # Detailed Backend Documentation
-Find our detailed backend documentation here -> https://github.com/gatorcloset/OOTD/blob/main/Sprint3BackendDocumentation.md
+Find our detailed backend documentation here -> https://github.com/gatorcloset/OOTD/blob/main/Sprint4BackendDocumentation.md

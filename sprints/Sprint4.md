@@ -13,18 +13,19 @@
   - Similar to last sprint, this can be seen by making requests through Postman. Through Postman, we are able to access existing users and log them in. In addition we are able to create outfits using items (images) stored in the database. The ids of the items are saved and they are used to create the outfit. This way when users create an outfit, the outfit will be saved in the database and they will be able to access it later. 
 
 # Unit Tests
--Unit tests are fully functional for every CRUD function used throughout the program
+
 
 ## Frontend
 
 
 ## Backend
+Unit tests are fully functional for every CRUD function used throughout the program
 The unit tests for the backend can be found [here](https://github.com/gatorcloset/OOTD/blob/main/backend/go/src/github.com/user/user_test.go).
 
 These tests were used to verify the functionality of outfit building, the premise of OOTD. We also conducted tests to determine if we are able to retrieve all of a user's clothing items and all of the user's items in a certain category. The tests perform the following on each of the tables:
 
 - Checks that database can be accessed and requests can be made via [http://localhost:9000]
-- Checks that new outfits can be created (POST functionality)
+- Checks that new outfits can be created using Create Outfit (POST functionality)
 - Checks that a single outfit can be retrieved (GET functionality)
 - Checks that all outfits can be retrieved (GET functionality)
 - Checks that outfits are able to be updated (single/multiple items and name of outfit) (PUT functionality)

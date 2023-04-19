@@ -177,7 +177,7 @@ No additional parameters, data format is JSON
     "ShoesID": 4
 }
 
-{
+  {
     "ID": 3,
     "CreatedAt": "0001-01-01T00:00:00Z",
     "UpdatedAt": "0001-01-01T00:00:00Z",
@@ -239,7 +239,7 @@ No additional parameters, data format is JSON
         "image": ""
     },
     "ShoesID": 3
-}
+  }
    
    ```
   ````

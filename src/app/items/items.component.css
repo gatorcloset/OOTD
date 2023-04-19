@@ -3,8 +3,11 @@
 }
 
 .example-card {
-    /* max-width: 300px; */
-    max-width: 75%;
+    max-width: 300px;
+    background-color: rgb(251, 251, 251);
+    border-radius: 20px;
+    box-shadow: -2px 2px 10px #d0d0d2;
+   /*  max-width: 75%; */
 }
 
 mat-card-content.top-padding {
@@ -13,6 +16,8 @@ mat-card-content.top-padding {
 
 mat-card:hover {
     background-color: #f7f7f7;
+    background-color: white;
+    box-shadow: -2px 2px 15px #d0d0d2;
 }
 
 button {

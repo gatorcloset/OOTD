@@ -20,7 +20,124 @@ The endpoints created for this sprint include:
 
 ## Request and Response Formats
 
+**For outfit table (which stores collections of items as outfits)**
 
+- `POST /outfit` 
+
+ Sample Request Format:
+  - Input is a multipart form with the following information:
+    - Name
+    - Tops (Item object)
+    - Bottoms (Item object)
+    - OnePieces (Item object)
+    - Accessories (Item object)
+    - Shoes (Item object)
+    
+  Sample Response Format:
+ ````
+  ```
+   {
+   "ID" : 9,
+   "CreatedAt" : "2023-03-29T12:47:36.074678-04:00"
+   "DeletedAt" : null,
+   "user_id" : 0,
+   "name" : "\"name\"",
+   "category" : "\"category\"",
+   "image" : "images/6fbc7ac-60eb-4c8f-81c3-425e2fe37ce4.jpg" 
+   }
+   ```
+  ````
+  
+- `GET /outfit`
+No additional parameters, data format is JSON
+  - Sample Request Format:
+    - Nothing needed
+  - Sample Response Format (Item list is truncated for the purposes of this demonstration):
+  ````
+  ```
+   {
+   "ID" : 9,
+   "CreatedAt" : "2023-03-27T12:47:10.074678-04:00"
+   "DeletedAt" : null,
+   "user_id" : 0,
+   "name" : "\"name\"",
+   "category" : "\"category\"",
+   "image" : "images/6abd7ac-60eb-4c8f-81c3-425e2fe37ce4.jpg" 
+   }
+   
+    {
+   "ID" : 10,
+   "CreatedAt" : "2023-03-29T12:47:35.074678-04:00"
+   "DeletedAt" : null,
+   "user_id" : 0,
+   "name" : "\"name\"",
+   "category" : "\"category\"",
+   "image" : "images/6fbc7ac-60eb-4c8f-81c3-425e2fwkjee37ce4.jpg" 
+   }
+   
+    {
+   "ID" : 11,
+   "CreatedAt" : "2023-03-29T12:47:36.074678-04:00"
+   "DeletedAt" : null,
+   "user_id" : 0,
+   "name" : "\"name\"",
+   "category" : "\"category\"",
+   "image" : "images/6fbac-60eb-4c8f-81djec3-425e2fe37ce4.jpg" 
+   }
+   ```
+  ````
+  
+  - `GET /outfit{id}`
+  Requires an id, data format is in JSON
+    - Sample Request Format:
+      - Nothing needed
+    - Sample Response Format:
+ ````
+  ```
+    {
+   "ID" : 9,
+   "CreatedAt" : "2023-03-27T12:47:10.074678-04:00"
+   "DeletedAt" : null,
+   "user_id" : 0,
+   "name" : "\"name\"",
+   "category" : "\"category\"",
+   "image" : "images/6abd7ac-60eb-4c8f-81c3-425e2fe37ce4.jpg" 
+   }
+```
+````
+
+- `PUT /outfit{id}`
+  Requires an id, data format is in JSON
+    - Sample Request Format:
+   - Input is an updated multipart form with at least one change to the following information:
+    - Name
+    - Tops 
+    - Bottoms
+    - OnePieces
+    - Accessories:
+    - Shoes
+
+    - Sample Response Format:
+  ````
+  ```
+    {
+   "ID" : 9,
+   "CreatedAt" : "2023-03-27T12:47:10.074678-04:00"
+   "DeletedAt" : null,
+   "user_id" : 0,
+   "name" : "\"name\"",
+   "category" : "\"category\"",
+   "image" : "images/6abd7ac-60eb-4c8f-81c3-425e2fe37ce41111111.jpg" 
+   }  
+```
+````
+
+- `DELETE /outfit{id}`
+  Requires an id, data format is in JSON
+    - Sample Request Format:
+      - Nothing needed
+    - Sample Response Format:
+    "The item has outfit been deleted."
 
 ## Error Handling
 

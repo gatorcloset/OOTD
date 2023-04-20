@@ -391,9 +391,9 @@ No additional parameters, data format is JSON
         "name": "pink jordans",
         "category": "shoes",
         "image": "assets/item-images/84442d2a-b3b3-4cd7-85b0-b01ae1d0381f.jpeg"
-    },
+     },
     "ShoesID": 5
-  }
+   }
   ```
 
 - `DELETE /outfit{id}`

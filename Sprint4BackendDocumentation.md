@@ -301,6 +301,7 @@ No additional parameters, data format is JSON
         "category": "",
         "image": ""
     },
+    
     "AccessoriesID": 0,
     "Shoes": {
         "ID": 0,

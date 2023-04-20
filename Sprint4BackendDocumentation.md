@@ -29,6 +29,7 @@ The endpoints created for this sprint include:
   ````
   ```
     {
+    
   "Name": "Pink Shoes Outfit",
   "TopID": 1,
   "BottomID": 2,

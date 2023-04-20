@@ -290,6 +290,7 @@ No additional parameters, data format is JSON
         "category": "",
         "image": ""
     },
+    
     "OnePieceID": 0,
     "Accessories": {
         "ID": 0,

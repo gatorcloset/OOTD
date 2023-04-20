@@ -360,6 +360,7 @@ No additional parameters, data format is JSON
         "category": "bottoms",
         "image": "assets/item-images/3df45954-7108-4214-a0c7-318876bb83e4.jpeg"
     },
+    
     "BottomID": 2,
     "OnePieces": {
         "ID": 0,

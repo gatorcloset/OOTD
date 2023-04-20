@@ -268,7 +268,6 @@ No additional parameters, data format is JSON
         "category": "",
         "image": ""
     },
-    
     "TopID": 0,
     "Bottoms": {
         "ID": 0,
@@ -280,7 +279,6 @@ No additional parameters, data format is JSON
         "category": "",
         "image": ""
     },
-    
     "BottomID": 0,
     "OnePieces": {
         "ID": 0,
@@ -292,7 +290,6 @@ No additional parameters, data format is JSON
         "category": "",
         "image": ""
     },
-    
     "OnePieceID": 0,
     "Accessories": {
         "ID": 0,
@@ -304,7 +301,6 @@ No additional parameters, data format is JSON
         "category": "",
         "image": ""
     },
-    
     "AccessoriesID": 0,
     "Shoes": {
         "ID": 0,
@@ -352,8 +348,7 @@ No additional parameters, data format is JSON
         "name": "black tank top",
         "category": "tops",
         "image": "assets/item-images/72dcbe2e-89c2-4d56-a613-37f87d5e3673.jpeg"
-    },
-    
+    },   
     "TopID": 1,
     "Bottoms": {
         "ID": 2,
@@ -365,7 +360,6 @@ No additional parameters, data format is JSON
         "category": "bottoms",
         "image": "assets/item-images/3df45954-7108-4214-a0c7-318876bb83e4.jpeg"
     },
-    
     "BottomID": 2,
     "OnePieces": {
         "ID": 0,
@@ -377,7 +371,6 @@ No additional parameters, data format is JSON
         "category": "",
         "image": ""
     },
-    
     "OnePieceID": 0,
     "Accessories": {
         "ID": 0,
@@ -389,7 +382,6 @@ No additional parameters, data format is JSON
         "category": "",
         "image": ""
      },
-     
     "AccessoriesID": 0,
     "Shoes": {
         "ID": 5,

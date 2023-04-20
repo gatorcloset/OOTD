@@ -380,7 +380,7 @@ No additional parameters, data format is JSON
         "name": "",
         "category": "",
         "image": ""
-    },
+     },
     "AccessoriesID": 0,
     "Shoes": {
         "ID": 5,
